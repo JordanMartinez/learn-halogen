@@ -1,0 +1,12 @@
+# Ignore PS folders
+/output/
+/generated-docs/
+/.spago
+.psc*
+
+# Ignore project folders
+/assets/**/*.js
+
+# Ignore Parcel folders
+.cache/
+/dist/
