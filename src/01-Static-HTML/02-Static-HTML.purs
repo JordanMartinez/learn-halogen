@@ -4,14 +4,14 @@ import Prelude
 
 import Effect (Effect)
 import Halogen.HTML as HH
-import Scaffolding.StaticRenderer (StaticRenderer, runStaticComponent)
+import Scaffolding.StaticRenderer (runStaticHtml, StaticHTML)
 
 main :: Effect Unit
-main = runStaticComponent renderStaticHtml
+main = runStaticHtml staticHtml
 
--- | Shows how to use Halogen VDOM DSL to render HTML
-renderStaticHtml :: StaticRenderer
-renderStaticHtml =
+-- | Shows how to use Halogen VDOM DSL to render HTML without properties or CSS
+staticHtml :: StaticHTML
+staticHtml =
   HH.div_
     -- The 'div' tag takes an Array of children
     [ HH.div_

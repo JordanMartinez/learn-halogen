@@ -12,6 +12,25 @@ Starting small, there will not be any properties, css, or event handling. Rather
 </div>
 ```
 
+In PureScript, we would write this like so:
+```purescript
+import Halogen.HTML as HH
+import Scaffolding.StaticRenderer (StaticHTML)
+
+staticHtml :: StaticHTML
+staticHtml =
+  HH.div_
+    -- The 'div' tag takes an Array of children
+    [ HH.div_
+      [ HH.span_
+        -- as does the `span` tag
+        [ HH.text "This is text in a span!" ]
+      ]
+    , HH.button_
+      [ HH.text "You can click me, but I don't do anything." ]
+    ]
+
+```
 Now, look at the next file.
 
 ## Compiling Instructions

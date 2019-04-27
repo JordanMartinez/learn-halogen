@@ -9,15 +9,15 @@ import Halogen.HTML as HH
 import Halogen.HTML.CSS as CSS
 import Halogen.HTML.Properties (ButtonType(..))
 import Halogen.HTML.Properties as HP
-import Scaffolding.StaticRenderer (StaticRenderer, runStaticComponent)
+import Scaffolding.StaticRenderer (runStaticHtml, StaticHTML)
 
 main :: Effect Unit
-main = runStaticComponent renderStaticHtmlWithProps
+main = runStaticHtml staticHtmlWithPropsAndCss
 
 -- | Shows how to use Halogen VDOM DSL to render static HTML
--- | that also includes properties
-renderStaticHtmlWithProps :: StaticRenderer
-renderStaticHtmlWithProps =
+-- | that also includes properties and CSS
+staticHtmlWithPropsAndCss :: StaticHTML
+staticHtmlWithPropsAndCss =
   HH.div
     [ HP.id_ "top-div", CSS.style $ backgroundColor red ]
     [ HH.div

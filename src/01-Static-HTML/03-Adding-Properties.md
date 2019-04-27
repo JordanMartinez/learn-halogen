@@ -16,7 +16,7 @@ HH.div [] [ HH.text "some text!" ]
 -- as in, "the 'div' tag has no properties, css, or event handlers"
 
 -- The real syntax is
-HH.elementName [ properties, css, event_handlers ] [ children ]
+HH.elementName [ {- properties, css, event_handlers -} ] [ children ]
 ```
 
 ## Adding Properties
@@ -35,15 +35,15 @@ Understanding this, we can now use Halogen's DSL for HTML properties via this sy
 - When property names are the same as keywords in Purescript (e.g. the `class` is a keyword), they often have the `_` suffix added to distinguish them from those keywords.
 - To prevent you from constructing invalid data, some `HP.property` functions use newtypes to clarify what values you are creating. It may be necessary to write `HP.property $ DataConstructor value`.
 ```purescript
-import Halogen as H
 import Halogen.HTML as HH
+import Scaffolding.StaticRenderer (StaticHTML)
 
 -- new imports
 import Halogen.HTML (ClassName(..))
 import Halogen.HTML.Properties (ButtonType(..))
 
-renderStaticHtmlWithProps :: StaticRenderer
-renderStaticHtmlWithProps =
+staticHtmlWithProps :: StaticHtml
+staticHtmlWithProps =
   HH.div
     [ HP.id_ "top-div" ]
     [ HH.div

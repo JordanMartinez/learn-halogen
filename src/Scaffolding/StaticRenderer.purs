@@ -1,4 +1,4 @@
-module Scaffolding.StaticRenderer (runStaticComponent, StaticRenderer) where
+module Scaffolding.StaticRenderer (runStaticHtml, StaticHTML) where
 
 import Prelude
 
@@ -10,17 +10,19 @@ import Halogen.Aff (awaitBody)
 import Halogen.HTML as HH
 import Halogen.VDom.Driver (runUI)
 
-type StaticRenderer = H.ComponentHTML Unit () Aff
+-- | HTML written in Purescript via Halogen's HTML DSL
+-- | that is always rendered the same and does not include any event handling.
+type StaticHTML = H.ComponentHTML Unit () Aff
 
 -- | Renders the static HTML once the body element becomes available.
-runStaticComponent :: StaticRenderer -> Effect Unit
-runStaticComponent rendererFunction = do
+runStaticHtml :: StaticHTML -> Effect Unit
+runStaticHtml staticHTML = do
   launchAff_ do
     body <- awaitBody
-    runUI (staticComponent rendererFunction) unit body
+    runUI (staticComponent staticHTML) unit body
 
 -- | Wraps Halogen types cleanly, so that one gets very clear compiler errors
-staticComponent :: StaticRenderer
+staticComponent :: StaticHTML
                 -> H.Component HH.HTML (Const Unit) Unit Void Aff
 staticComponent staticHtml =
   H.mkComponent

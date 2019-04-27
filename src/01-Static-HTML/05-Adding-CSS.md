@@ -56,8 +56,8 @@ import Halogen.HTML.CSS as CSS
 -- purescript-css
 import CSS (backgroundColor, fontSize, orange, px, red)
 
-render :: H.ComponentHTML
-render =
+staticHtmlWitPropsAndCss :: StaticHtml
+staticHtmlWitPropsAndCss =
   HH.div
     [ HP.id_ "top-div", CSS.style $ backgroundColor red ]
     [ HH.div [ HP.class_ $ ClassName "special-div" ]
