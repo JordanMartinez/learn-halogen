@@ -31,9 +31,11 @@ runStateOnlyDynamicRenderer :: forall state.
 runStateOnlyDynamicRenderer firstState secondState thirdState rendererFunction = do
   launchAff_ do
     awaitLoad
+
     div1 <- selectElement' "could not find 'div#first'" $ QuerySelector "#first"
     div2 <- selectElement' "could not find 'div#second'" $ QuerySelector "#second"
     div3 <- selectElement' "could not find 'div#third'" $ QuerySelector "#third"
+
     void $ runUI (stateOnlyStaticComponent firstState  rendererFunction) unit div1
     void $ runUI (stateOnlyStaticComponent secondState rendererFunction) unit div2
     void $ runUI (stateOnlyStaticComponent thirdState  rendererFunction) unit div3
