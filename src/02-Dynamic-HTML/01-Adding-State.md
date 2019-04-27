@@ -4,6 +4,10 @@ Hopefully, you feel comfortable working with Halogen's HTML DSL now.
 
 Now, we'll change what HTML gets rendered based on the current state. To reduce the "code noise," we will not be using the code from previous examples. Rather, we'll be starting with a fresh example.
 
+Refer to the below flowchart to understand what we're doing here.
+
+![StateOnlyRenderer.svg ](../../assets/visuals/StateOnlyRenderer.svg)
+
 ```purescript
 import Halogen.HTML as HH
 
