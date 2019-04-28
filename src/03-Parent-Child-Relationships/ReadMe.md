@@ -16,8 +16,8 @@ For example
 A "parent" component can
 - render other components (it's children)
 - query one of more of its children
-    - by asking for information (e.g. "Could you tell me your counter's state?")
-    - by commanding it/them to do something (e.g. "Increase your counter by 1")
+    - by "requesting" information (e.g. "Could you tell me your counter's state?")
+    - by "telling" it/them to do something (e.g. "Increase your counter by 1")
 
 These are a few examples of "parent" components:
 - a container-like component that lays out child components in a specific way
@@ -25,8 +25,8 @@ These are a few examples of "parent" components:
 
 A "child" component can
 - respond to its parent component's instructions:
-    - questions: "My counter's state? Oh, it's 4"
-    - commands: "Ok. I will increment my counter by 1"
+    - requests: "My counter's state? Oh, it's 4"
+    - tells/commands: "Ok. I will increment my counter by 1"
 - notify a parent component of an event by "raising" a message (e.g. "Hey parent! I was clicked!")
 
 A component that has both "parent" and "child" capabilities
@@ -51,10 +51,10 @@ We'll show how this address system works after covering the next two points.
 
 There are 2 kinds of communication but 3 communication possibilities:
 1. queries (parent -> child):
-    1. Parent asks child for information
-    2. Parent tells child to do something
+    1. Parent "requests" information from child
+    2. Parent "tells" child to do something
 2. messages (child -> parent):
-    3. Child notifies parent of something.
+    3. Child "raises" a message about something to its parent.
 
 In simple terms, Halogen models their communication in this way:
 
