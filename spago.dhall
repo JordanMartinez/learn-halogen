@@ -5,7 +5,14 @@ You can edit this file as you like.
 { name =
     "my-project"
 , dependencies =
-    [ "console", "css", "effect", "halogen", "halogen-css", "psci-support" ]
+    [ "console"
+    , "css"
+    , "effect"
+    , "halogen"
+    , "halogen-css"
+    , "psci-support"
+    , "random"
+    ]
 , packages =
     ./packages.dhall
 }
