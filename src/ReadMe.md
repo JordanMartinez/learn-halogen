@@ -11,6 +11,8 @@ To accomplish all of this, Halogen uses a single `component` type that can be "c
 
 These 5 types are one reason why learning Halogen can be difficult as one can quickly feel overwhelmed by them, especially when new to the Functional Programming paradigm.
 
+To limit this feeling of being overwhelmed, we'll provide some scaffolding that "hides" irrelevent things from you until you understand the foundational concepts first. This scaffolding code will be stored in the `Scaffolding` folder. Feel free to ignore this folder until after you have finished reading through the rest of the folder's contents.
+
 ## Outline
 
 What follows is a modular, bottom-up approach to teaching each foundational concept and configuration type in a clear manner with examples that you can further build upon and play with.

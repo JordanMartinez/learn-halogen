@@ -17,8 +17,6 @@ Before learning Halogen via this project, you will need to install the following
 3. Run `spago docs` (and refer to the docs via the `./generated-docs/index.html` file)
 4. Read through each folder using the same rules that I use in my learning repo (described [in the third bullet point here](https://github.com/JordanMartinez/purescript-jordans-reference#learning-purescript-using-this-project)
 
-Note: ignore the `Scaffolding` folders. These wrap `halogen` code that haven't been explained yet to make it easier for you to understand foundational concepts and play with those concepts without bigger type issues getting in the way.
-
 ## License
 
 This project is licensed under the `Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International license`: [(Human-readable version)](https://creativecommons.org/licenses/by-nc-sa/4.0/), [(Actual License)](https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode)
