@@ -1,9 +1,31 @@
-# Learn Halogen Outline
+# Learn Halogen
+
+Halogen works by using one or more `component`s. A `component` is a self-contained entity that knows how to render itself based on its current state, can update its state, can detect and handle events, and can communicate with other `component`s in a hierarchial manner.
+
+To accomplish all of this, Halogen uses a single `component` type that can be "configured" via 5 other types:
+- the `state` type
+- the `action` type
+- the `input` type
+- the `message` type
+- the `query` type.
+
+These 5 types are one reason why learning Halogen can be difficult as one can quickly feel overwhelmed by them, especially when new to the Functional Programming paradigm.
+
+## Outline
+
+What follows is a modular, bottom-up approach to teaching each foundational concept and configuration type in a clear manner with examples that you can further build upon and play with.
 
 Show how to...
-1. Render static HTML (components without state) via Halogen VDOM's DSL
+1. Render static HTML and CSS (components without state) via Halogen VDOM's DSL
 2. Render dynamic HTML (components with state and simple event handling)
-3. Introduce parent-child relationships between components
+    - introduce the `state` type and `action` type
+3. Overview "child-like" components
+    - introduce the `input` type and `message` type
+    - see another aspect of the `action` type
+4. Overview "parent-like" components
+    - overview the `action`, `input`, and `message` types again
+    - introduce the `query` type
+5. Exposing the real and configurable `component` type we've been hiding with scaffolding
 
 ## Compilation and Viewing Instructions
 
