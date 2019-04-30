@@ -37,6 +37,9 @@ before_script:
   - ./.travis/print-versions.sh
 
 script:
+  - spago build
+  # ^ Install and compile dependencies and source code
+  # before bundling and building it
   - chmod +x .travis/bundle-and-build.sh
   - ./.travis/bundle-and-build.sh
 
