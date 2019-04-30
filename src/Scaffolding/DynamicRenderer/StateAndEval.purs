@@ -11,8 +11,8 @@ import Halogen.Aff (awaitBody)
 import Halogen.HTML as HH
 import Halogen.VDom.Driver (runUI)
 
--- | Renders HTML that can respond to events using the `action` type to
--- | translate an HTML event into a type for one's custom usage.
+-- | Renders HTML that can respond to events by translating them
+-- | into a value of the `action` that one uses to handle the event.
 type DynamicHtml action = ComponentHTML action () Aff
 
 -- | A function that uses the `state` type's value to render HTML
