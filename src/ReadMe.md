@@ -24,10 +24,12 @@ Show how to...
 3. Overview "child-like" components
     - introduce the `input` type and `message` type
     - see another aspect of the `action` type
-4. Overview "parent-like" components
+4. (WIP) Overview "parent-like" components
     - overview the `action`, `input`, and `message` types again
     - introduce the `query` type
-5. Exposing the real and configurable `component` type we've been hiding with scaffolding
+5. (TODO) Exposing the real and configurable `component` type we've been hiding with scaffolding
+6. (TODO) Overview the "Driver:" how one can 'hook into' the UI with business logic
+7. (TODO) Forewarn you about possible issues
 
 ## Compilation and Viewing Instructions
 
