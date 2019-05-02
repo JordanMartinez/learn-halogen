@@ -19,7 +19,7 @@ import Halogen.HTML.CSS as CSS
 import Halogen.HTML.Events as HE
 import Halogen.HTML.Properties as HP
 
-type State = Unit
+type StateType = Unit
 data ActionType
   = DoStuff
   -- Uncomment these if they are needed
@@ -71,8 +71,8 @@ _child = SProxy :: SProxy "child"
 component :: H.Component HH.HTML Query Input Message MonadType
 component =
     H.mkComponent
-      { initialState: initialState
-      , render: render
+      { initialState
+      , render
       , eval: H.mkEval $ H.defaultEval { handleAction = handleAction
                                        , receive = receive
                                        -- , handleQuery = handleQuery
@@ -81,26 +81,26 @@ component =
                                        }
       }
   where
-    initialState :: Input -> State
+    initialState :: Input -> StateType
     initialState _ = unit
 
     receive :: Input -> Maybe ActionType
     receive _ = Just DoStuff
 
-    render :: State -> H.ComponentHTML ActionType ChildSlots MonadType
+    render :: StateType -> H.ComponentHTML ActionType ChildSlots MonadType
     render _ =
       HH.div_
         [ HH.text "stuff " ]
 
     handleAction :: ActionType
-                 -> H.HalogenM State ActionType ChildSlots Message MonadType Unit
+                 -> H.HalogenM StateType ActionType ChildSlots Message MonadType Unit
     handleAction = case _ of
       DoStuff -> do
         pure unit
 
     -- handleQuery :: forall a.
     --                Query a
-    --             -> H.HalogenM State ActionType ChildSlots Message MonadType (Maybe a)
+    --             -> H.HalogenM StateType ActionType ChildSlots Message MonadType (Maybe a)
     -- handleQuery = case _ of
     --   Request reply -> do
     --     -- value <- computeTheValue
