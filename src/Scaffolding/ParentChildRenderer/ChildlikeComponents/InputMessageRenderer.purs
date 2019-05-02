@@ -95,7 +95,7 @@ parentComponent childComp =
                                        }
       }
   where
-    parentHtml :: ParentState -> H.ComponentHTML ParentAction _ Aff
+    parentHtml :: ParentState -> H.ComponentHTML ParentAction (child :: H.Slot (Const Unit) String Unit) Aff
     parentHtml state =
       HH.div_
         [ HH.div_
@@ -113,11 +113,13 @@ parentComponent childComp =
           )
         ]
 
-    handleAction :: ParentAction -> H.HalogenM ParentState ParentAction _ Void Aff Unit
+    handleAction :: ParentAction
+                 -> H.HalogenM ParentState ParentAction (child :: H.Slot (Const Unit) String Unit) Void Aff Unit
     handleAction (AddMessage msg) = do
       modify_ (\stateRecord -> stateRecord { logArray = msg : stateRecord.logArray })
 
-    handleQuery :: forall a. ParentQuery a -> H.HalogenM ParentState ParentAction _ Void Aff (Maybe a)
+    handleQuery :: forall a. ParentQuery a
+                -> H.HalogenM ParentState ParentAction (child :: H.Slot (Const Unit) String Unit) Void Aff (Maybe a)
     handleQuery (SetState nextInt next) = do
       modify_ (\stateRecord -> stateRecord { latestInt = nextInt })
       pure $ Just next

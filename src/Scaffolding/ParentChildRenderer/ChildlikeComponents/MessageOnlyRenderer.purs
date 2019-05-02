@@ -76,11 +76,10 @@ parentComponent childComp =
     H.mkComponent
       { initialState: const []
       , render: parentHtml
-      , eval: H.mkEval $ H.defaultEval { handleAction = handleAction
-                                       }
+      , eval: H.mkEval $ H.defaultEval { handleAction = handleAction }
       }
   where
-    parentHtml :: ParentState -> H.ComponentHTML ParentAction _ Aff
+    parentHtml :: ParentState -> H.ComponentHTML ParentAction (child :: H.Slot (Const Unit) String Unit) Aff
     parentHtml logArray =
       HH.div_
         [ HH.div_
@@ -97,7 +96,7 @@ parentComponent childComp =
           )
         ]
 
-    handleAction :: ParentAction -> H.HalogenM ParentState ParentAction _ Void Aff Unit
+    handleAction :: ParentAction -> H.HalogenM ParentState ParentAction (child :: H.Slot (Const Unit) String Unit) Void Aff Unit
     handleAction (AddMessage msg) = do
       -- add the message to the front of the array
       modify_ (\array -> msg : array)

@@ -75,9 +75,6 @@ type ParentComponent = H.Component HH.HTML ParentQuery Int Void Aff
 
 _child = SProxy :: SProxy "child"
 
-type NoMessageNoQuery = H.Slot (Const Unit)  Void
-type ChildSlots = ( child :: NoMessageNoQuery )
-
 parentComponent :: ChildComponent -> ParentComponent
 parentComponent childComp =
     H.mkComponent
@@ -87,12 +84,13 @@ parentComponent childComp =
                                        }
       }
   where
-    parentHtml :: ParentState -> H.ComponentHTML ParentAction _ Aff
+    parentHtml :: ParentState -> H.ComponentHTML ParentAction (child :: H.Slot (Const Unit) Void Unit) Aff
     parentHtml latestInt =
       HH.div_
         [ HH.slot _child unit childComp latestInt (const Nothing) ]
 
-    handleQuery :: forall a. ParentQuery a -> H.HalogenM ParentState ParentAction _ Void Aff (Maybe a)
+    handleQuery :: forall a. ParentQuery a
+                -> H.HalogenM ParentState ParentAction (child :: H.Slot (Const Unit) Void Unit) Void Aff (Maybe a)
     handleQuery (SetState nextInt next) = do
       put nextInt
       pure $ Just next
