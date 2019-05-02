@@ -51,6 +51,12 @@ INPUT_MESSAGE_BUNDLE=$?
 parcel build assets/parent-child-relationships/childlike-components/input-message.html -o input-message--parcelified.html
 INPUT_MESSAGE_BUNDLE=$?
 
+# Basic Container
+spago bundle -m ParentChildRelationships.ParentlikeComponents.BasicContainer -t assets/parent-child-relationships/parentlike-components/basic-container.js
+BASIC_CONTAINER_BUNDLE=$?
+parcel build assets/parent-child-relationships/parentlike-components/basic-container.html -o basic-container--parcelified.html
+BASIC_CONTAINER_BUILD=$?
+
 ####
 echo "$STATIC_HTML_BUNDLE - Static HTML - Bundle"
 echo "$STATIC_HTML_BUILD - Static HTML - Build"
@@ -68,6 +74,8 @@ echo "$MESSAGE_ONLY_BUNDLE - Message only - Bundle"
 echo "$MESSAGE_ONLY_BUNDLE - Message only - Build"
 echo "$INPUT_MESSAGE_BUNDLE - Input Message - Bundle"
 echo "$INPUT_MESSAGE_BUNDLE - Input Message - Build"
+echo "$BASIC_CONTAINER_BUNDLE - Basic Container - Bundle"
+echo "$BASIC_CONTAINER_BUILD - Basic Container - Build"
 
 if [ $STATIC_HTML_BUILD == 0 ] &&
    [ $ADDING_PROPERTIES_BUNDLE == 0 ] &&
@@ -83,7 +91,9 @@ if [ $STATIC_HTML_BUILD == 0 ] &&
    [ $MESSAGE_ONLY_BUNDLE == 0 ] &&
    [ $MESSAGE_ONLY_BUNDLE == 0 ] &&
    [ $INPUT_MESSAGE_BUNDLE == 0 ] &&
-   [ $INPUT_MESSAGE_BUNDLE == 0 ]
+   [ $INPUT_MESSAGE_BUNDLE == 0 ] &&
+   [ $BASIC_CONTAINER_BUNDLE == 0 ] &&
+   [ $BASIC_CONTAINER_BUILD == 0]
 then
   echo "Build Succeeded"
   exit 0;
