@@ -20,8 +20,8 @@ import Halogen.HTML.Events as HE
 import Halogen.HTML.Properties as HP
 
 type State = Unit
-data Action
-  = Action
+data ActionType
+  = DoStuff
   -- Uncomment these if they are needed
   -- | Initialize
   -- | Finalize
@@ -84,23 +84,23 @@ component =
     initialState :: Input -> State
     initialState _ = unit
 
-    receive :: Input -> Maybe Action
-    receive _ = Just Action
+    receive :: Input -> Maybe ActionType
+    receive _ = Just DoStuff
 
-    render :: State -> H.ComponentHTML Action ChildSlots MonadType
+    render :: State -> H.ComponentHTML ActionType ChildSlots MonadType
     render _ =
       HH.div_
         [ HH.text "stuff " ]
 
-    handleAction :: Action
-                 -> H.HalogenM State Action ChildSlots Message MonadType Unit
+    handleAction :: ActionType
+                 -> H.HalogenM State ActionType ChildSlots Message MonadType Unit
     handleAction = case _ of
-      Action -> do
+      DoStuff -> do
         pure unit
 
     -- handleQuery :: forall a.
     --                Query a
-    --             -> H.HalogenM State Action ChildSlots Message MonadType (Maybe a)
+    --             -> H.HalogenM State ActionType ChildSlots Message MonadType (Maybe a)
     -- handleQuery = case _ of
     --   Request reply -> do
     --     -- value <- computeTheValue
