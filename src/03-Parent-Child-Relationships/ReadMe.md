@@ -38,15 +38,28 @@ A component that has both "parent" and "child" capabilities
 ## Parent-Child Communication
 
 There are 2 kinds of communication (based on who initiates the conversation) but 3 communication possibilities:
-1. queries (parent -> child):
-    1. Parent "requests" information from child
-    2. Parent "tells" child to do something
-2. messages (child -> parent):
-    3. Child "raises" a message about something to its parent.
+1. messages (child -> parent):
+    1. Child "raises" a message about something to its parent.
+2. queries (parent -> child):
+    2. Parent "requests" information from child
+    3. Parent "tells" child to do something
 
 In simple terms, Halogen models their communication in this way:
 
 ![Parent-Child-Relationship--Communication.svg](../../assets/visuals/Parent-Child-Relationship--Communication.svg)
+
+### Child to Parent Communication
+
+A child cannot know which parent may contain it, but a parent will always know which child it wraps. When a child wishes to notify the parent that something has occurred, it "raises" a message to the parent. We use the `Message` type for this.
+
+If we reuse the child component across multiple unrelated parent components, each might handle it differently.
+
+Thus, a parent responds to a child's message just like an event:
+1. Determine via `Maybe` whether to handle the "event" (i.e. child message)
+1. Convert the "event" into a value of the parent's `action` type.
+2. Handle that parent's `action` value.
+
+In other words, we use a function with this type signature: `ChildMessageType -> Maybe ParentActionType`.
 
 ### Parent to Child Communication
 
@@ -67,19 +80,6 @@ data Query theRestOfTheParentComputation
   | UpdateStateIfNeeded InfoChildNeeds1 InfoChildNeeds2 theRestOfTheParentComputation
   | RequestInfoFromChild InfoChildNeeds3 (InfoParentNeeds -> theRestOfTheParentComputation)
 ```
-
-### Child to Parent Communication
-
-A child cannot know which parent may contain it, but a parent will always know which child it wraps. When a child wishes to notify the parent that something has occurred, it "raises" a message to the parent. We use the `Message` type for this.
-
-If we reuse the child component across multiple unrelated parent components, each might handle it differently.
-
-Thus, a parent responds to a child's message just like an event:
-1. Determine via `Maybe` whether to handle the "event" (i.e. child message)
-1. Convert the "event" into a value of the parent's `action` type.
-2. Handle that parent's `action` value.
-
-In other words, we use a function with this type signature: `ChildMessageType -> Maybe ParentActionType`.
 
 ## Rendering
 
