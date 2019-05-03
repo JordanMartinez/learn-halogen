@@ -153,7 +153,7 @@ For languages that don't have a powerful type checker, these kinds of problems c
 
 For Halogen, a `slot` type solves each of the above problems, and the compiler guarantees that no such problem exists or it fails with a compiler error.
 
-A `slot` consists of three things:
+A `slot` consists of four things:
 - the "query" type that that child type uses
 - the "message" type that the child type uses
 - the "index" type that the parent type uses to distinguish one child from another when all use the same query and message type
