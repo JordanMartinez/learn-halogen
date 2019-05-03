@@ -1,6 +1,6 @@
 # Message Only
 
-This example will swap the previous example. In this example, the parent component will the child component and a text. Every time the child's button is clicked, the parent will receive a message from the child and update its state to that value. It will then render its text using that state.
+This example will swap the previous example. In this example, the parent component will render the child component and a text value that displays the latest message received from the child. Every time the child's button is clicked, the parent will receive a message from the child and update its state to that value. It will then render its text using that state.
 
 Now look at the next file for the full example.
 
