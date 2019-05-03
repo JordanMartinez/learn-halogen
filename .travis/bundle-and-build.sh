@@ -50,11 +50,17 @@ QUERY_ONLY_BUNDLE=$?
 parcel build assets/parent-child-relationships/childlike-components/query-only.html -o child-query-only--parcelified.html
 QUERY_ONLY_BUILD=$?
 
-# Input and Message
-spago bundle -m ParentChildRelationships.ChildlikeComponents.All -t assets/parent-child-relationships/childlike-components/all.js
-ALL_BUNDLE=$?
-parcel build assets/parent-child-relationships/childlike-components/all.html -o child-all--parcelified.html
-All_BUILD=$?
+# All No Halogen Types
+spago bundle -m ParentChildRelationships.ChildlikeComponents.All.NoHalogenTypes -t assets/parent-child-relationships/childlike-components/all--no-halogen-types.js
+ALL_NO_HALOGEN_BUNDLE=$?
+parcel build assets/parent-child-relationships/childlike-components/all--no-halogen-types.html -o child-all--no-halogen-types--parcelified.html
+ALL_NO_HALOGEN_BUILD=$?
+
+# All With Halogen Types
+spago bundle -m ParentChildRelationships.ChildlikeComponents.All.WithHalogenTypes -t assets/parent-child-relationships/childlike-components/all--with-halogen-types.js
+ALL_WITH_HALOGEN_BUNDLE=$?
+parcel build assets/parent-child-relationships/childlike-components/all--with-halogen-types.html -o child-all--with-halogen-types--parcelified.html
+ALL_WITH_HALOGEN_BUILD=$?
 
 # Basic Container
 spago bundle -m ParentChildRelationships.ParentlikeComponents.BasicContainer -t assets/parent-child-relationships/parentlike-components/basic-container.js
@@ -89,8 +95,10 @@ echo "$MESSAGE_ONLY_BUNDLE - Message only - Bundle"
 echo "$MESSAGE_ONLY_BUILD - Message only - Build"
 echo "$QUERY_ONLY_BUNDLE - Query only - Bundle"
 echo "$QUERY_ONLY_BUILD -  Query only - Build"
-echo "$ALL_BUNDLE - Input Message - Bundle"
-echo "$ALL_BUILD - Input Message - Build"
+echo "$ALL_NO_HALOGEN_BUNDLE - All (No Halogen Types) - Bundle"
+echo "$ALL_NO_HALOGEN_BUILD - All (No Halogen Types) - Build"
+echo "$ALL_WITH_HALOGEN_BUNDLE - All (With Halogen Types) - Bundle"
+echo "$ALL_WITH_HALOGEN_BUILD - All (With Halogen Types) - Build"
 echo "$BASIC_CONTAINER_BUNDLE - Basic Container - Bundle"
 echo "$BASIC_CONTAINER_BUILD - Basic Container - Build"
 echo "$PARENT_INPUT_ONLY_BUNDLE - Parent Input Only - Bundle"
@@ -114,8 +122,10 @@ if [ $STATIC_HTML_BUNDLE == 0 ] &&
    [ $MESSAGE_ONLY_BUILD == 0 ] &&
    [ $QUERY_ONLY_BUNDLE == 0 ] &&
    [ $QUERY_ONLY_BUILD == 0 ] &&
-   [ $ALL_BUNDLE == 0 ] &&
-   [ $ALL_BUILD == 0 ] &&
+   [ $ALL_NO_HALOGEN_BUNDLE == 0 ] &&
+   [ $ALL_NO_HALOGEN_BUILD == 0 ] &&
+   [ $ALL_WITH_HALOGEN_BUNDLE == 0 ] &&
+   [ $ALL_WITH_HALOGEN_BUILD == 0 ] &&
    [ $BASIC_CONTAINER_BUNDLE == 0 ] &&
    [ $BASIC_CONTAINER_BUILD == 0 ] &&
    [ $PARENT_INPUT_ONLY_BUNDLE == 0 ] &&
