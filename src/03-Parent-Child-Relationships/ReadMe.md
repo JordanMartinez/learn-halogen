@@ -51,10 +51,22 @@ In simple terms, Halogen models their communication in this way:
 ### Parent to Child Communication
 
 When a parent executes a query, it notifies the child and includes a "callback" of sorts, either a "reply" function or a "next" value.
-- **"reply" function:** think of this as a pre-paid return package: the child puts the information the parent requested into the box and it gets "mailed" back to the parent. Once received, the parent continues its computation with this additional information.
-- **"next" value:** think of this as the computations the parent will do once the child is finished doing the parent's command.
+- **"reply" function:** think of this as a pre-paid return package. The parent will be running some computation and then need information from one or more of its children. Thus, it "mails" the child some instructions and a pre-paid return package. The child uses the information the parent provides and then puts the information the parent requested into the package. That package gets "mailed" back to the parent. Once received, the parent continues its computation with this additional information.
+- **"next" value:** think of this as a timer that goes off, indicating that an activity is finished. The parent will be running a computation. Then, the parent will tell one of more of its children to do something and wait for it to finish that activity. The child will receive the command and do the action. Then, the child will notify the parent that it's finished. Once the parent receives the notification, the parent continues to run its computation.
 
-(If one has read through my learning repo and the part on how to structure programs using the `Free` monad, queries work just like that. The higher-level language (parent) is "interpreted" into the lower-level language (child).)
+In code, we would write the child's query type like this:
+```purescript
+-- Usually, you'll see `theRestOfTheParentComputation` as `a`
+-- but this is how you should read it.
+data Query theRestOfTheParentComputation
+                         -- This is what the 'reply' function looks like
+  = RequestInfoFromChild (InfoParentNeeds -> theRestOfTheParentComputation)
+                              -- This is what the 'next' value looks like
+  | CommandChildToDoSomething theRestOfTheParentComputation
+  -- Here are some real-life examples
+  | UpdateStateIfNeeded InfoChildNeeds1 InfoChildNeeds2 theRestOfTheParentComputation
+  | RequestInfoFromChild InfoChildNeeds3 (InfoParentNeeds -> theRestOfTheParentComputation)
+```
 
 ### Child to Parent Communication
 
