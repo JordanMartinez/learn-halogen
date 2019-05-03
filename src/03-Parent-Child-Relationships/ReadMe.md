@@ -88,10 +88,10 @@ We define this mapping in the `receive` part of our code.
 
 There are 2 kinds of communication (based on who initiates the conversation) but 3 communication possibilities:
 1. messages (child -> parent):
-    1. Child "raises" a message about something to its parent.
+    - Child "raises" a message about something to its parent.
 2. queries (parent -> child):
-    2. Parent "requests" information from child
-    3. Parent "tells" child to do something
+    - Parent "requests" information from child
+    - Parent "tells" child to do something
 
 In simple terms, Halogen models their communication in this way:
 
