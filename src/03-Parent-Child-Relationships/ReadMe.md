@@ -37,7 +37,7 @@ A component that has both "parent" and "child" capabilities
 
 ## Parent-Child Communication
 
-There are 2 kinds of communication but 3 communication possibilities:
+There are 2 kinds of communication (based on who initiates the conversation) but 3 communication possibilities:
 1. queries (parent -> child):
     1. Parent "requests" information from child
     2. Parent "tells" child to do something
