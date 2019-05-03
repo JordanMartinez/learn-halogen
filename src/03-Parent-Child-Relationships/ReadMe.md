@@ -62,10 +62,10 @@ We define this mapping in the `initialState` part of our code.
 
 ### Each Re-Render Thereafter
 
-After the initial rendering, if the parent ever re-renders itself (due to its state being changed), it will pass a value of the `Input` type back into the child. Sometimes, the child will want to respond to such changes, and other times it won't.
+After the initial rendering, if the parent ever re-renders itself (due to its state being changed), it will only pass a value of the `Input` type into the child if that value has changed since the last time it passed such a value. Sometimes, the child will want to respond to such changes, and other times it won't.
 
 Thus, a child-like component responds to a parent's `input` value just like an event:
-1. Determine via `Maybe` whether to handle the "event" (i.e. parent was re-rendered and is passing a value of `Input` into the child-like component)
+1. Determine via `Maybe` whether to handle the "event" (i.e. parent was re-rendered and is passing a new value of `Input` into the child-like component)
 2. Convert the event into a value of the child's `Action` type.
 3. Handle that action value.
 
