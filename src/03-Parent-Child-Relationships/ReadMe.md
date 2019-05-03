@@ -2,9 +2,9 @@
 
 This page provides an overview of parent-child relationships in 4 parts. Then we'll cover specific aspects of these ideas in separate files that focuses on a single idea and includes examples.
 1. Capability-based components
-2. slot addresses
-3. parent-child communication
-4. rendering childlike components
+2. parent-child communication
+3. rendering childlike components
+4. slot addresses
 
 ## Capability-Based Components
 
@@ -34,46 +34,6 @@ A component that has both "parent" and "child" capabilities
 - has all the "child" capabilities
 - can forward its parent's query down to its children
 - can forward its children's messages to its parent
-
-## The Problem of Multiple Children and the Solution of Slot Addresses
-
-Let's say a parent-like component has one child-like component. If the parent needs to query its child, it's obvious which one to query. Similarly, the child's `Query` type likely only has a few values, so it's unlikely that we will use the wrong one.
-
-However, when a parent has two or more children, conflicting situations can arise.
-- **The "Slot Query" problem:** Two or more children may use diffrent `query` types, so which `query` type's value do we use when communicating with Child A instead of Child B?
-- **The "Slot Message" problem:** Two or more children may use different `message` types to raise/emit messages to the parent. How does the parent correctly map each one to the parent component's `action` type?
-- **The "Slot Index" problem:** Two or more children may use the `same` query type, so which of those children do we query?
-- **The "Slot Label" problem:** The above three problems allow all sorts of different combinations, so how does the parent track one combination from another?
-
-For languages that don't have a powerful type checker, these kinds of problems can lead to runtime errors and tracking down the bugs become difficult.
-
-For Halogen, a `slot` type solves each of the above problems, and the compiler guarantees these problems do not arise or fails with a compiler error.
-
-A `slot` consists of three things:
-- the "query" type that that child type uses
-- the "message" type that the child type uses
-- the "index" type that the parent type uses to distinguish one child from another when all use the same query and message type
-- the "label" in a record that the parent uses to refer to each combination of the above three things
-
-In short it looks like this:
-```purescript
-type SingleChildSlot =
-  ( labelForCombination :: H.Slot ChildQuery ChildMessage IndexForSameQuerySameMessage )
-```
-When we want to have more combinations, we just add another label:
-```purescript
--- One "slot label" for each query-message-index combination
-type ChildSlots =
-  ( labelForCombination :: H.Slot ChildQuery ChildMessage IndexForSameQuerySameMessage
-  , label2 :: H.Slot ChildQuery2 String Int
-  , label3 :: H.Slot GetOrSetChildState String Int
-  , logMessages :: H.Slot NoQuery NoMessage Int
-  )
-```
-Since Halogen uses one component type and does not distinguish a child-like component from a parent-like component, child-like components must also define their `ChildSlots` type. So how do we define a slot type with no chlid slots? We ues an empty row kind:
-```purescript
-type NoChildSlots = () -- this is an empty row kind
-```
 
 ## Parent-Child Communication
 
@@ -144,3 +104,43 @@ Thus, a child-like component responds to a parent's `input` value just like an e
 3. Handle that action value.
 
 We define this mapping in the `receive` part of our code.
+
+## The Problem of Multiple Children and the Solution of Slot Addresses
+
+Let's say a parent-like component has one child-like component. If the parent needs to query its child, it's obvious which one to query. Similarly, the child's `Query` type likely only has a few values, so it's unlikely that we will use the wrong one.
+
+However, when a parent has two or more children, conflicting situations can arise.
+- **The "Slot Query" problem:** Two or more children may use diffrent `query` types, so which `query` type's value do we use when communicating with Child A instead of Child B?
+- **The "Slot Message" problem:** Two or more children may use different `message` types to raise/emit messages to the parent. How does the parent correctly map each one to the parent component's `action` type?
+- **The "Slot Index" problem:** Two or more children may use the `same` query type, so which of those children do we query?
+- **The "Slot Label" problem:** The above three problems allow all sorts of different combinations, so how does the parent track one combination from another?
+
+For languages that don't have a powerful type checker, these kinds of problems can lead to runtime errors and tracking down the bugs become difficult.
+
+For Halogen, a `slot` type solves each of the above problems, and the compiler guarantees these problems do not arise or fails with a compiler error.
+
+A `slot` consists of three things:
+- the "query" type that that child type uses
+- the "message" type that the child type uses
+- the "index" type that the parent type uses to distinguish one child from another when all use the same query and message type
+- the "label" in a record that the parent uses to refer to each combination of the above three things
+
+In short it looks like this:
+```purescript
+type SingleChildSlot =
+  ( labelForCombination :: H.Slot ChildQuery ChildMessage IndexForSameQuerySameMessage )
+```
+When we want to have more combinations, we just add another label:
+```purescript
+-- One "slot label" for each query-message-index combination
+type ChildSlots =
+  ( labelForCombination :: H.Slot ChildQuery ChildMessage IndexForSameQuerySameMessage
+  , label2 :: H.Slot ChildQuery2 String Int
+  , label3 :: H.Slot GetOrSetChildState String Int
+  , logMessages :: H.Slot NoQuery NoMessage Int
+  )
+```
+Since Halogen uses one component type and does not distinguish a child-like component from a parent-like component, child-like components must also define their `ChildSlots` type. So how do we define a slot type with no chlid slots? We ues an empty row kind:
+```purescript
+type NoChildSlots = () -- this is an empty row kind
+```
