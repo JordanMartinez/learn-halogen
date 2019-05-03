@@ -14,5 +14,5 @@ To compile the next file and view its results in the browser, use these instruct
 
 ```bash
 spago bundle -m ParentChildRelationships.ChildlikeComponents.MessageOnly -t assets/parent-child-relationships/childlike-components/message-only.js
-parcel serve assets/parent-child-relationships/childlike-components/message-only.html -o message-only--parcelified.html --open
+parcel serve assets/parent-child-relationships/childlike-components/message-only.html -o child-message-only--parcelified.html --open
 ```

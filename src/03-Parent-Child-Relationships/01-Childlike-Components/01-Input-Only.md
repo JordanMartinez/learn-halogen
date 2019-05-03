@@ -12,5 +12,5 @@ To compile the next file and view its results in the browser, use these instruct
 
 ```bash
 spago bundle -m ParentChildRelationships.ChildlikeComponents.InputOnly -t assets/parent-child-relationships/childlike-components/input-only.js
-parcel serve assets/parent-child-relationships/childlike-components/input-only.html -o input-only--parcelified.html --open
+parcel serve assets/parent-child-relationships/childlike-components/input-only.html -o child-input-only--parcelified.html --open
 ```

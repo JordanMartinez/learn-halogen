@@ -36,19 +36,19 @@ ADDING_EVENT_HANDLING_BUILD=$?
 # Input only
 spago bundle -m ParentChildRelationships.ChildlikeComponents.InputOnly -t assets/parent-child-relationships/childlike-components/input-only.js
 INPUT_ONLY_BUNDLE=$?
-parcel build assets/parent-child-relationships/childlike-components/input-only.html -o input-only--parcelified.html
+parcel build assets/parent-child-relationships/childlike-components/input-only.html -o child-input-only--parcelified.html
 INPUT_ONLY_BUILD=$?
 
 # Message only
 spago bundle -m ParentChildRelationships.ChildlikeComponents.MessageOnly -t assets/parent-child-relationships/childlike-components/message-only.js
 MESSAGE_ONLY_BUNDLE=$?
-parcel build assets/parent-child-relationships/childlike-components/message-only.html -o message-only--parcelified.html
+parcel build assets/parent-child-relationships/childlike-components/message-only.html -o child-message-only--parcelified.html
 MESSAGE_ONLY_BUILD=$?
 
 # Input and Message
 spago bundle -m ParentChildRelationships.ChildlikeComponents.All -t assets/parent-child-relationships/childlike-components/all.js
 ALL_BUNDLE=$?
-parcel build assets/parent-child-relationships/childlike-components/all.html -o all--parcelified.html
+parcel build assets/parent-child-relationships/childlike-components/all.html -o child-all--parcelified.html
 All_BUILD=$?
 
 # Basic Container
