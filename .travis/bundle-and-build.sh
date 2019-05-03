@@ -45,6 +45,11 @@ MESSAGE_ONLY_BUNDLE=$?
 parcel build assets/parent-child-relationships/childlike-components/message-only.html -o child-message-only--parcelified.html
 MESSAGE_ONLY_BUILD=$?
 
+spago bundle -m ParentChildRelationships.ChildlikeComponents.QueryOnly -t assets/parent-child-relationships/childlike-components/query-only.js
+QUERY_ONLY_BUNDLE=$?
+parcel build assets/parent-child-relationships/childlike-components/query-only.html -o child-query-only--parcelified.html
+QUERY_ONLY_BUILD=$?
+
 # Input and Message
 spago bundle -m ParentChildRelationships.ChildlikeComponents.All -t assets/parent-child-relationships/childlike-components/all.js
 ALL_BUNDLE=$?
@@ -82,6 +87,8 @@ echo "$INPUT_ONLY_BUNDLE - Input only - Bundle"
 echo "$INPUT_ONLY_BUILD - Input only - Build"
 echo "$MESSAGE_ONLY_BUNDLE - Message only - Bundle"
 echo "$MESSAGE_ONLY_BUILD - Message only - Build"
+echo "$QUERY_ONLY_BUNDLE - Query only - Bundle"
+echo "$QUERY_ONLY_BUILD -  Query only - Build"
 echo "$ALL_BUNDLE - Input Message - Bundle"
 echo "$ALL_BUILD - Input Message - Build"
 echo "$BASIC_CONTAINER_BUNDLE - Basic Container - Bundle"
@@ -105,6 +112,8 @@ if [ $STATIC_HTML_BUNDLE == 0 ] &&
    [ $INPUT_ONLY_BUILD == 0 ] &&
    [ $MESSAGE_ONLY_BUNDLE == 0 ] &&
    [ $MESSAGE_ONLY_BUILD == 0 ] &&
+   [ $QUERY_ONLY_BUNDLE == 0 ] &&
+   [ $QUERY_ONLY_BUILD == 0 ] &&
    [ $ALL_BUNDLE == 0 ] &&
    [ $ALL_BUILD == 0 ] &&
    [ $BASIC_CONTAINER_BUNDLE == 0 ] &&
