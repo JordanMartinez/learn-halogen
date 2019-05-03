@@ -37,15 +37,43 @@ A component that has both "parent" and "child" capabilities
 
 ## The Problem of Multiple Children and the Solution of Slot Addresses
 
-Let's say a parent-like component has one child-like component. If the parent needs to query its child, it's obvious which one to query. Similarly, when its child raises a message, it's obvious which one is emitting that message.
+Let's say a parent-like component has one child-like component. If the parent needs to query its child, it's obvious which one to query. Similarly, the child's `Query` type likely only has a few values, so it's unlikely that we will use the wrong one.
 
-When a parent has two or more children, it's no longer obvious. Rather, we need an address system. This is what "slots" do. They help
-- you know which child is "raising" a message
-- you know which child to "query" (either ask for info or command something)
+However, when a parent has two or more children, conflicting situations can arise.
+- **The "Slot Query" problem:** Two or more children may use diffrent `query` types, so which `query` type's value do we use when communicating with Child A instead of Child B?
+- **The "Slot Message" problem:** Two or more children may use different `message` types to raise/emit messages to the parent. How does the parent correctly map each one to the parent component's `action` type?
+- **The "Slot Index" problem:** Two or more children may use the `same` query type, so which of those children do we query?
+- **The "Slot Label" problem:** The above three problems allow all sorts of different combinations, so how does the parent track one combination from another?
 
-Moreover, when a parent has multiple children, each child component may have different types used to communicate with their parent. So, this address system must also use the compiler to prevent you from using Child A's type when you were referring to Child B.
+For languages that don't have a powerful type checker, these kinds of problems can lead to runtime errors and tracking down the bugs become difficult.
 
-We'll show how this address system works after covering the next two points.
+For Halogen, a `slot` type solves each of the above problems, and the compiler guarantees these problems do not arise or fails with a compiler error.
+
+A `slot` consists of three things:
+- the "query" type that that child type uses
+- the "message" type that the child type uses
+- the "index" type that the parent type uses to distinguish one child from another when all use the same query and message type
+- the "label" in a record that the parent uses to refer to each combination of the above three things
+
+In short it looks like this:
+```purescript
+type SingleChildSlot =
+  ( labelForCombination :: H.Slot ChildQuery ChildMessage IndexForSameQuerySameMessage )
+```
+When we want to have more combinations, we just add another label:
+```purescript
+-- One "slot label" for each query-message-index combination
+type ChildSlots =
+  ( labelForCombination :: H.Slot ChildQuery ChildMessage IndexForSameQuerySameMessage
+  , label2 :: H.Slot ChildQuery2 String Int
+  , label3 :: H.Slot GetOrSetChildState String Int
+  , logMessages :: H.Slot NoQuery NoMessage Int
+  )
+```
+Since Halogen uses one component type and does not distinguish a child-like component from a parent-like component, child-like components must also define their `ChildSlots` type. So how do we define a slot type with no chlid slots? We ues an empty row kind:
+```purescript
+type NoChildSlots = () -- this is an empty row kind
+```
 
 ## Parent-Child Communication
 
