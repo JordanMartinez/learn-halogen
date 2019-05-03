@@ -1,10 +1,21 @@
 # Parent-Child Relationships
 
-This page provides an overview of parent-child relationships in 4 parts. Then we'll cover specific aspects of these ideas in separate files that focuses on a single idea and includes examples.
+## How to Read This Folder
+
+This page provides an overview of parent-child relationships in 4 parts:
 1. Capability-based components
 2. rendering childlike components
 3. parent-child communication
 4. slot addresses
+
+Here's how to read this folder's contents:
+- Read Section 1: Capability Based Components
+- For Sections 2 - 4
+    - Read the section in this file
+    - Read through the section's corresponding files in the "child-like components" folder
+- For Sections 2 - 4
+    - Read the section in this file
+    - Read through the section'scorresponding files in the "parent-like components" folder
 
 ## Capability-Based Components
 
@@ -36,6 +47,8 @@ A component that has both "parent" and "child" capabilities
 - can forward its children's messages to its parent
 
 ## Rendering
+
+The corresponding files for this section: `Input-Only`
 
 ### Initial Rendering
 
@@ -86,6 +99,8 @@ In simple terms, Halogen models their communication in this way:
 
 ### Child to Parent Communication
 
+The corresponding files for this section: `Message-Only`
+
 A child cannot know which parent may contain it, but a parent will always know which child it wraps. When a child wishes to notify the parent that something has occurred, it "raises" a message to the parent. We use the `Message` type for this.
 
 If we reuse the child component across multiple unrelated parent components, each might handle it differently.
@@ -98,6 +113,8 @@ Thus, a parent responds to a child's message just like an event:
 In other words, we use a function with this type signature: `ChildMessageType -> Maybe ParentActionType`.
 
 ### Parent to Child Communication
+
+The corresponding files for this section: `Query-Only`
 
 When a parent executes a query, it notifies the child and includes a "callback" of sorts, either a "reply" function or a "next" value.
 - **"reply" function:** think of this as a pre-paid return package. The parent will be running some computation and then need information from one or more of its children. Thus, it "mails" the child some instructions and a pre-paid return package. The child uses the information the parent provides and then puts the information the parent requested into the package. That package gets "mailed" back to the parent. Once received, the parent continues its computation with this additional information.
@@ -119,9 +136,14 @@ data Query theRestOfTheParentComputation
 
 ## The Problem of Multiple Children and the Solution of Slot Addresses
 
-Let's say a parent-like component has one child-like component. If the parent needs to query its child, it's obvious which one to query. Similarly, the child's `Query` type likely only has a few values, so it's unlikely that we will use the wrong one.
+The corresponding files for this section: TODO
 
-However, when a parent has two or more children, conflicting situations can arise.
+Let's say a parent-like component has one child-like component. Answers to the following questions are obvious:
+- Which `query` type should we use to communicate with the child?
+- When the child raises a message, how should we map that message to a parent action?
+- With which child in particular are we communicating?
+
+However, when a parent has two or more children, we cannot give obvious answers to the questions above. Rather, complicated situations can arise.
 - **The "Slot Query" problem:** Two or more children may use diffrent `query` types, so which `query` type's value do we use when communicating with Child A instead of Child B?
 - **The "Slot Message" problem:** Two or more children may use different `message` types to raise/emit messages to the parent. How does the parent correctly map each one to the parent component's `action` type?
 - **The "Slot Index" problem:** Two or more children may use the `same` query type, so which of those children do we query?
@@ -129,7 +151,7 @@ However, when a parent has two or more children, conflicting situations can aris
 
 For languages that don't have a powerful type checker, these kinds of problems can lead to runtime errors and tracking down the bugs become difficult.
 
-For Halogen, a `slot` type solves each of the above problems, and the compiler guarantees these problems do not arise or fails with a compiler error.
+For Halogen, a `slot` type solves each of the above problems, and the compiler guarantees that no such problem exists or it fails with a compiler error.
 
 A `slot` consists of three things:
 - the "query" type that that child type uses
