@@ -46,10 +46,10 @@ parcel build assets/parent-child-relationships/childlike-components/message-only
 MESSAGE_ONLY_BUNDLE=$?
 
 # Input and Message
-spago bundle -m ParentChildRelationships.ChildlikeComponents.InputMessage -t assets/parent-child-relationships/childlike-components/input-message.js
-INPUT_MESSAGE_BUNDLE=$?
-parcel build assets/parent-child-relationships/childlike-components/input-message.html -o input-message--parcelified.html
-INPUT_MESSAGE_BUNDLE=$?
+spago bundle -m ParentChildRelationships.ChildlikeComponents.All -t assets/parent-child-relationships/childlike-components/all.js
+ALL_BUNDLE=$?
+parcel build assets/parent-child-relationships/childlike-components/all.html -o all--parcelified.html
+All_BUILD=$?
 
 # Basic Container
 spago bundle -m ParentChildRelationships.ParentlikeComponents.BasicContainer -t assets/parent-child-relationships/parentlike-components/basic-container.js
@@ -82,8 +82,8 @@ echo "$INPUT_ONLY_BUNDLE - Input only - Bundle"
 echo "$INPUT_ONLY_BUNDLE - Input only - Build"
 echo "$MESSAGE_ONLY_BUNDLE - Message only - Bundle"
 echo "$MESSAGE_ONLY_BUNDLE - Message only - Build"
-echo "$INPUT_MESSAGE_BUNDLE - Input Message - Bundle"
-echo "$INPUT_MESSAGE_BUNDLE - Input Message - Build"
+echo "$ALL_BUNDLE - Input Message - Bundle"
+echo "$ALL_BUILD - Input Message - Build"
 echo "$BASIC_CONTAINER_BUNDLE - Basic Container - Bundle"
 echo "$BASIC_CONTAINER_BUILD - Basic Container - Build"
 echo "$PARENT_INPUT_ONLY_BUNDLE - Parent Input Only - Bundle"
@@ -104,8 +104,8 @@ if [ $STATIC_HTML_BUILD == 0 ] &&
    [ $INPUT_ONLY_BUNDLE == 0 ] &&
    [ $MESSAGE_ONLY_BUNDLE == 0 ] &&
    [ $MESSAGE_ONLY_BUNDLE == 0 ] &&
-   [ $INPUT_MESSAGE_BUNDLE == 0 ] &&
-   [ $INPUT_MESSAGE_BUNDLE == 0 ] &&
+   [ $ALL_BUNDLE == 0 ] &&
+   [ $ALL_BUILD == 0 ] &&
    [ $BASIC_CONTAINER_BUNDLE == 0 ] &&
    [ $BASIC_CONTAINER_BUILD == 0 ] &&
    [ $PARENT_INPUT_ONLY_BUNDLE == 0 ] &&

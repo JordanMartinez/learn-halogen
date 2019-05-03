@@ -1,4 +1,4 @@
-module ParentChildRelationships.ChildlikeComponents.InputMessage where
+module ParentChildRelationships.ChildlikeComponents.All where
 
 import Prelude
 
