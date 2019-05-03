@@ -2,8 +2,8 @@
 
 This page provides an overview of parent-child relationships in 4 parts. Then we'll cover specific aspects of these ideas in separate files that focuses on a single idea and includes examples.
 1. Capability-based components
-2. parent-child communication
-3. rendering childlike components
+2. rendering childlike components
+3. parent-child communication
 4. slot addresses
 
 ## Capability-Based Components
@@ -34,6 +34,42 @@ A component that has both "parent" and "child" capabilities
 - has all the "child" capabilities
 - can forward its parent's query down to its children
 - can forward its children's messages to its parent
+
+## Rendering
+
+### Initial Rendering
+
+When a "parent-like" component renders a "child-like" component, sometimes the "child-like" component's initial state and initial rendering is always the same across program runs. In other words, we can hard-code these values. When the parent renders the child, the child does not need any information from the parent.
+
+In other cases, the initial state of the "child-like" component might depend on information the "parent-like" component has. In other words, these values are different when we run the code multiple times.
+
+For example, a "parent-like" component (e.g. a layout pane) might know what the "current user" is. This user will change across program runs, so we cannot hard-code the initial state of the "child-like" component (the avatar part of the user's profile page). Rather, the parent-like component should pass this information into the child-like component.
+
+To accomplish this, a parent can pass into a child a value of the `Input` type. For example
+![Parent-Child-Relationship--Rendering.svg](../../assets/visuals/Parent-Child-Relationship--Rendering.svg)
+
+A child can do one of three things with that value:
+1. Ignore it:
+    - `\_ -> hardCodedInitialState`
+    - `const hardCodedInitialState`
+2. Use the `Input` value as it's initial `State` value:
+    - `\x -> x`
+    - `identity`
+3. Do something more custom depending on what it is:
+    - `\x -> if isEmpty x then Nothing else Just x`
+
+We define this mapping in the `initialState` part of our code.
+
+### Each Re-Render Thereafter
+
+After the initial rendering, if the parent ever re-renders itself (due to its state being changed), it will pass a value of the `Input` type back into the child. Sometimes, the child will want to respond to such changes, and other times it won't.
+
+Thus, a child-like component responds to a parent's `input` value just like an event:
+1. Determine via `Maybe` whether to handle the "event" (i.e. parent was re-rendered and is passing a value of `Input` into the child-like component)
+2. Convert the event into a value of the child's `Action` type.
+3. Handle that action value.
+
+We define this mapping in the `receive` part of our code.
 
 ## Parent-Child Communication
 
@@ -80,42 +116,6 @@ data Query theRestOfTheParentComputation
   | UpdateStateIfNeeded InfoChildNeeds1 InfoChildNeeds2 theRestOfTheParentComputation
   | RequestInfoFromChild InfoChildNeeds3 (InfoParentNeeds -> theRestOfTheParentComputation)
 ```
-
-## Rendering
-
-### Initial Rendering
-
-When a "parent-like" component renders a "child-like" component, sometimes the "child-like" component's initial state and initial rendering is always the same across program runs. In other words, we can hard-code these values. When the parent renders the child, the child does not need any information from the parent.
-
-In other cases, the initial state of the "child-like" component might depend on information the "parent-like" component has. In other words, these values are different when we run the code multiple times.
-
-For example, a "parent-like" component (e.g. a layout pane) might know what the "current user" is. This user will change across program runs, so we cannot hard-code the initial state of the "child-like" component (the avatar part of the user's profile page). Rather, the parent-like component should pass this information into the child-like component.
-
-To accomplish this, a parent can pass into a child a value of the `Input` type. For example
-![Parent-Child-Relationship--Rendering.svg](../../assets/visuals/Parent-Child-Relationship--Rendering.svg)
-
-A child can do one of three things with that value:
-1. Ignore it:
-    - `\_ -> hardCodedInitialState`
-    - `const hardCodedInitialState`
-2. Use the `Input` value as it's initial `State` value:
-    - `\x -> x`
-    - `identity`
-3. Do something more custom depending on what it is:
-    - `\x -> if isEmpty x then Nothing else Just x`
-
-We define this mapping in the `initialState` part of our code.
-
-### Each Re-Render Thereafter
-
-After the initial rendering, if the parent ever re-renders itself (due to its state being changed), it will pass a value of the `Input` type back into the child. Sometimes, the child will want to respond to such changes, and other times it won't.
-
-Thus, a child-like component responds to a parent's `input` value just like an event:
-1. Determine via `Maybe` whether to handle the "event" (i.e. parent was re-rendered and is passing a value of `Input` into the child-like component)
-2. Convert the event into a value of the child's `Action` type.
-3. Handle that action value.
-
-We define this mapping in the `receive` part of our code.
 
 ## The Problem of Multiple Children and the Solution of Slot Addresses
 
