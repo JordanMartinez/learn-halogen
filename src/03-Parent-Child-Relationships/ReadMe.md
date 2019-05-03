@@ -9,11 +9,11 @@ This page provides an overview of parent-child relationships in 4 parts:
 4. slot addresses
 
 Here's how to read this folder's contents:
-- Read Section 1: Capability Based Components
-- For Sections 2 - 4
+1. Read Section 1: Capability Based Components
+2. For Sections 2 - 4
     - Read the section in this file
     - Read through the section's corresponding files in the "child-like components" folder
-- For Sections 2 - 4
+3. For Sections 2 - 4
     - Read the section in this file
     - Read through the section'scorresponding files in the "parent-like components" folder
 
