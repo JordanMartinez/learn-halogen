@@ -56,7 +56,7 @@ A child can do one of three things with that value:
     - `\x -> x`
     - `identity`
 3. Do something more custom depending on what it is:
-    - `\x -> if isEmpty x then Nothing else Just x`
+    - `\x -> if isEmpty x then "some default value" else x`
 
 We define this mapping in the `initialState` part of our code.
 
