@@ -58,16 +58,16 @@ When a parent executes a query, it notifies the child and includes a "callback" 
 
 ### Child to Parent Communication
 
-A child cannot know which parent may contain it. Thus, when a child wishes to notify the parent that something has occurred, it "raises" a message to the parent. Since this might differ from its `Action` type, we use the `Message` type for this.
+A child cannot know which parent may contain it, but a parent will always know which child it wraps. When a child wishes to notify the parent that something has occurred, it "raises" a message to the parent. We use the `Message` type for this.
 
 If we reuse the child component across multiple unrelated parent components, each might handle it differently.
 
 Thus, a parent responds to a child's message just like an event:
 1. Determine via `Maybe` whether to handle the "event" (i.e. child message)
-1. Convert the event into a value of the parent's `Action` type.
-2. Handle that action value.
+1. Convert the "event" into a value of the parent's `action` type.
+2. Handle that parent's `action` value.
 
-We define this `ChildMessageType -> Maybe ParentActionType` mapping when we declare the child-like component in the parent-like component's `render` function.
+In other words, we use a function with this type signature: `ChildMessageType -> Maybe ParentActionType`.
 
 ## Rendering
 
