@@ -8,7 +8,7 @@ This page provides an overview of parent-child relationships in 4 parts. Then we
 
 ## Capability-Based Components
 
-Halogen does not distinguish a "child" component from a "parent" component. Rather, one should think of components as having capabilities that are "child-like" and/or "parent-like." For example, "child-like" components can do X and Y, but not Z. In reality, all components are configured to have "child-like" capabilities, "parent-like" capabilities or both capabilities.
+Halogen does not distinguish a "child" component from a "parent" component. Rather, one should think of components as having capabilities that are "child-like" and/or "parent-like." For example, "child-like" components can do X and Y, but not Z. In reality, all components are configured to have "child-like" capabilities, "parent-like" capabilities, or both capabilities.
 
 For example
 ![Parent-Child-Relationship--Capabilities.svg ](../../assets/visuals/Parent-Child-Relationship--Capabilities.svg)
@@ -24,7 +24,7 @@ These are a few examples of "parent" components:
 - a coordinator component that syncs state between multiple child components
 
 A "child" component can
-- respond to its parent component's instructions:
+- respond to its parent component's queries:
     - requests: "My counter's state? Oh, it's 4"
     - tells/commands: "Ok. I will increment my counter by 1"
 - notify a parent component of an event by "raising" a message (e.g. "Hey parent! I was clicked!")
