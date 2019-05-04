@@ -1,5 +1,7 @@
 # Learn Halogen
 
+[![Build Status](https://travis-ci.com/JordanMartinez/learn-halogen.svg?branch=latestRelease)](https://travis-ci.com/JordanMartinez/learn-halogen)
+
 Learn [`purescript-halogen`](https://github.com/slamdata/purescript-halogen), (`v5.0.0-rc.4`) from a bottom-up approach
 
 ## Requirements
