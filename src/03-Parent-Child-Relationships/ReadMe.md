@@ -136,7 +136,9 @@ data Query theRestOfTheParentComputation
 
 ## The Problem of Multiple Children and the Solution of Slot Addresses
 
-The corresponding files for this section: TODO
+The corresponding files for this section:
+- `All--With-Halogen-Types` (Childlike-Components folder)
+- `Multiple-Children` folder (Parentlike-Components folder)
 
 Let's say a parent-like component has one child-like component. Answers to the following questions are obvious:
 - Which `query` type should we use to communicate with the child?
@@ -151,13 +153,15 @@ However, when a parent has two or more children, we cannot give obvious answers 
 
 For languages that don't have a powerful type checker, these kinds of problems can lead to runtime errors and tracking down the bugs become difficult.
 
-For Halogen, a `slot` type solves each of the above problems, and the compiler guarantees that no such problem exists or it fails with a compiler error.
+For Halogen, a `slot` type solves each of the above problems, and the compiler guarantees that no such problems exist. Otherwise, it fails with a compiler error.
+
+### What is a `slot`?
 
 A `slot` consists of four things:
-- the "query" type that that child type uses
-- the "message" type that the child type uses
-- the "index" type that the parent type uses to distinguish one child from another when all use the same query and message type
-- the "label" in a record that the parent uses to refer to each combination of the above three things
+- the "query" type that that child component uses
+- the "message" type that the child component uses
+- the "index" type that the parent component uses to distinguish one child component from another when all use the same query and message type
+- the "label" in a row kind that the parent uses to refer to a specific `query`-`message`-`index` combination
 
 In short it looks like this:
 ```purescript
@@ -174,7 +178,47 @@ type ChildSlots =
   , logMessages :: H.Slot NoQuery NoMessage Int
   )
 ```
-Since Halogen uses one component type and does not distinguish a child-like component from a parent-like component, child-like components must also define their `ChildSlots` type. So how do we define a slot type with no chlid slots? We ues an empty row kind:
+
+## A Note on Children's `Child Slots`
+
+Since Halogen uses one component type and does not distinguish a child-like component from a parent-like component, child-like components must also define their `ChildSlots` type. So how do we define a slot type with no child slots? We ues an empty row kind:
 ```purescript
 type NoChildSlots = () -- this is an empty row kind
 ```
+
+### How Do We Refer to the Slot's Label?
+
+You'll notice that `ChildSlots` in the above few examples uses a label to refer to the `query`-`message`-`index` combination. How do we refer to this combination via the label?
+
+The answer is type-level programming. Specifically, we'll use type-level strings, which are known as `Symbols`.
+
+For a quick explanation, just follow this pattern
+```purescript
+type ChildSlots = ( label1 :: H.Slot Query Message Index
+                  , label2 :: H.Slot Query Message Index2
+                  , label3 :: H.Slot Query Message Index3
+                  )
+
+-- To refer to `label1`, we write the below short-hand code
+_label1 = SProxy :: SProxy "label1"
+
+-- which is the same as writing:
+_label2 :: SProxy "label2"
+_label2 = SProxy
+
+-- short-hand again
+_label3 = SProxy :: SProxy "label3"
+```
+
+If this is unfamiliar to you and you'd like to learn more about type-level programming, see the below folders in my learning repo:
+- [Type-Level Programming Syntax](https://github.com/JordanMartinez/purescript-jordans-reference/tree/latestRelease/11-Syntax/03-Type-Level-Programming-Syntax)
+- [Type-Level Programming](https://github.com/JordanMartinez/purescript-jordans-reference/tree/latestRelease/21-Hello-World/07-Type-Level-Programming)
+
+### A note on the `Slot Index` type
+
+Since the `index` type is used to distinguish one child component from another when both use the same `query` and `message` type, the slot `index` type must have an `Ord` instance (and an `Eq` instance because `Ord` requires that, too).
+
+Here's the rule of thumb to follow:
+- When I have only one such child, use `unit` as the index type
+- When I have multiple children, use `Int` as the index type
+- When I have a special situation where these do not work, define your own type and implement an `Eq` and `Ord` instance.
