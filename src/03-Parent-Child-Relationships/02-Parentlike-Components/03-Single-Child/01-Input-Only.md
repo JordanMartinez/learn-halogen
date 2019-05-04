@@ -9,6 +9,6 @@ Now look at the next file for the full example.
 To compile the next file and view its results in the browser, use these instructions.
 
 ```bash
-spago bundle -m ParentChildRelationships.ParentlikeComponents.SimpleChild.InputOnly -t assets/parent-child-relationships/parentlike-components/simple-child/parent-input-only.js
+spago bundle -m ParentChildRelationships.ParentlikeComponents.SingleChild.InputOnly -t assets/parent-child-relationships/parentlike-components/simple-child/parent-input-only.js
 parcel serve assets/parent-child-relationships/parentlike-components/simple-child/parent-input-only.html -o parent-input-only--parcelified.html --open
 ```

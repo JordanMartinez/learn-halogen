@@ -1,4 +1,4 @@
-module ParentChildRelationships.ParentlikeComponents.SimpleChild.InputOnly where
+module ParentChildRelationships.ParentlikeComponents.SingleChild.InputOnly where
 
 import Prelude
 
