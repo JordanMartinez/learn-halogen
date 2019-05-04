@@ -17,6 +17,6 @@ Now look at the next file for the full example.
 To compile the next file and view its results in the browser, use these instructions.
 
 ```bash
-spago bundle -m ParentChildRelationships.ParentlikeComponents.SingleChild.QueryOnly -t assets/parent-child-relationships/parentlike-components/simple-child/parent-query-only.js
-parcel serve assets/parent-child-relationships/parentlike-components/simple-child/parent-query-only.html -o parent-query-only--parcelified.html --open
+spago bundle -m ParentChildRelationships.ParentlikeComponents.SingleChild.QueryOnly -t assets/parent-child-relationships/parentlike-components/single-child/parent-query-only.js
+parcel serve assets/parent-child-relationships/parentlike-components/single-child/parent-query-only.html -o parent-query-only--parcelified.html --open
 ```

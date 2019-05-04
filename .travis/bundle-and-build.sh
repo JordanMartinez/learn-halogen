@@ -68,19 +68,22 @@ BASIC_CONTAINER_BUNDLE=$?
 parcel build assets/parent-child-relationships/parentlike-components/basic-container.html -o basic-container--parcelified.html
 BASIC_CONTAINER_BUILD=$?
 
-spago bundle -m ParentChildRelationships.ParentlikeComponents.SingleChild.InputOnly -t assets/parent-child-relationships/parentlike-components/simple-child/parent-input-only.js
+# Input Only
+spago bundle -m ParentChildRelationships.ParentlikeComponents.SingleChild.InputOnly -t assets/parent-child-relationships/parentlike-components/single-child/parent-input-only.js
 PARENT_INPUT_ONLY_BUNDLE=$?
-parcel build assets/parent-child-relationships/parentlike-components/simple-child/parent-input-only.html -o parent-input-only--parcelified.html
+parcel build assets/parent-child-relationships/parentlike-components/single-child/parent-input-only.html -o parent-input-only--parcelified.html
 PARENT_INPUT_ONLY_BUILD=$?
 
-spago bundle -m ParentChildRelationships.ParentlikeComponents.SingleChild.MessageOnly -t assets/parent-child-relationships/parentlike-components/simple-child/parent-message-only.js
+# Message Only
+spago bundle -m ParentChildRelationships.ParentlikeComponents.SingleChild.MessageOnly -t assets/parent-child-relationships/parentlike-components/single-child/parent-message-only.js
 PARENT_MESSAGE_ONLY_BUNDLE=$?
-parcel build assets/parent-child-relationships/parentlike-components/simple-child/parent-message-only.html -o parent-message-only--parcelified.html
+parcel build assets/parent-child-relationships/parentlike-components/single-child/parent-message-only.html -o parent-message-only--parcelified.html
 PARENT_MESSAGE_ONLY_BUILD=$?
 
-spago bundle -m ParentChildRelationships.ParentlikeComponents.SingleChild.QueryOnly -t assets/parent-child-relationships/parentlike-components/simple-child/parent-query-only.js
+# Query Only
+spago bundle -m ParentChildRelationships.ParentlikeComponents.SingleChild.QueryOnly -t assets/parent-child-relationships/parentlike-components/single-child/parent-query-only.js
 PARENT_QUERY_ONLY_BUNDLE=$?
-parcel build assets/parent-child-relationships/parentlike-components/simple-child/parent-query-only.html -o parent-query-only--parcelified.html
+parcel build assets/parent-child-relationships/parentlike-components/single-child/parent-query-only.html -o parent-query-only--parcelified.html
 PARENT_QUERY_ONLY_BUILD=$?
 
 ####
