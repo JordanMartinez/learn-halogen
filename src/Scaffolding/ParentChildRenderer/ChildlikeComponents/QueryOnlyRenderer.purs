@@ -67,7 +67,8 @@ type ParentState = Maybe Int
 type ParentQuery = Const Void
 type ParentComponent = H.Component HH.HTML ParentQuery Unit Void Aff
 
-_child = SProxy :: SProxy "child"
+_child :: SProxy "child"
+_child = SProxy
 
 parentComponent :: ChildComponentWithQuery -> ParentComponent
 parentComponent childComp =

@@ -40,8 +40,11 @@ type ChildSlots =
   , label2 :: ChildSlot2
   )
 
-_label1 = SProxy :: SProxy "label1"
-_label2 = SProxy :: SProxy "label2"
+_label1 :: SProxy "label1"
+_label1 = SProxy
+
+_label2 :: SProxy "label2"
+_label2 = SProxy
 
 parentComponent :: H.Component HH.HTML NoQuery Input Message Aff
 parentComponent =

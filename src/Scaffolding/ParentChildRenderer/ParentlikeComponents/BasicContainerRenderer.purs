@@ -33,7 +33,8 @@ type StaticHtmlWithSingleChildComponent =
     )
     Aff
 
-_child = SProxy :: SProxy "child"
+_child :: SProxy "child"
+_child = SProxy
 
 -- | A child component that only renders static html. It does not have state,
 -- | respond to input, raise messages, or respond to queries.

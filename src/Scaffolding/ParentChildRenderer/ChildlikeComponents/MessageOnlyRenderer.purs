@@ -66,7 +66,8 @@ type ParentState = Array String
 type ParentQuery = Const Unit
 type ParentComponent = H.Component HH.HTML ParentQuery Unit Void Aff
 
-_child = SProxy :: SProxy "child"
+_child :: SProxy "child"
+_child = SProxy
 
 type NoMessageNoQuery = H.Slot (Const Unit) Void
 type ChildSlots = ( child :: NoMessageNoQuery )

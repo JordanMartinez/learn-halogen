@@ -52,7 +52,8 @@ runStateActionChildQueryParentSpec spec = do
 
 -- scaffolded parent stuff
 
-_child = SProxy :: SProxy "child"
+_child :: SProxy "child"
+_child = SProxy
 
 singleChild_query_noInputNoMessage :: QueryOnlyChildComponent -> ParentHtmlWithQueryOnlyChild
 singleChild_query_noInputNoMessage childComponent =
