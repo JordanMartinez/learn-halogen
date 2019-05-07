@@ -9,6 +9,6 @@ In this example, we will use 2 slot types (e.g. different `query`, `message`, `i
 To compile the next file and view its results in the browser, use these instructions.
 
 ```bash
-spago bundle -m ParentChildRelationships.ParentlikeComponents.SingleChild.MessageOnly -t assets/parent-child-relationships/parentlike-components/multiple-children/complex-example.js
-parcel serve assets/parent-child-relationships/parentlike-components/multiple-children/complex-example.html -o complex-example--parcelified.html --open
+spago bundle -m ParentChildRelationships.ParentlikeComponents.MultipleChildren.MultipleSlots -t assets/parent-child-relationships/parentlike-components/multiple-children/multi-child-slots.js
+parcel serve assets/parent-child-relationships/parentlike-components/multiple-children/multi-child-slots.html -o multi-child-slots--parcelified.html --open
 ```
