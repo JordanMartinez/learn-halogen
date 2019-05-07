@@ -2,7 +2,7 @@
 
 In this example, we will use 2 slot types (e.g. different `query`, `message`, `index` combination) to render multiple child components.
 
-~~Now look at the next file for the full example.~~ This is still a WIP.
+Now look at the next file for the full example.
 
 ## Compiling Instructions
 
