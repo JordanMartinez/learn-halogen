@@ -40,6 +40,8 @@ script:
   - spago build
   # ^ Install and compile dependencies and source code
   # before bundling and building it
+  - spago docs
+  # ^ Ensure that `spago docs` command will exit successfully
   - chmod +x .travis/bundle-and-build.sh
   - ./.travis/bundle-and-build.sh
 
