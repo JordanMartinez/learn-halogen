@@ -86,6 +86,11 @@ PARENT_QUERY_ONLY_BUNDLE=$?
 parcel build assets/parent-child-relationships/parentlike-components/single-child/parent-query-only.html -o parent-query-only--parcelified.html
 PARENT_QUERY_ONLY_BUILD=$?
 
+spago bundle -m ParentChildRelationships.ParentlikeComponents.MultipleChildren.RevealingChildSlots -t assets/parent-child-relationships/parentlike-components/multiple-children/revealing-child-slots.js
+REVEAL_CHILD_SLOTS_BUNDLE=$?
+parcel build assets/parent-child-relationships/parentlike-components/multiple-children/revealing-child-slots.html -o revealing-child-slots--parcelified.html
+REVEAL_CHILD_SLOTS_BUILD=$?
+
 ####
 echo "$STATIC_HTML_BUNDLE - Static HTML - Bundle"
 echo "$STATIC_HTML_BUILD - Static HTML - Build"
@@ -115,6 +120,8 @@ echo "$PARENT_MESSAGE_ONLY_BUNDLE - Parent Message Only - Bundle"
 echo "$PARENT_MESSAGE_ONLY_BUILD - Parent Message Only - Build"
 echo "$PARENT_QUERY_ONLY_BUNDLE - Parent Query only - Bundle"
 echo "$PARENT_QUERY_ONLY_BUILD - Parent Query only - Build"
+echo "$REVEAL_CHILD_SLOTS_BUNDLE - Reveal child slots - Bundle"
+echo "$REVEAL_CHILD_SLOTS_BUILD - Reveal child slots - Build"
 
 if [ $STATIC_HTML_BUNDLE == 0 ] &&
    [ $STATIC_HTML_BUILD == 0 ] &&
@@ -143,7 +150,9 @@ if [ $STATIC_HTML_BUNDLE == 0 ] &&
    [ $PARENT_MESSAGE_ONLY_BUNDLE == 0 ] &&
    [ $PARENT_MESSAGE_ONLY_BUILD == 0 ] &&
    [ $PARENT_QUERY_ONLY_BUNDLE == 0 ] &&
-   [ $PARENT_QUERY_ONLY_BUILD == 0 ]
+   [ $PARENT_QUERY_ONLY_BUILD == 0 ] &&
+   [ $REVEAL_CHILD_SLOTS_BUNDLE == 0 ] &&
+   [ $REVEAL_CHILD_SLOTS_BUILD == 0 ] 
 then
   echo "Build Succeeded"
   exit 0;
