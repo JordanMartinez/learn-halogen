@@ -3,36 +3,39 @@
 -- | Everything is already set up. One just needs to configure the component
 -- | to have the parts one needs before removing the rest.
 module Scaffolding.ComponentTemplate
-  -- (
-  -- )
+  ( templateComponent
+  , StateType
+  , QueryType(..)
+  -- , QueryType -- if using the 'Void' version
+  , Input
+  , Message
+  , MonadType
+  , SelfSlot
+  )
   where
 
 import Prelude
 
-import Data.Const (Const)
 import Data.Maybe (Maybe(..))
 import Data.Symbol (SProxy(..))
 import Effect.Aff (Aff)
 import Halogen as H
 import Halogen.HTML as HH
-import Halogen.HTML.CSS as CSS
-import Halogen.HTML.Events as HE
-import Halogen.HTML.Properties as HP
 
 type StateType = Unit
 data ActionType
   = DoStuff
-  -- Uncomment these if they are needed
-  -- | Initialize
-  -- | Finalize
+  -- Delete these if they are not needed
+  | Initialize
+  | Finalize
 
--- Leave only one of versions of Query uncommented
+-- Leave only one of versions of QueryType uncommented
 -- No query
-type Query = Const Void
--- Query
--- data Query a
---   = Request (requestType -> a)
---   | Command a
+-- type QueryType = Const Void
+-- QueryType
+data QueryType a
+  = Request (Int {- info other components need -} -> a)
+  | Command a
 
 type Input =
   -- Leave only one of the following uncommented
@@ -55,8 +58,7 @@ type MonadType =
     -- Custom monad type (e.g. ReaderT design pattern, mtl, or Free/Run)
     -- AppM -- or your own type
 
-type SlotIndex = Unit
-type ComponentSlot = H.Slot Query Message SlotIndex
+type SelfSlot = H.Slot QueryType Message Unit
 
 type ChildSlots =
   -- Leave only one of the following uncommented
@@ -68,16 +70,16 @@ type ChildSlots =
 
 _child = SProxy :: SProxy "child"
 
-component :: H.Component HH.HTML Query Input Message MonadType
-component =
+templateComponent :: H.Component HH.HTML QueryType Input Message MonadType
+templateComponent =
     H.mkComponent
       { initialState
       , render
       , eval: H.mkEval $ H.defaultEval { handleAction = handleAction
                                        , receive = receive
-                                       -- , handleQuery = handleQuery
-                                       -- , initialize = Just Initialize
-                                       -- , finalize = Just Finalize
+                                       , handleQuery = handleQuery
+                                       , initialize = Just Initialize
+                                       , finalize = Just Finalize
                                        }
       }
   where
@@ -95,16 +97,20 @@ component =
     handleAction :: ActionType
                  -> H.HalogenM StateType ActionType ChildSlots Message MonadType Unit
     handleAction = case _ of
+      Initialize -> do
+        pure unit
+      Finalize -> do
+        pure unit
       DoStuff -> do
         pure unit
 
-    -- handleQuery :: forall a.
-    --                Query a
-    --             -> H.HalogenM StateType ActionType ChildSlots Message MonadType (Maybe a)
-    -- handleQuery = case _ of
-    --   Request reply -> do
-    --     -- value <- computeTheValue
-    --     pure (Just $ reply value)
-    --   Command next -> do
-    --     -- run code
-    --     pure next
+    handleQuery :: forall a.
+                   QueryType a
+                -> H.HalogenM StateType ActionType ChildSlots Message MonadType (Maybe a)
+    handleQuery = case _ of
+      Request reply -> do
+        -- value <- computeTheValue
+        pure (Just $ reply 4)
+      Command next -> do
+        -- run code
+        pure (Just next)
