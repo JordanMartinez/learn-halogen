@@ -68,7 +68,8 @@ type ChildSlots =
     -- ( child :: ChildSlot
     -- )
 
-_child = SProxy :: SProxy "child"
+_child :: SProxy "child"
+_child = SProxy
 
 templateComponent :: H.Component HH.HTML QueryType Input Message MonadType
 templateComponent =

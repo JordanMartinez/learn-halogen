@@ -44,7 +44,8 @@ type ParentQuery = Const Void
 type ParentInput = Unit
 type ParentMessage = Void
 
-_child = SProxy :: SProxy "child"
+_child :: SProxy "child"
+_child = SProxy
 
 parentComponent :: RenderParentWithMessageOnlyChild
                 -> H.Component HH.HTML ParentQuery ParentInput ParentMessage Aff

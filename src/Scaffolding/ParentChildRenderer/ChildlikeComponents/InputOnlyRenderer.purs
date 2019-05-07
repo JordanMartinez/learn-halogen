@@ -73,7 +73,8 @@ data ParentQuery a = SetState Int a
 type ParentAction = Void
 type ParentComponent = H.Component HH.HTML ParentQuery Int Void Aff
 
-_child = SProxy :: SProxy "child"
+_child :: SProxy "child"
+_child = SProxy
 
 parentComponent :: ChildComponent -> ParentComponent
 parentComponent childComp =

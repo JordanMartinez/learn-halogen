@@ -40,7 +40,8 @@ type ParentWithSingleChildInputOnly =
     )
     Aff
 
-_child = SProxy :: SProxy "child"
+_child :: SProxy "child"
+_child = SProxy
 
 -- | A child component that renders dynamic html. It has state and
 -- | responds to input, but it does not raise messages, or respond to queries.
