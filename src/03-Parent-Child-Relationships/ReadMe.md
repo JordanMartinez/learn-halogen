@@ -199,16 +199,21 @@ type ChildSlots = ( label1 :: H.Slot Query Message Index
                   , label3 :: H.Slot Query Message Index3
                   )
 
--- To refer to `label1`, we write the below short-hand code
-_label1 = SProxy :: SProxy "label1"
+-- To refer to `label1`, we write this code
+_label1 :: SProxy "label1"
+_label1 = SProxy
 
--- which is the same as writing:
 _label2 :: SProxy "label2"
 _label2 = SProxy
 
--- short-hand again
-_label3 = SProxy :: SProxy "label3"
+_label3 :: SProxy "label3"
+_label3 = SProxy
 ```
+Note: using the short-hand SProxy notation
+```purescript
+_labelX = SProxy :: SProxy "labelX"
+```
+[made doc generation fail](https://github.com/purescript/purescript/issues/3624). I'd advise against using that.
 
 If this is unfamiliar to you and you'd like to learn more about type-level programming, see the below folders in my learning repo:
 - [Type-Level Programming Syntax](https://github.com/JordanMartinez/purescript-jordans-reference/tree/latestRelease/11-Syntax/03-Type-Level-Programming-Syntax)
