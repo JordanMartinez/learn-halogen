@@ -90,6 +90,24 @@ main =
 
 Section's corresponding files: `Disposing-Components`
 
+Sometimes, we want to remove a top-level component after it's fulfilled its purposes. Perhaps we have a top-level application component that we want to separate from a top-level "loading" component. In such a case, we could render the 'loading' component and then remove it and replace it with the 'application' component.
+
+To remove a top-level component and cleanup any resources it used, we use `io.dispose`.
+
+For example:
+```purescript
+main :: Effect Unit
+main =
+    launchAff_ do
+      body <- awaitBody
+      io <- runUI topLevelComponent input body
+
+      -- do stuff with our component for a while....
+
+      -- now remove it
+      io.dispose
+```
+
 ### Subscribing to Messages Raised by the Top-Level Component
 
 Section's corresponding files: `Message-Subscribing`
