@@ -47,5 +47,4 @@ script:
 
 cache:
   directories:
-    - src
-    - output
+    - .spago
