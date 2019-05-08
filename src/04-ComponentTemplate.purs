@@ -16,7 +16,7 @@ module ComponentTemplate
 
   -- `SelfSlot` exists so you can use this syntax in a parent component
   --    import MyModule.MyComponent as MyComponent
-  --    type ChildSlots = ( child :: MyComponet.SelfSlot )
+  --    type ChildSlots = ( child :: MyComponet.SelfSlot indexType)
   , SelfSlot
   )
   where
@@ -69,9 +69,8 @@ type MonadType =
     -- Custom monad type (e.g. ReaderT design pattern, mtl, or Free/Run)
     -- AppM -- or your own type
 
--- Change the index type here (i.e. Unit) to someting else
--- if you will use the same component to render multiple children
-type SelfSlot = H.Slot QueryType Message Unit
+-- The `index` type here is determined by the parent
+type SelfSlot index = H.Slot QueryType Message index
 
 type ChildSlots =
   -- Leave only one of the following uncommented
