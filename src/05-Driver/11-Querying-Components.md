@@ -1,6 +1,6 @@
 # Querying Components
 
-In this example, the top-level component does not render anything interesting but can respond to requests to get its state and `tell`-style queries to set its state to a new value.
+In this example, the top-level component does not render anything interesting but can respond to `request`-style queries to get its state and `tell`-style queries to set its state to a new value.
 
 ## Compiling Instructions
 
