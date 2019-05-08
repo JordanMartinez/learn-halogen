@@ -17,8 +17,8 @@ import Halogen.VDom.Driver (runUI)
 import Web.DOM.ParentNode (QuerySelector(..))
 import Web.HTML (HTMLElement)
 
--- | Here we wait for the `body` element and then run our component
--- | as a child of that element.
+-- | Here we wait for the page to load. Then we find the target element
+-- | and run the component as a child of that element.
 main :: Effect Unit
 main =
     launchAff_ do
@@ -31,7 +31,7 @@ main =
       maybeElem <- selectElement query
       maybe (throwError (error errorMessage)) pure maybeElem
 
--- Below a simple button component
+-- Below is a simple button component
 
 type ChildState = Boolean
 type ChildInput = Unit
