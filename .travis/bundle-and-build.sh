@@ -101,6 +101,11 @@ DRIVER_RUN_COMPONENTS_BUNDLE=$?
 parcel build assets/driver/running-components.html -o running-components--parcelified.html
 DRIVER_RUN_COMPONENTS_BUILD=$?
 
+spago bundle -m Driver.EmbeddingComponents -t assets/driver/embedding-components.js
+DRIVER_EMBED_COMPONENTS_BUNDLE=$?
+parcel build assets/driver/embedding-components.html -o embedding-components--parcelified.html
+DRIVER_EMBED_COMPONENTS_BUILD=$?
+
 ####
 echo "$STATIC_HTML_BUNDLE - Static HTML - Bundle"
 echo "$STATIC_HTML_BUILD - Static HTML - Build"
@@ -134,8 +139,10 @@ echo "$REVEAL_CHILD_SLOTS_BUNDLE - Reveal child slots - Bundle"
 echo "$REVEAL_CHILD_SLOTS_BUILD - Reveal child slots - Build"
 echo "$MULTI_CHILD_SLOTS_BUNDLE - Multi child slots - Bundle"
 echo "$MULTI_CHILD_SLOTS_BUILD - Multi child slots - Build"
-echo "$DRIVER_RUN_COMPONENTS_BUNDLE - Driver - Bundle"
-echo "$DRIVER_RUN_COMPONENTS_BUILD - Driver - Build"
+echo "$DRIVER_RUN_COMPONENTS_BUNDLE - Driver - Run components - Bundle"
+echo "$DRIVER_RUN_COMPONENTS_BUILD - Driver - Run components - Build"
+echo "$DRIVER_EMBED_COMPONENTS_BUNDLE - Driver - Embed components - Bundle"
+echo "$DRIVER_EMBED_COMPONENTS_BUILD - Driver - Embed components - Bundle"
 
 if [ $STATIC_HTML_BUNDLE == 0 ] &&
    [ $STATIC_HTML_BUILD == 0 ] &&
@@ -170,7 +177,9 @@ if [ $STATIC_HTML_BUNDLE == 0 ] &&
    [ $MULTI_CHILD_SLOTS_BUNDLE == 0 ] &&
    [ $MULTI_CHILD_SLOTS_BUILD == 0 ] &&
    [ $DRIVER_RUN_COMPONENTS_BUNDLE == 0 ] &&
-   [ $DRIVER_RUN_COMPONENTS_BUILD == 0 ]
+   [ $DRIVER_RUN_COMPONENTS_BUILD == 0 ] &&
+   [ $DRIVER_EMBED_COMPONENTS_BUNDLE == 0 ] &&
+   [ $DRIVER_EMBED_COMPONENTS_BUILD == 0 ]
 then
   echo "Build Succeeded"
   exit 0;
