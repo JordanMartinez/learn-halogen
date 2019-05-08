@@ -147,7 +147,7 @@ echo "$MULTI_CHILD_SLOTS_BUILD - Multi child slots - Build"
 echo "$DRIVER_RUN_COMPONENTS_BUNDLE - Driver - Run components - Bundle"
 echo "$DRIVER_RUN_COMPONENTS_BUILD - Driver - Run components - Build"
 echo "$DRIVER_EMBED_COMPONENTS_BUNDLE - Driver - Embed components - Bundle"
-echo "$DRIVER_EMBED_COMPONENTS_BUILD - Driver - Embed components - Bundle"
+echo "$DRIVER_EMBED_COMPONENTS_BUILD - Driver - Embed components - Build"
 echo "$DRIVER_QUERYING_COMPONENTS_BUNDLE - Driver - Querying Components - Bundle"
 echo "$DRIVER_QUERYING_COMPONENTS_BUILD - Driver - Querying Components - Build"
 
