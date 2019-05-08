@@ -1,19 +1,6 @@
 # Running Components
 
-Now that we have a better understanding of how Halogen's components work, let's learn how to actually run them.
-
-To run a component one must do two things:
-1. Wait for the element (e.g. `body`) that will contain the top-level component to become available
-2. Run the top-level Halogen component using that element
-
-This typically looks like this:
-```purescript
-main :: Effect Unit
-main =
-  launchAff_ do
-    body <- awaitBody
-    runUI component inputValue body
-```
+Now that we have a better understanding of how Halogen's components work, let's see how to actually run them. This is the approach one would likely use when creating a Single-Page Application (SPA)
 
 ## Compiling Instructions
 

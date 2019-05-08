@@ -2,7 +2,7 @@
 
 While we can create a Single-Page Application (SPA), sometimes, we are still migrating from some framework to Halogen and we only want Halogen to work on a part of our page.
 
-In such situations, we can "embed" the component by running it in specific element
+In such situations, we can "embed" the component by running it in a specific element
 
 We'll follow similar steps as before but instead wait for the desired element, a `div` element with the id, "targetContainer":
 1. Wait for the page to load
