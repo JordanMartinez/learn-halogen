@@ -24,7 +24,7 @@ main =
     let topLevelComponentInput = unit
     runUI topLevelcomponent topLevelComponentInput body
 
--- Below a simple button component
+-- Below is a simple button component
 
 type ChildState = Boolean
 type ChildInput = Unit
