@@ -3,12 +3,26 @@
 The upcoming files start to use Monads to compute. If you do not understand how monads work, it will be difficult for you to understand what the code is doing and why it works.
 
 So, here we'll present two things:
-1. a brief concise overview of Monads and how they work without going into the deeper stuff
-2. links to a much longer overview of Monads that covers more things
+1. links to a much longer overview of Monads that covers all of what you'd need to know to use them effectively.
+2. a high-level explanation of the core ideas of Monads and how they work without explaining everything. **This section acts as a 'preface' to the first one.**
 
 The first one is a high-level 'preface' to the second one.
 
-## Brief Overview
+## Longer Deeper Overview of Monads
+
+Read/Watch these resources. If they are folders, read through all of their content.
+- [Composition Everywhere](https://github.com/JordanMartinez/purescript-jordans-reference/blob/latestRelease/01-FP-Philosophical-Foundations/01-Composition-Everywhere.md)
+- [Pure vs Impure Functions](https://github.com/JordanMartinez/purescript-jordans-reference/blob/latestRelease/01-FP-Philosophical-Foundations/02-Pure-vs-Impure-Functions.md)
+- [Type Classes](https://github.com/JordanMartinez/purescript-jordans-reference/blob/latestRelease/01-FP-Philosophical-Foundations/06-Type-Classes.md)
+- [FP: the Big Picture](https://github.com/JordanMartinez/purescript-jordans-reference/blob/latestRelease/01-FP-Philosophical-Foundations/07-FP--The-Big-Picture.md)
+- [Basic Syntax](https://github.com/JordanMartinez/purescript-jordans-reference/tree/latestRelease/11-Syntax/01-Basic-Syntax)
+- [Prelud-ish](https://github.com/JordanMartinez/purescript-jordans-reference/tree/latestRelease/21-Hello-World/02-Prelude-ish)
+- [Prelude Syntax](https://github.com/JordanMartinez/purescript-jordans-reference/tree/latestRelease/11-Syntax/05-Prelude-Syntax)
+- [Hello World and Effects](https://github.com/JordanMartinez/purescript-jordans-reference/tree/latestRelease/21-Hello-World/03-Hello-World-and-Effects)
+- [Application Structure](https://github.com/JordanMartinez/purescript-jordans-reference/tree/latestRelease/21-Hello-World/08-Application-Structure), but specifically the `MTL` folder.
+
+
+## Brief High-Level Overview of Monads
 
 ### `Box`-like Types
 
@@ -271,16 +285,3 @@ program = do
     log "third"
   put (currentState + 1)
 ```
-
-## Longer Overview
-
-Read/Watch these resources. If they are folders, read through all of their content.
-- [Composition Everywhere](https://github.com/JordanMartinez/purescript-jordans-reference/blob/latestRelease/01-FP-Philosophical-Foundations/01-Composition-Everywhere.md)
-- [Pure vs Impure Functions](https://github.com/JordanMartinez/purescript-jordans-reference/blob/latestRelease/01-FP-Philosophical-Foundations/02-Pure-vs-Impure-Functions.md)
-- [Type Classes](https://github.com/JordanMartinez/purescript-jordans-reference/blob/latestRelease/01-FP-Philosophical-Foundations/06-Type-Classes.md)
-- [FP: the Big Picture](https://github.com/JordanMartinez/purescript-jordans-reference/blob/latestRelease/01-FP-Philosophical-Foundations/07-FP--The-Big-Picture.md)
-- [Basic Syntax](https://github.com/JordanMartinez/purescript-jordans-reference/tree/latestRelease/11-Syntax/01-Basic-Syntax)
-- [Prelud-ish](https://github.com/JordanMartinez/purescript-jordans-reference/tree/latestRelease/21-Hello-World/02-Prelude-ish)
-- [Prelude Syntax](https://github.com/JordanMartinez/purescript-jordans-reference/tree/latestRelease/11-Syntax/05-Prelude-Syntax)
-- [Hello World and Effects](https://github.com/JordanMartinez/purescript-jordans-reference/tree/latestRelease/21-Hello-World/03-Hello-World-and-Effects)
-- [Application Structure](https://github.com/JordanMartinez/purescript-jordans-reference/tree/latestRelease/21-Hello-World/08-Application-Structure), but specifically the `MTL` folder.
