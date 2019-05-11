@@ -5,8 +5,8 @@ In this folder, we'll show how to use the VDOM's driver to do the following thin
     - the `body` element in a blank HTML page (e.g. if we were running an SPA)
     - a specific element in our HTML page (e.g. if we were in the process of migrating pieces of our code from one library/framework/language to PureScript and Halogen)
 - query the top-level component using `request`- and `tell`-style queries
-- remove a component after a given time
 - handle messages raised by the top-level component
+- remove a component after a given time
 
 Similar to the parent-child relationships folder, each of the below section has a corresponding file(s) that explains this more.
 
@@ -61,8 +61,8 @@ main =
 
 This record stores three entities. Each is described below:
 1. `io.query`: Send `request`- and `tell`-style queries into the top-level component as though we are a parent component
-2. `io.dispose`: Remove the top-level component from the target element and clean up any resources
-3. `io.subscribe`: Subscribe to the messages the top-level component raises
+2. `io.subscribe`: Subscribe to the messages the top-level component raises
+3. `io.dispose`: Remove the top-level component from the target element and clean up any resources
 
 ### Sending Queries into the Top-Level Component
 
@@ -87,6 +87,12 @@ main =
       tellResult <- io.query $ H.tell $ TellChildSomething 4
 ```
 
+### Subscribing to Messages Raised by the Top-Level Component
+
+Section's corresponding files: `Message-Subscribing`
+
+Currently a WIP
+
 ### Disposing a Top-Level Component
 
 Section's corresponding files: `Disposing-Components`
@@ -108,9 +114,3 @@ main =
       -- now remove it
       io.dispose
 ```
-
-### Subscribing to Messages Raised by the Top-Level Component
-
-Section's corresponding files: `Message-Subscribing`
-
-Currently a WIP
