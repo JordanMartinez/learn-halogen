@@ -64,6 +64,9 @@ This record stores three entities. Each is described below:
 2. `io.subscribe`: Subscribe to the messages the top-level component raises
 3. `io.dispose`: Remove the top-level component from the target element and clean up any resources
 
+The first two can be visualized like so:
+![Driver-Overview](../../assets/visuals/Driver-Overview.svg)
+
 ### Sending Queries into the Top-Level Component
 
 Section's corresponding files: `Querying-Components`
