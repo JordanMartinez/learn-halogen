@@ -121,6 +121,11 @@ DRIVER_DISPOSING_COMPONENTS_BUNDLE=$?
 parcel build assets/driver/disposing-components.html -o disposing-components--parcelified.html
 DRIVER_DISPOSING_COMPONENTS_BUILD=$?
 
+spago bundle -m Driver.SubscribingToMessages -t assets/driver/subscribing-to-messages.js --no-build
+DRIVER_MESSAGE_SUBSCRIPTION_BUNDLE=$?
+parcel open assets/driver/subscribing-to-messages.html -o subscribing-to-messages--parcelified.html
+DRIVER_MESSAGE_SUBSCRIPTION_BUILD=$?
+
 ####
 echo "$STATIC_HTML_BUNDLE - Static HTML - Bundle"
 echo "$STATIC_HTML_BUILD - Static HTML - Build"
@@ -162,6 +167,8 @@ echo "$DRIVER_QUERYING_COMPONENTS_BUNDLE - Driver - Querying Components - Bundle
 echo "$DRIVER_QUERYING_COMPONENTS_BUILD - Driver - Querying Components - Build"
 echo "$DRIVER_DISPOSING_COMPONENTS_BUNDLE - Driver - Disposing Components - Bundle"
 echo "$DRIVER_DISPOSING_COMPONENTS_BUILD - Driver - Disposing Components - Build"
+echo "$DRIVER_MESSAGE_SUBSCRIPTION_BUNDLE - Driver - Subscribe to Messages - Bundle"
+echo "$DRIVER_MESSAGE_SUBSCRIPTION_BUILD - Driver - Subscribe to Messages - Build"
 
 if [ $STATIC_HTML_BUNDLE == 0 ] &&
    [ $STATIC_HTML_BUILD == 0 ] &&
@@ -202,7 +209,9 @@ if [ $STATIC_HTML_BUNDLE == 0 ] &&
    [ $DRIVER_QUERYING_COMPONENTS_BUNDLE == 0 ] &&
    [ $DRIVER_QUERYING_COMPONENTS_BUILD == 0 ] &&
    [ $DRIVER_DISPOSING_COMPONENTS_BUNDLE == 0 ] &&
-   [ $DRIVER_DISPOSING_COMPONENTS_BUILD == 0 ]
+   [ $DRIVER_DISPOSING_COMPONENTS_BUILD == 0 ] &&
+   [ $DRIVER_MESSAGE_SUBSCRIPTION_BUNDLE == 0 ] &&
+   [ $DRIVER_MESSAGE_SUBSCRIPTION_BUILD == 0 ]
 then
   echo "Build Succeeded"
   exit 0;
