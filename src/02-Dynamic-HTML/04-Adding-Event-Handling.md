@@ -37,14 +37,11 @@ In Step 3, we define an `action` type whose values store all the information we'
 For our example, we do not need to store anything about the event or which button was clicked. So, this will be `data Action = Toggle`
 Our above function is now: `\_ -> Just Toggle`
 
-In Step 4, we handle the `action` type's value by running monadic code, which allows us to do side-effectful things. For example:
-- State manipulation (e.g. getting/setting/modifying the state)
-- Effects (e.g. print to the console, send ajax, etc.)
-- etc.
+In Step 4, we handle the `action` type's value by running monadic code. The underlying monad is `Aff`.
 
-Since Step 4 allows us to use monadic code, we can get additional information (e.g. does this user exist in the database?) before deciding whether to handle the event-turned-action or not. 
+Since Step 4 allows us to use side-effectful monadic code, we can get additional information (e.g. does this user exist in the database?) before deciding whether to handle the event-turned-action or not.
 
-For our example, we'll use the `MonadState` type class to update our component's state.
+To update the component's state, we'll use `get`/`put`/`modify_` from the `MonadState` type class.
 
 ```purescript
 import Control.Monad.State (get, put)
