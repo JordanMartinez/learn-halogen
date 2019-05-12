@@ -19,6 +19,9 @@ type EvalSpec =
   { handleAction :: TypeSignature
   , handleQuery :: TypeSignature
   , receive :: TypeSignature
+
+  -- These two are used for lifecycle hooks
+  -- We'll cover them in the `Lifecycle` folder
   , initialize :: TypeSignature
   , finalize :: TypeSignature
   }
