@@ -123,7 +123,7 @@ DRIVER_DISPOSING_COMPONENTS_BUILD=$?
 
 spago bundle -m Driver.SubscribingToMessages -t assets/driver/subscribing-to-messages.js --no-build
 DRIVER_MESSAGE_SUBSCRIPTION_BUNDLE=$?
-parcel open assets/driver/subscribing-to-messages.html -o subscribing-to-messages--parcelified.html
+parcel build assets/driver/subscribing-to-messages.html -o subscribing-to-messages--parcelified.html
 DRIVER_MESSAGE_SUBSCRIPTION_BUILD=$?
 
 ####
