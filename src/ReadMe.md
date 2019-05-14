@@ -28,8 +28,9 @@ The upcoming folders and files will show how to...
 4. Overview lifecycle handlers
 5. Expose the real and configurable `component` type we've been hiding with scaffolding and provide a template file for one to copy-paste-and-configure as needed
 6. Overview the "Driver:" configuring where the top-level Halogen component is run and how to communicate with it
-7. Advanced features and warnings about possible issues
-8. "Where do we go from here?" and linking to other libraries
+7. A visual flowchart of the entire Halogen control flow
+8. Advanced features and warnings about possible issues
+9. "Where do we go from here?" and linking to other libraries
 
 ## Compilation and Viewing Instructions
 
