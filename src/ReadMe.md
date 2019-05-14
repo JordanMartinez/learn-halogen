@@ -1,6 +1,6 @@
 # Learn Halogen
 
-Halogen works by using one or more `component`s. A `component` is a self-contained entity that knows how to render itself based on its current state, can update its state, can detect and handle events, and can communicate with other `component`s in a hierarchial manner.
+Halogen works by using a tree-like structure where each entity is a `component`. A `component` is a self-contained entity that knows how to render itself based on its current state, can update its state, can detect and handle events, and can communicate with other `component`s in a hierarchial manner.
 
 To accomplish all of this, Halogen uses a single `component` type that can be "configured" via 5 other types:
 - the `state` type
@@ -17,19 +17,19 @@ To limit this feeling of being overwhelmed, we'll provide some scaffolding that 
 
 What follows is a modular, bottom-up approach to teaching each foundational concept and configuration type in a clear manner with examples that you can further build upon and play with.
 
-Show how to...
+The upcoming folders and files will show how to...
 1. Render static HTML and CSS (components without state) via Halogen VDOM's DSL
 2. Render dynamic HTML (components with state and simple event handling)
     - introduce the `state` type and `action` type
-3. Overview "child-like" components
-    - introduce the `input` type and `message` type
-    - see another aspect of the `action` type
-4. (WIP) Overview "parent-like" components
-    - overview the `action`, `input`, and `message` types again
-    - introduce the `query` type
-5. (TODO) Exposing the real and configurable `component` type we've been hiding with scaffolding
-6. (TODO) Overview the "Driver:" how one can 'hook into' the UI with business logic
-7. (TODO) Forewarn you about possible issues
+    - briefly overview monads and how they work
+3. Overview parent and child relationships among components
+    - introduce the `input`, `message`, and `query` types
+    - overview the `action` type again
+4. Overview lifecycle handlers
+5. Expose the real and configurable `component` type we've been hiding with scaffolding and provide a template file for one to copy-paste-and-configure as needed
+6. Overview the "Driver:" configuring where the top-level Halogen component is run and how to communicate with it
+7. Advanced features and warnings about possible issues
+8. "Where do we go from here?" and linking to other libraries
 
 ## Compilation and Viewing Instructions
 
