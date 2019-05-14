@@ -1,4 +1,4 @@
-module Scaffolding.Lifecycle.LifecycleRenderer (runChildLifecycleComponent) where
+module Scaffolding.Lifecycle.LifecycleRenderer (runChildLifecycleComponent, runParentLifecycleComponent) where
 
 import Prelude
 
@@ -18,3 +18,10 @@ runChildLifecycleComponent comp = do
     io <- runUI comp unit body
     delay $ Milliseconds 3000.0
     io.dispose
+
+runParentLifecycleComponent :: H.Component HH.HTML (Const Void) Unit Void Aff
+                           -> Effect Unit
+runParentLifecycleComponent comp = do
+  launchAff_ do
+    body <- awaitBody
+    runUI comp unit body
