@@ -15,7 +15,7 @@ Here's how to read this folder's contents:
     2. Read through the section's corresponding files in the "child-like components" folder
 3. For Sections 2 - 4
     1. Read the section in this file
-    2. Read through the section'scorresponding files in the "parent-like components" folder
+    2. Read through the section's corresponding files in the "parent-like components" folder
 
 ## Capability-Based Components
 
@@ -179,7 +179,7 @@ type ChildSlots =
   )
 ```
 
-## A Note on Children's `Child Slots`
+### A Note on Children's `Child Slots`
 
 Since Halogen uses one component type and does not distinguish a child-like component from a parent-like component, child-like components must also define their `ChildSlots` type. So how do we define a slot type with no child slots? We ues an empty row kind:
 ```purescript
