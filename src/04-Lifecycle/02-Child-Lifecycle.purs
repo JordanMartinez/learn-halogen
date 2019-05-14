@@ -3,8 +3,9 @@ module Lifecycle.Child where
 import Prelude
 
 import CSS (backgroundColor, em, lightgreen, padding)
-import Control.Monad.State (get, put)
+import Control.Monad.State (get)
 import Data.Const (Const)
+import Data.Foldable (traverse_)
 import Data.Maybe (Maybe(..))
 import Effect (Effect)
 import Effect.Aff (Aff)
@@ -14,6 +15,7 @@ import Halogen as H
 import Halogen.HTML as HH
 import Halogen.HTML.CSS as CSS
 import Halogen.HTML.Events as HE
+import Halogen.HTML.Properties as HP
 import Scaffolding.Lifecycle.LifecycleRenderer (runChildLifecycleComponent)
 
 main :: Effect Unit
@@ -56,7 +58,9 @@ childLifecycleComponent =
             backgroundColor lightgreen
           ]
           [ HH.button
-            [ HE.onClick \_ -> Just ButtonClicked ]
+            [ HE.onClick \_ -> Just ButtonClicked
+            , HP.ref (H.RefLabel "button-label")
+            ]
             [ HH.text $ "Click me. After 3 clicks, this component will disappear."
             ]
           ]
@@ -66,7 +70,15 @@ childLifecycleComponent =
     handleAction = case _ of
       Initialize -> do
         liftEffect $ log "Component was initialized"
+        state <- get
+        liftEffect $ log $ "State is available: " <> show state
+        H.getHTMLElementRef (H.RefLabel "button-label") >>= traverse_ \element ->
+          liftEffect $ log $ "Element 'button-label' exists."
       ButtonClicked -> do
         liftEffect $ log "Button was clicked!"
       Finalize -> do
         liftEffect $ log "Component was removed"
+        state <- get
+        liftEffect $ log $ "State is still available: " <> show state
+        H.getHTMLElementRef (H.RefLabel "button-label") >>= traverse_ \element ->
+          liftEffect $ log $ "Element 'button-label' still exists."
