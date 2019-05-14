@@ -38,6 +38,12 @@ ADDING_EVENT_HANDLING_BUNDLE=$?
 parcel build assets/dynamic-html/adding-event-handling.html -o adding-event-handling--parcelified.html
 ADDING_EVENT_HANDLING_BUILD=$?
 
+# Referring to Elements
+spago bundle -m DynamicHtml.ReferringToElements -t assets/dynamic-html/referring-to-elements.js --no-build
+REFERRING_TO_ELEMENTS_BUNDLE=$?
+parcel build assets/dynamic-html/referring-to-elements.html -o referring-to-elements--parcelified.html
+REFERRING_TO_ELEMENTS_BUILD=$?
+
 # Input only
 spago bundle -m ParentChildRelationships.ChildlikeComponents.InputOnly -t assets/parent-child-relationships/childlike-components/input-only.js --no-build
 INPUT_ONLY_BUNDLE=$?
@@ -137,6 +143,8 @@ echo "$ADDING_STATE_BUNDLE - Adding State - Bundle"
 echo "$ADDING_STATE_BUILD - Adding State - Build"
 echo "$ADDING_EVENT_HANDLING_BUNDLE - Adding Event Handling - Bundle"
 echo "$ADDING_EVENT_HANDLING_BUILD - Adding Event Handling - Build"
+echo "$REFERRING_TO_ELEMENTS_BUNDLE - Referring to Elements- Bundle"
+echo "$REFERRING_TO_ELEMENTS_BUILD - Referring to Elements - Build"
 echo "$INPUT_ONLY_BUNDLE - Input only - Bundle"
 echo "$INPUT_ONLY_BUILD - Input only - Build"
 echo "$MESSAGE_ONLY_BUNDLE - Message only - Bundle"
@@ -180,6 +188,8 @@ if [ $STATIC_HTML_BUNDLE == 0 ] &&
    [ $ADDING_STATE_BUILD == 0 ] &&
    [ $ADDING_EVENT_HANDLING_BUNDLE == 0 ] &&
    [ $ADDING_EVENT_HANDLING_BUNDLE == 0 ] &&
+   [ $REFERRING_TO_ELEMENTS_BUNDLE == 0 ] &&
+   [ $REFERRING_TO_ELEMENTS_BUILD == 0 ] &&
    [ $INPUT_ONLY_BUNDLE == 0 ] &&
    [ $INPUT_ONLY_BUILD == 0 ] &&
    [ $MESSAGE_ONLY_BUNDLE == 0 ] &&
