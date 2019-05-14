@@ -1,5 +1,7 @@
 # Lifecycle
 
+## The Initialize and Finalize Hooks
+
 Currently, there are two hooks for a component's lifecycle:
 - initialization
 - finalization
@@ -7,6 +9,8 @@ Currently, there are two hooks for a component's lifecycle:
 The initializer handler runs right after the component has been fully rendered. If the component has children components that have an initializer handler, the children's initialization handlers will run before the component's initialization handler.
 
 The finalizer handler handler runs right before the component is fully removed. If the component has children components that have an finalizer handler, the children's finalization handlers will run before the component's finalization handler.
+
+## Handling the Hooks
 
 Each is treated like an event:
 1. Indicate via `Maybe` whether or not to continue processing the initialization/finalization "event"
@@ -53,6 +57,12 @@ component =
       Finalize -> do
         -- finalizer code
 ```
+
+## Top-Level Component Bug
+
+While finalizers normally run, in `v5.0.0-rc.4`, they won't run when the component in question is the top-level component. See https://github.com/slamdata/purescript-halogen/issues/602
+
+As a result, the child component and parent component examples below, which are both top-level components, won't run their finalizers.
 
 ## Compiling Instructions
 
