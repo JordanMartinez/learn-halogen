@@ -4,6 +4,10 @@ Currently, there are two hooks for a component's lifecycle:
 - initialization
 - finalization
 
+The initializer handler runs right after the component has been fully rendered. If the component has children components that have an initializer handler, the children's initialization handlers will run before the component's initialization handler.
+
+The finalizer handler handler runs right before the component is fully removed. If the component has children components that have an finalizer handler, the children's finalization handlers will run before the component's finalization handler.
+
 Each is treated like an event:
 1. Indicate via `Maybe` whether or not to continue processing the initialization/finalization "event"
 2. Convert the event into a value of the component's `action` type.
