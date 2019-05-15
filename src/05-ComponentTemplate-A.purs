@@ -5,7 +5,7 @@
 -- |
 -- | Moreover, each type has a short summary as to what goes there and why
 -- | to help you know how to configure it for your purposes.
-module ComponentTemplate
+module ComponentTemplate.A
   ( templateComponent
   , StateType
   , QueryType(..) -- if using the `Query a` version
