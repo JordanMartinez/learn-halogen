@@ -132,6 +132,16 @@ DRIVER_MESSAGE_SUBSCRIPTION_BUNDLE=$?
 parcel build assets/driver/subscribing-to-messages.html -o subscribing-to-messages--parcelified.html
 DRIVER_MESSAGE_SUBSCRIPTION_BUILD=$?
 
+spago bundle -m GoingDeeper.ADifferentMonad.ReaderT -t assets/going-deeper/a-different-monad--readert.js --no-build
+GOING_DEEPER_READERT_BUNDLE=$?
+parcel build assets/going-deeper/a-different-monad--readert.html -o a-different-monad--readert--parcelified.html
+GOING_DEEPER_READERT_BUILD=$?
+
+spago bundle -m GoingDeeper.ADifferentMonad.Run -t assets/going-deeper/a-different-monad--run.js --no-build
+GOING_DEEPER_RUN_BUNDLE=$?
+parcel build assets/going-deeper/a-different-monad--run.html -o a-different-monad--run--parcelified.html
+GOING_DEEPER_RUN_BUILD=$?
+
 ####
 echo "$STATIC_HTML_BUNDLE - Static HTML - Bundle"
 echo "$STATIC_HTML_BUILD - Static HTML - Build"
@@ -177,6 +187,10 @@ echo "$DRIVER_DISPOSING_COMPONENTS_BUNDLE - Driver - Disposing Components - Bund
 echo "$DRIVER_DISPOSING_COMPONENTS_BUILD - Driver - Disposing Components - Build"
 echo "$DRIVER_MESSAGE_SUBSCRIPTION_BUNDLE - Driver - Subscribe to Messages - Bundle"
 echo "$DRIVER_MESSAGE_SUBSCRIPTION_BUILD - Driver - Subscribe to Messages - Build"
+echo "$GOING_DEEPER_READERT_BUNDLE - Going Deeper - ReaderT - Bundle"
+echo "$GOING_DEEPER_READERT_BUILD - Going Deeper - ReaderT - Build"
+echo "$GOING_DEEPER_RUN_BUNDLE - Going Deeper - Run - Bundle"
+echo "$GOING_DEEPER_RUN_BUILD - Going Deeper - Run - Build"
 
 if [ $STATIC_HTML_BUNDLE == 0 ] &&
    [ $STATIC_HTML_BUILD == 0 ] &&
@@ -221,7 +235,11 @@ if [ $STATIC_HTML_BUNDLE == 0 ] &&
    [ $DRIVER_DISPOSING_COMPONENTS_BUNDLE == 0 ] &&
    [ $DRIVER_DISPOSING_COMPONENTS_BUILD == 0 ] &&
    [ $DRIVER_MESSAGE_SUBSCRIPTION_BUNDLE == 0 ] &&
-   [ $DRIVER_MESSAGE_SUBSCRIPTION_BUILD == 0 ]
+   [ $DRIVER_MESSAGE_SUBSCRIPTION_BUILD == 0 ] &&
+   [ $GOING_DEEPER_READERT_BUNDLE == 0 ] &&
+   [ $GOING_DEEPER_READERT_BUILD == 0 ] &&
+   [ $GOING_DEEPER_RUN_BUNDLE == 0 ] &&
+   [ $GOING_DEEPER_RUN_BUILD == 0 ]
 then
   echo "Build Succeeded"
   exit 0;
