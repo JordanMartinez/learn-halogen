@@ -10,8 +10,6 @@ import Scaffolding.ParentChildRenderer.ParentlikeComponents.SingleChildMessageOn
 main :: Effect Unit
 main = runParentWithMessageOnlyChild renderParentWithMessageOnlyChild
 
--- | A basic parent that only acts like a container.
--- | To keep things simpler, it is static and only renders a static child.
 renderParentWithMessageOnlyChild :: RenderParentWithMessageOnlyChild
 renderParentWithMessageOnlyChild childComponent parentState =
   HH.div_

@@ -23,7 +23,7 @@ main :: Effect Unit
 main =
     launchAff_ do
       awaitLoad
-      div <- selectElement' "could not find 'div#targetContainer'" $ QuerySelector "#targetContainer"
+      div <- selectElement' "could not find '#targetContainer'" $ QuerySelector "#targetContainer"
       runUI topLevelComponent unit div
   where
     selectElement' :: String -> QuerySelector -> Aff HTMLElement

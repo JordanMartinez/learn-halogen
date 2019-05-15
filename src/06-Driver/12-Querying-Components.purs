@@ -16,7 +16,7 @@ import Halogen.HTML.CSS as CSS
 import Halogen.VDom.Driver (runUI)
 
 -- | Here we get the 'return value' of the monadic `runUI` function,
--- | a record with the type, `HalogenIO`.
+-- | which is a record with the type, `HalogenIO`.
 -- | We use this record to communicate with our component.
 main :: Effect Unit
 main =

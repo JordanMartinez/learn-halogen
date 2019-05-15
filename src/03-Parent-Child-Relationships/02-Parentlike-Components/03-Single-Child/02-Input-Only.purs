@@ -11,8 +11,6 @@ import Scaffolding.ParentChildRenderer.ParentlikeComponents.SingleChildInputOnly
 main :: Effect Unit
 main = runParentWithInputOnlyChild renderParentWithInputOnlyChild
 
--- | A basic parent that only acts like a container.
--- | To keep things simpler, it is static and only renders a static child.
 renderParentWithInputOnlyChild :: RenderParentWithInputOnlyChild
 renderParentWithInputOnlyChild childComponent inputValue =
   HH.div_

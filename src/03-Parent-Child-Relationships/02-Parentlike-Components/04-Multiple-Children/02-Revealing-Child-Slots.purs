@@ -19,8 +19,8 @@ import Web.HTML.Window (alert)
 main :: Effect Unit
 main = runRevealSlotComponent parentComponent
 
--- | In other words, "This component has no 'real' state." We use Unit
--- | instead of Void because we still have to pass a value into a function
+-- | In other words, "This component has no 'real' state." We use `Unit`
+-- | instead of `Void` because we still have to pass a value into a function
 type StateType = Unit
 -- | In other words, "This parent component can get and set the child's state."
 data ParentAction
