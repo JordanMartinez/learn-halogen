@@ -4,6 +4,8 @@ Since executing monadic code in `HalogenM` will block until the computation fini
 
 In this example, we'll render two buttons. When clicked, one of them will simulate a computation that takes a long time whereas the other will run the same computation but in a forked thread.
 
+**Warning:** forking a new thread and modifying the component's state in that thread may overwrite the component's state with an old version of the state. Read `Halogen.Query.HalogenM (fork)`'s documentation for more info.
+
 Now look at the next file for the full example.
 
 ## Compiling Instructions
