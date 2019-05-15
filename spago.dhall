@@ -12,6 +12,7 @@ You can edit this file as you like.
     , "halogen-css"
     , "psci-support"
     , "random"
+    , "run"
     ]
 , packages =
     ./packages.dhall
