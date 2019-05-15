@@ -13,26 +13,25 @@ import Halogen.HTML.Properties as HP
 import Halogen.HTML.Events as HE
 import Scaffolding.DynamicRenderer.StateAndEval (HandleSimpleAction, StateAndActionRenderer, runStateAndActionComponent)
 
--- | Our state type. Either the button is 'on' or 'off'.
 type State = Boolean
-
--- | Our action type. It indicates the button's state should be inverted
 data Action = PrintExample
 
--- | Shows how to add event handling.
 renderExample :: StateAndActionRenderer State Action
 renderExample _ =
   HH.button
     [ HE.onClick \_ -> Just PrintExample
+    -- here, we label this button as 'my-button', so we can refer to it later
     , HP.ref (H.RefLabel "my-button")
     ]
     [ HH.text $ "Click to print our example to the console." ]
 
--- | Shows how to use actions to update the component's state
 handleAction :: HandleSimpleAction State Action
 handleAction = case _ of
   PrintExample -> do
+    -- Here, we use this reference to do something with the element
     H.getHTMLElementRef (H.RefLabel "my-button") >>= traverse_ \element -> do
+      -- in this situation, we'll just state that the element exists
+      -- and could be used here
       liftEffect $ log "We can now do something directly to the \
                          \button HTML element."
 
