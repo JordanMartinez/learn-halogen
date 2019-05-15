@@ -142,6 +142,11 @@ GOING_DEEPER_RUN_BUNDLE=$?
 parcel build assets/going-deeper/a-different-monad--run.html -o a-different-monad--run--parcelified.html
 GOING_DEEPER_RUN_BUILD=$?
 
+spago bundle -m GoingDeeper.ForkingThreads -t assets/going-deeper/forking-threads.js --no-build
+GOING_DEEPER_FORKING_BUNDLE=$?
+parcel build assets/going-deeper/forking-threads.html -o going-deeper/forking-threads--parcelified.html
+GOING_DEEPER_FORKING_BUILD=$?
+
 ####
 echo "$STATIC_HTML_BUNDLE - Static HTML - Bundle"
 echo "$STATIC_HTML_BUILD - Static HTML - Build"
@@ -191,6 +196,8 @@ echo "$GOING_DEEPER_READERT_BUNDLE - Going Deeper - ReaderT - Bundle"
 echo "$GOING_DEEPER_READERT_BUILD - Going Deeper - ReaderT - Build"
 echo "$GOING_DEEPER_RUN_BUNDLE - Going Deeper - Run - Bundle"
 echo "$GOING_DEEPER_RUN_BUILD - Going Deeper - Run - Build"
+echo "$GOING_DEEPER_FORKING_BUNDLE - Goind Deeper - Forking - Bundle"
+echo "$GOING_DEEPER_FORKING_BUILD - Goind Deeper - Forking - Bundle"
 
 if [ $STATIC_HTML_BUNDLE == 0 ] &&
    [ $STATIC_HTML_BUILD == 0 ] &&
@@ -239,7 +246,9 @@ if [ $STATIC_HTML_BUNDLE == 0 ] &&
    [ $GOING_DEEPER_READERT_BUNDLE == 0 ] &&
    [ $GOING_DEEPER_READERT_BUILD == 0 ] &&
    [ $GOING_DEEPER_RUN_BUNDLE == 0 ] &&
-   [ $GOING_DEEPER_RUN_BUILD == 0 ]
+   [ $GOING_DEEPER_RUN_BUILD == 0 ] &&
+   [ $GOING_DEEPER_FORKING_BUNDLE == 0 ] &&
+   [ $GOING_DEEPER_FORKING_BUILD == 0 ]
 then
   echo "Build Succeeded"
   exit 0;
