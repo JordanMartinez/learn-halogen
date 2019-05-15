@@ -48,7 +48,15 @@ handleAction = case _ of
     printAlert "We're using a non-Aff monad here"
 ```
 
-See the next file for a full example
+See the next file for a full example and be aware of the below bug
+
+### Don't Use `StateT` as the `MonadType` in a component.
+
+We can use a different monad transformer than just ReaderT. However, be aware that using `StateT` as your monad type will not work as expected.
+
+See https://github.com/slamdata/purescript-halogen/issues/386 for the issue.
+
+The workaround is to use a `ReaderT Env a` where `Env` is a record that stores a `Ref` value.
 
 ## Compiling Instructions
 
