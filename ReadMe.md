@@ -33,7 +33,9 @@ Before learning Halogen via this project, you will need to install the following
 1. Git clone this project
 2. Run `spago build`
 3. Run `spago docs` (and refer to the docs via the `./generated-docs/index.html` file)
-4. Read through each folder using the same rules that I use in my learning repo (described [in the third bullet point here](https://github.com/JordanMartinez/purescript-jordans-reference#learning-purescript-using-this-project)
+4. Read through each folder using the same rules that I use in my learning repo (described [in the third bullet point here](https://github.com/JordanMartinez/purescript-jordans-reference#learning-purescript-using-this-project).
+
+Don't want to clone-and-play? Then read through this repo using [the Table of Contents](./table-of-contents.md) file.
 
 ## License
 
