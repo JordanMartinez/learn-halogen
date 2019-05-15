@@ -37,7 +37,7 @@ In Step 3, we define an `action` type whose values store all the information we'
 For our example, we do not need to store anything about the event or which button was clicked. So, this will be `data Action = Toggle`
 Our above function is now: `\_ -> Just Toggle`
 
-In Step 4, we handle the `action` type's value by running monadic code. The underlying monad is `Aff`.
+In Step 4, we handle the `action` type's value by running monadic code. The monad is `HalogenM`, which eventually gets run in the `Aff` monad.
 
 Since Step 4 allows us to use side-effectful monadic code, we can get additional information (e.g. does this user exist in the database?) before deciding whether to handle the event-turned-action or not.
 
