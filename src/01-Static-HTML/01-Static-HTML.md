@@ -31,6 +31,9 @@ staticHtml =
     ]
 
 ```
+
+By default, `purescript-halogen-vdom` includes most HTML elements. However, it does not include the SVG elements. To get that, we need to add [`purescript-halogen-svg`] as a dependency. Unfortunately, that library has not been updated to Halogen `v5.0.0`.
+
 Now, look at the next file.
 
 ## Compiling Instructions

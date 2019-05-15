@@ -121,6 +121,31 @@ let overrides =
           upstream.halogen-vdom // { version = "v6.1.0" }
       }
 
+{- Halogen SVG has not been updated to Halogen 5 yet
+
+This fails with:
+Error found:
+in module Core
+at .spago/halogen-svg/v0.1.0/src/Svg/Core.purs:7:32 - 7:50 (line 7, column 32 - line 7, column 50)
+
+  Cannot import type ElemSpec from module Halogen.VDom
+  It either does not exist or the module does not export it.
+
+
+See https://github.com/purescript/documentation/blob/master/errors/UnknownImport.md for more information,
+or to contribute content related to this error.
+
+let additions =
+      { halogen-svg =
+          mkPackage
+            [ "strings"
+            , "halogen"
+            , "dom-indexed"
+            ]
+            "https://github.com/kwohlfahrt/purescript-halogen-svg.git"
+            "v0.1.0"
+      }
+-}
 let additions = {=}
 
 in  upstream // overrides // additions
