@@ -137,6 +137,22 @@
         - [Compiling Instructions](https://github.com/JordanMartinez/learn-halogen/blob/latestRelease/src/06-Driver/15-Disposing-Components.md#Compiling-Instructions)
     - [16 Disposing Components.purs](https://github.com/JordanMartinez/learn-halogen/blob/latestRelease/src/06-Driver/16-Disposing-Components.purs)
 - [07 Halogen Control Flow.md](https://github.com/JordanMartinez/learn-halogen/blob/latestRelease/src/07-Halogen-Control-Flow.md)
+- 08 Going Deeper
+    - [01 A Different Monad.md](https://github.com/JordanMartinez/learn-halogen/blob/latestRelease/src/08-Going-Deeper/01-A-Different-Monad.md)
+        - [Don't Use `StateT` as the `MonadType` in a component.](https://github.com/JordanMartinez/learn-halogen/blob/latestRelease/src/08-Going-Deeper/01-A-Different-Monad.md#Dont-Use-StateT-as-the-MonadType-in-a-component)
+        - [Compiling Instructions](https://github.com/JordanMartinez/learn-halogen/blob/latestRelease/src/08-Going-Deeper/01-A-Different-Monad.md#Compiling-Instructions)
+            - [ReaderT](https://github.com/JordanMartinez/learn-halogen/blob/latestRelease/src/08-Going-Deeper/01-A-Different-Monad.md#ReaderT)
+            - [Run](https://github.com/JordanMartinez/learn-halogen/blob/latestRelease/src/08-Going-Deeper/01-A-Different-Monad.md#Run)
+    - [02 A Different Monad: ReaderT.purs](https://github.com/JordanMartinez/learn-halogen/blob/latestRelease/src/08-Going-Deeper/02-A-Different-Monad--ReaderT.purs)
+    - [03 A Different Monad: Run.purs](https://github.com/JordanMartinez/learn-halogen/blob/latestRelease/src/08-Going-Deeper/03-A-Different-Monad--Run.purs)
+    - [04 Forking Threads.md](https://github.com/JordanMartinez/learn-halogen/blob/latestRelease/src/08-Going-Deeper/04-Forking-Threads.md)
+        - [Compiling Instructions](https://github.com/JordanMartinez/learn-halogen/blob/latestRelease/src/08-Going-Deeper/04-Forking-Threads.md#Compiling-Instructions)
+    - [05 Forking Threads.purs](https://github.com/JordanMartinez/learn-halogen/blob/latestRelease/src/08-Going-Deeper/05-Forking-Threads.purs)
+- [09 Where Do We Go From Here.md](https://github.com/JordanMartinez/learn-halogen/blob/latestRelease/src/09-Where-Do-We-Go-From-Here.md)
+    - [Other Libraries Used in/with Halogen](https://github.com/JordanMartinez/learn-halogen/blob/latestRelease/src/09-Where-Do-We-Go-From-Here.md#Other-Libraries-Used-inwith-Halogen)
+    - [Other Examples / Projects](https://github.com/JordanMartinez/learn-halogen/blob/latestRelease/src/09-Where-Do-We-Go-From-Here.md#Other-Examples--Projects)
+    - [Halogen Ecosystem](https://github.com/JordanMartinez/learn-halogen/blob/latestRelease/src/09-Where-Do-We-Go-From-Here.md#Halogen-Ecosystem)
+    - [Tutorials for Halogen Libraries](https://github.com/JordanMartinez/learn-halogen/blob/latestRelease/src/09-Where-Do-We-Go-From-Here.md#Tutorials-for-Halogen-Libraries)
 - Scaffolding
     - DynamicRenderer
         - [StateAndEval.purs](https://github.com/JordanMartinez/learn-halogen/blob/latestRelease/src/Scaffolding/DynamicRenderer/StateAndEval.purs)
