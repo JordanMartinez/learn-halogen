@@ -31,6 +31,6 @@ View both the next file and the corresponding HTML file (defined in the build co
 To compile the next file and view its results in the browser, use these instructions.
 
 ```bash
-spago bundle -m Driver.EmbeddingComponents -t assets/driver/embedding-components.js
+spago bundle-app -m Driver.EmbeddingComponents -t assets/driver/embedding-components.js
 parcel serve assets/driver/embedding-components.html -o embedding-components--parcelified.html --open
 ```

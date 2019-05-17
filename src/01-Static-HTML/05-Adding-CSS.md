@@ -82,6 +82,6 @@ Now look at the next file.
 To compile the next file and view its results in the browser, use these instructions.
 
 ```bash
-spago bundle -m StaticHTML.AddingCSS -t assets/static-html/adding-css.js
+spago bundle-app -m StaticHTML.AddingCSS -t assets/static-html/adding-css.js
 parcel serve assets/static-html/adding-css.html -o adding-css--parcelified.html --open
 ```

@@ -59,6 +59,6 @@ Now look at the next file for the full example.
 To compile the next file and view its results in the browser, use these instructions.
 
 ```bash
-spago bundle -m DynamicHtml.ReferringToElements -t assets/dynamic-html/referring-to-elements.js
+spago bundle-app -m DynamicHtml.ReferringToElements -t assets/dynamic-html/referring-to-elements.js
 parcel serve assets/dynamic-html/referring-to-elements.html -o referring-to-elements--parcelified.html --open
 ```

@@ -42,7 +42,7 @@ Rather than explaining that process in each folder's compilation instructions, w
 2. Use `Parcel` to create a server that serves the "corresponding HTML file"
 ```bash
 # Bundle the PS into a JS file
-spago bundle --main Path.To.Module --to assets/path/to/JS_File.js
+spago bundle-app --main Path.To.Module --to assets/path/to/JS_File.js
 # Parcel uses the HTML file to create a dependency tree,
 # which finds the JS file we previously created
 # It then creates a server and serves both.

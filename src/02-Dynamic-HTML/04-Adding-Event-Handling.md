@@ -61,6 +61,6 @@ Now look at the next file for the full example.
 To compile the next file and view its results in the browser, use these instructions.
 
 ```bash
-spago bundle -m DynamicHtml.AddingEventHandling -t assets/dynamic-html/adding-event-handling.js
+spago bundle-app -m DynamicHtml.AddingEventHandling -t assets/dynamic-html/adding-event-handling.js
 parcel serve assets/dynamic-html/adding-event-handling.html -o adding-event-handling--parcelified.html --open
 ```

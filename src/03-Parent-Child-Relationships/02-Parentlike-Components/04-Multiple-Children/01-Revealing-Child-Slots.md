@@ -44,6 +44,6 @@ Now look at the next file for the full example.
 To compile the next file and view its results in the browser, use these instructions.
 
 ```bash
-spago bundle -m ParentChildRelationships.ParentlikeComponents.MultipleChildren.RevealingChildSlots -t assets/parent-child-relationships/parentlike-components/multiple-children/revealing-child-slots.js
+spago bundle-app -m ParentChildRelationships.ParentlikeComponents.MultipleChildren.RevealingChildSlots -t assets/parent-child-relationships/parentlike-components/multiple-children/revealing-child-slots.js
 parcel serve assets/parent-child-relationships/parentlike-components/multiple-children/revealing-child-slots.html -o revealing-child-slots--parcelified.html --open
 ```

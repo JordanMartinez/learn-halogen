@@ -9,6 +9,6 @@ Now look at the next file for the full example.
 To compile the next file and view its results in the browser, use these instructions.
 
 ```bash
-spago bundle -m ParentChildRelationships.ParentlikeComponents.BasicContainer -t assets/parent-child-relationships/parentlike-components/basic-container.js
+spago bundle-app -m ParentChildRelationships.ParentlikeComponents.BasicContainer -t assets/parent-child-relationships/parentlike-components/basic-container.js
 parcel serve assets/parent-child-relationships/parentlike-components/basic-container.html -o basic-container--parcelified.html --open
 ```
