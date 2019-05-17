@@ -8,8 +8,13 @@ Learn [`purescript-halogen`](https://github.com/slamdata/purescript-halogen), (`
 
 Before learning Halogen via this project, you will need to install the following. (If you don't have them already installed, see my purescript learning repo's [Install Guide](https://github.com/JordanMartinez/purescript-jordans-reference/blob/latestRelease/00-Getting-Started/02-Install-Guide.md)
 - purescript (v0.12.5)
-- spago (v0.7.5.0)
+- spago (v0.8.0.0)
 - parcel (v1.12.3)
+
+Or, to install them in one line
+```bash
+npm i -g purescript@0.12.5 spago@0.8.0 parcel
+```
 
 ## Target Audience
 
