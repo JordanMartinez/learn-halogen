@@ -41,6 +41,6 @@ Now, look at the next file.
 To compile the next file and view its results in the browser, use these instructions.
 
 ```bash
-spago bundle -m StaticHTML.StaticHTML -t assets/static-html/static-html.js
+spago bundle-app -m StaticHTML.StaticHTML -t assets/static-html/static-html.js
 parcel serve assets/static-html/static-html.html -o static-html--parcelified.html --open
 ```

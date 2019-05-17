@@ -7,6 +7,6 @@ Now that we have a better understanding of how Halogen's components work, let's 
 To compile the next file and view its results in the browser, use these instructions.
 
 ```bash
-spago bundle -m Driver.RunningComponents -t assets/driver/running-components.js
+spago bundle-app -m Driver.RunningComponents -t assets/driver/running-components.js
 parcel serve assets/driver/running-components.html -o running-components--parcelified.html --open
 ```

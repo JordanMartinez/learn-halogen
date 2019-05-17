@@ -13,6 +13,6 @@ Now look at the next file for the full example.
 To compile the next file and view its results in the browser, use these instructions.
 
 ```bash
-spago bundle -m GoingDeeper.ForkingThreads -t assets/going-deeper/forking-threads.js
+spago bundle-app -m GoingDeeper.ForkingThreads -t assets/going-deeper/forking-threads.js
 parcel serve assets/going-deeper/forking-threads.html -o going-deeper/forking-threads--parcelified.html --open
 ```

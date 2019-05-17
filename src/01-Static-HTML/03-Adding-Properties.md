@@ -66,6 +66,6 @@ Now look at the next file.
 To compile the next file and view its results in the browser, use these instructions.
 
 ```bash
-spago bundle -m StaticHTML.AddingProperties -t assets/static-html/adding-properties.js
+spago bundle-app -m StaticHTML.AddingProperties -t assets/static-html/adding-properties.js
 parcel serve assets/static-html/adding-properties.html -o adding-properties--parcelified.html --open
 ```

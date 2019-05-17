@@ -25,6 +25,6 @@ Now look at the next file.
 To compile the next file and view its results in the browser, use these instructions.
 
 ```bash
-spago bundle -m DynamicHtml.AddingState -t assets/dynamic-html/adding-state.js
+spago bundle-app -m DynamicHtml.AddingState -t assets/dynamic-html/adding-state.js
 parcel serve assets/dynamic-html/adding-state.html -o adding-state--parcelified.html --open
 ```
