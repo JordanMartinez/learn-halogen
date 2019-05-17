@@ -10,7 +10,6 @@ Before learning Halogen via this project, you will need to install the following
 - purescript (v0.12.5)
 - spago (v0.7.5.0)
 - parcel (v1.12.3)
-- dhall-to-json
 
 ## Target Audience
 
