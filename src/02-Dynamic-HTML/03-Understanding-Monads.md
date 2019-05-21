@@ -44,7 +44,7 @@ extractVal :: forall value. Box value -> value
 extractVal (Box value) = value
 ```
 
-Why not take the values out whenever we want? Because these `Box`es represent side-effectful functions. These functions are computations that causes something to occur or change in the "real world." For example:
+Why not take the values out whenever we want? Because these `Box`es represent side-effectful functions. These functions are computations that cause something to occur or change in the "real world." For example:
 - state manipulation
 - network requests
 - printing
@@ -106,7 +106,7 @@ program =
   )
 ```
 
-Step 2: Swap the `Box number` and `\argName` positions, change the direction of the arrows/`->`, and remove the unneeded paranthesis:
+Step 2: Swap the `Box number` and `\argName` positions, change the direction of the arrows/`->`, and remove the unneeded parenthesis:
 
 ```purescript
 program :: Box Int
