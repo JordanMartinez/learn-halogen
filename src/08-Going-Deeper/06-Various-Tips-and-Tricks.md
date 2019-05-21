@@ -72,3 +72,37 @@ handleQuery = case _ of
   SomeRequest reply -> do
     pure $ Just $ reply unit
 ```
+
+## Using `HH.text ""` as an empty placeholder HTML value
+
+Sometimes, we want to render HTML content based on some condition. When the condition is true, that content should be rendered. When it's not, it should not be rendered.
+
+Halogen's HTML DSL uses the `Array` type for an element's children for performance reasons. In other words, `HH.div_ [ child1, child2, child3 ]`. As a result, one must have always have a value in the array; one cannot write something like...
+```purescript
+HH.div_
+  [ alwaysRenderChild1
+  , if condition renderChild2 else renderNothing
+  , alwaysRenderChild3
+  ]
+```
+... because there is no such "renderNothing" for HTML. So, the closest thing we have to `renderNothing` is `HH.text ""`.
+
+Yes, something is still rendered. So, one might think, "Why not rewrite our render function to remove that possibility? Why not write something like this:"
+```purescript
+if condition
+  then
+    HH.div_
+      [ alwaysRenderChild1
+      , renderChild2
+      , alwaysRenderChild3
+      ]
+  else
+  HH.div_
+    [ alwaysRenderChild1
+    , alwaysRenderChild3
+    ]
+```
+There are three reasons not to write this:
+1. One must keep these two versions (or maybe more depending on the number of conditions) of the same code in sync with one another. As one adds more complexity, this gets harder to maintain / get right.
+2. The code isn't as readable, so it's harder to see how one state is different from another.
+3. The above code might not be as performant in some situations as just using `HH.text ""`. By using this placeholder HTML value, the index values of the other children do not change. If we don't use thta placeholder value, then `alwaysRenderChild3`'s index will switch from 3 to 2 and vice-versa.
