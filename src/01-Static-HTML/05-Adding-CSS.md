@@ -10,7 +10,7 @@ There's a few things to be aware of with the syntax:
 
 ### CSS' single and multi key-pair syntax
 
-When we have one key-value pair, we ues this syntax, `CSS.style $ key value`. When we wish to have multiple key-value pairs, we must use the monadic "do notation" syntax:
+When we have one key-value pair, we use this syntax, `CSS.style $ key value`. When we wish to have multiple key-value pairs, we must use the monadic "do notation" syntax:
 ```purescript
 import Halogen.CSS as CSS
 

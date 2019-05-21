@@ -41,8 +41,9 @@ import Scaffolding.StaticRenderer (StaticHTML)
 -- new imports
 import Halogen.HTML (ClassName(..))
 import Halogen.HTML.Properties (ButtonType(..))
+import Halogen.HTML.Properties as HP
 
-staticHtmlWithProps :: StaticHtml
+staticHtmlWithProps :: StaticHTML
 staticHtmlWithProps =
   HH.div
     [ HP.id_ "top-div" ]
