@@ -61,7 +61,7 @@ childLifecycleComponent =
             [ HE.onClick \_ -> Just ButtonClicked
             , HP.ref (H.RefLabel "button-label")
             ]
-            [ HH.text $ "Click me. After 3 clicks, this component will disappear."
+            [ HH.text $ "Click me. After 3 seconds, this component will disappear."
             ]
           ]
 

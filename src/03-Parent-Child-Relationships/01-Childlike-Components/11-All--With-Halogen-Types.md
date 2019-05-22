@@ -36,7 +36,7 @@ H.mkComponent
 
 In the first, one could write out the full record each time one defines a new component, and use "non-functional" values for the parts that aren't desired. However, this approach adds "noise" to the code. It's harder to see the developer's intent.
 
-In the second, one copies a record that uses "non-funcitonal" values for each label and then overwrites the parts that are desired with "functional" values. This highlights the developer's intent at a minimal cost.
+In the second, one copies a record that uses "non-functional" values for each label and then overwrites the parts that are desired with "functional" values. This highlights the developer's intent at a minimal cost.
 
 To accomplish this second approach, we use `H.defaultEval` and record-overwriting syntax
 ```purescript

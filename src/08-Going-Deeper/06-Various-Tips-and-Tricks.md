@@ -105,4 +105,4 @@ if condition
 There are three reasons not to write this:
 1. One must keep these two versions (or maybe more depending on the number of conditions) of the same code in sync with one another. As one adds more complexity, this gets harder to maintain / get right.
 2. The code isn't as readable, so it's harder to see how one state is different from another.
-3. The above code might not be as performant in some situations as just using `HH.text ""`. By using this placeholder HTML value, the index values of the other children do not change. If we don't use thta placeholder value, then `alwaysRenderChild3`'s index will switch from 3 to 2 and vice-versa.
+3. The above code might not be as performant in some situations as just using `HH.text ""`. By using this placeholder HTML value, the index values of the other children do not change. If we don't use that placeholder value, then `alwaysRenderChild3`'s index will switch from 3 to 2 and vice-versa.

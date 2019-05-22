@@ -21,7 +21,7 @@ HH.slot
   (\childMessage -> Just ParentActionValue {- or 'Nothing' to ignore it -})
 ```
 
-## Quering a Child using slots
+## Querying a Child using slots
 
 When we wish to send a request or tell a command via a `query`, we use `H.query`, which takes three arguments:
 - the label that refers to the child's `H.Slot` type (i.e. the `childQuery`-`childMessage`-`index` combination)

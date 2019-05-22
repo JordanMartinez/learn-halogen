@@ -1,6 +1,6 @@
 # Forking Threads
 
-Since executing monadic code in `HalogenM` will block until the computation finishes, some computations can lead to performance issues or slow down the initialization process of a component. In such situations, we can fork a new thread and run some computation in that. Optionally, we can later kill that thread if it's no longer neede.
+Since executing monadic code in `HalogenM` will block until the computation finishes, some computations can lead to performance issues or slow down the initialization process of a component. In such situations, we can fork a new thread and run some computation in that. Optionally, we can later kill that thread if it's no longer needed.
 
 In this example, we'll render two buttons. When clicked, one of them will simulate a computation that takes a long time whereas the other will run the same computation but in a forked thread.
 
