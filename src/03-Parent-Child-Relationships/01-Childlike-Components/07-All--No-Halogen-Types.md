@@ -1,6 +1,6 @@
 # Child: All (No Halogen Types)
 
-In this example, we'll combine all of our previous examples together into one chlid component.
+In this example, we'll combine all of our previous examples together into one child component.
 
 We still won't show all the Halogen types we have been scaffolding thus far. We'll do that in the next file.
 

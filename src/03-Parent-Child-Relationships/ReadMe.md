@@ -146,12 +146,12 @@ Let's say a parent-like component has one child-like component. Answers to the f
 - With which child in particular are we communicating?
 
 However, when a parent has two or more children, we cannot give obvious answers to the questions above. Rather, complicated situations can arise.
-- **The "Slot Query" problem:** Two or more children may use diffrent `query` types, so which `query` type's value do we use when communicating with Child A instead of Child B?
+- **The "Slot Query" problem:** Two or more children may use different `query` types, so which `query` type's value do we use when communicating with Child A instead of Child B?
 - **The "Slot Message" problem:** Two or more children may use different `message` types to raise/emit messages to the parent. How does the parent correctly map each one to the parent component's `action` type?
 - **The "Slot Index" problem:** Two or more children may use the `same` query type, so which of those children do we query?
 - **The "Slot Label" problem:** The above three problems allow all sorts of different combinations, so how does the parent track one combination from another?
 
-For languages that don't have a powerful type checker, these kinds of problems can lead to runtime errors and tracking down the bugs become difficult.
+For languages that don't have a powerful type checker, these kinds of problems can lead to runtime errors and tracking down the bugs becomes difficult.
 
 For Halogen, a `slot` type solves each of the above problems, and the compiler guarantees that no such problems exist. Otherwise, it fails with a compiler error.
 
@@ -181,7 +181,7 @@ type ChildSlots =
 
 ### A Note on Children's `Child Slots`
 
-Since Halogen uses one component type and does not distinguish a child-like component from a parent-like component, child-like components must also define their `ChildSlots` type. So how do we define a slot type with no child slots? We ues an empty row kind:
+Since Halogen uses one component type and does not distinguish a child-like component from a parent-like component, child-like components must also define their `ChildSlots` type. So how do we define a slot type with no child slots? We use an empty row kind:
 ```purescript
 type NoChildSlots = () -- this is an empty row kind
 ```

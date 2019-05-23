@@ -94,7 +94,7 @@ main =
 
 Section's corresponding files: `Message-Subscribing`
 
-When a parent gets notified of a chlid component's message, it maps the child's message to the parent's action type and handles that action. The `HalogenIO` record type does not have an action type, so we need a different way to respond to messages.
+When a parent gets notified of a child component's message, it maps the child's message to the parent's action type and handles that action. The `HalogenIO` record type does not have an action type, so we need a different way to respond to messages.
 
 The `HalogenIO` record needs to respond to each message raised by the top-level component. This is accomplished via a push-based communication. The top-level component (producer) pushes out a message, to which the `HalogenIO` record (consumer) responds.
 
@@ -104,7 +104,7 @@ Moreover, the `HalogenIO` record is different from the parent component in two w
 
 The second is possible based on what the consumer returns in its monadic computation:
 - `pure $ Just unit` - continue responding to future messages
-- `pure Nothing` - stop responding to futur messages
+- `pure Nothing` - stop responding to future messages
 
 Thus, we can write something like this in code:
 
