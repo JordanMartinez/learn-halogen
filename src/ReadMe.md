@@ -1,6 +1,6 @@
 # Learn Halogen
 
-Halogen works by using a tree-like structure where each entity is a `component`. A `component` is a self-contained entity that knows how to render itself based on its current state, can update its state, can detect and handle events, and can communicate with other `component`s in a hierarchial manner.
+Halogen works by using a tree-like structure where each entity is a `component`. A `component` is a self-contained entity that knows how to render itself based on its current state, can update its state, can detect and handle events, and can communicate with other `component`s in a hierarchical manner.
 
 To accomplish all of this, Halogen uses a single `component` type that can be "configured" via 5 other types:
 - the `state` type
@@ -11,7 +11,7 @@ To accomplish all of this, Halogen uses a single `component` type that can be "c
 
 These 5 types are one reason why learning Halogen can be difficult as one can quickly feel overwhelmed by them, especially when new to the Functional Programming paradigm.
 
-To limit this feeling of being overwhelmed, we'll provide some scaffolding that "hides" irrelevent things from you until you understand the foundational concepts first. This scaffolding code will be stored in the `Scaffolding` folder. Feel free to ignore this folder until after you have finished reading through the rest of the folder's contents.
+To limit this feeling of being overwhelmed, we'll provide some scaffolding that "hides" irrelevant things from you until you understand the foundational concepts first. This scaffolding code will be stored in the `Scaffolding` folder. Feel free to ignore this folder until after you have finished reading through the rest of the folder's contents.
 
 ## Outline
 

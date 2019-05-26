@@ -92,7 +92,7 @@ main =
 
 ### Subscribing to Messages Raised by the Top-Level Component
 
-Section's corresponding files: `Message-Subscribing`
+Section's corresponding files: `Subscribing-to-Messages`
 
 When a parent gets notified of a child component's message, it maps the child's message to the parent's action type and handles that action. The `HalogenIO` record type does not have an action type, so we need a different way to respond to messages.
 
