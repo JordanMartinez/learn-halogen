@@ -1,7 +1,8 @@
 dist: xenial
 language: node_js
-  - "node"
-  # ^ use latest version of NodeJS
+  # ^ We don't specify the NodeJS version here because
+  # it's difficult to know which number actually installs something rather
+  # than resulting in an erroneous build
 
 # Unless we specify "sudo: false", build runs in VM, not container
 
@@ -15,7 +16,13 @@ branches:
   - latestRelease
 
 install:
+  - nvm install node
+  # ^ Use NVM to install latest node since Travis CI's docs aren't very'
+  # helpful as to how to do that
+  - npm i -g npm
+  # Also update NPM
   - npm i -g purescript@0.13.0 spago@0.8.3 parcel
+  # ^ Installing PureScript 0.13.0 hopefully now works
 
 # Print version numbers
 before_script:
