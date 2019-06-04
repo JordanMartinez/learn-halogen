@@ -35,7 +35,7 @@ main =
 
       io.subscribe $ CR.consumer \raisedIntVal -> do
         liftEffect $ log $
-          "Consumer 1: Button was clicked and produced a random integer \
+          "Consumer 2: Button was clicked and produced a random integer \
           \value: " <> show raisedIntVal <> "\n\
           \\n\
           \Since this consumer uses `pure Nothing`, this consumer \
