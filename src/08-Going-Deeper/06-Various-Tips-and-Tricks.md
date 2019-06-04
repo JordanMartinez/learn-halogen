@@ -106,3 +106,46 @@ There are three reasons not to write this:
 1. One must keep these two versions (or maybe more depending on the number of conditions) of the same code in sync with one another. As one adds more complexity, this gets harder to maintain / get right.
 2. The code isn't as readable, so it's harder to see how one state is different from another.
 3. The above code might not be as performant in some situations as just using `HH.text ""`. By using this placeholder HTML value, the index values of the other children do not change. If we don't use that placeholder value, then `alwaysRenderChild3`'s index will switch from 3 to 2 and vice-versa.
+
+## A better way to assign multiple CSS classes
+
+If we look at Halogen's code, we'll see that there are two ways to assign a class to an HTML element:
+- single class: `HP.class_ $ ClassName "class-name"`
+- multiple classes: HP.classes [ ClassName "class1", ClassName "class2" ]
+
+As a result, when we want to added a lot of clases to a component (e.g. if we were using Tachyons to style our components using functional css), assigning multiple classes can get especially tedious and boilerplate-y:
+```purescript
+HP.classes
+  [ ClassName "class1"
+  , ClassName "class2"
+  , ClassName "class3"
+  , ClassName "class4"
+  , ClassName "class5"
+  , ClassName "class6"
+  ]
+```
+After a while, one might choose to reduce some of that boilerplate by using `map`/`<$>` from `Functor:
+```purescript
+HP.classes $ ClassName <$>
+  [ "class1"
+  , "class2"
+  , "class3"
+  , "class4"
+  , "class5"
+  , "class6"
+  ]
+```
+Fortunately, there's an even better way than the `Functor` approach (as I discovered after looking at the source code for `halogen-formless`). The trick is to use one `String` value that adds spaces between the classes:
+```purescript
+HP.class_ $ ClassName "class1 class2 class3 class4 class5 class6"
+```
+Since the `HP.class_ $ ClassName` part is boilerplate-y, we can abstract this into an easier function:
+```purescript
+class_ :: forall r t. String -> HH.IProp ( "class" :: String | r ) t
+class_ = HP.class_ <<< ClassName
+
+-- which allows us to now write:
+HH.div
+  [ class_ "class1 class2 class3 class4 class5 class6" ]
+  [ HH.text "Much easier..." ]
+```
