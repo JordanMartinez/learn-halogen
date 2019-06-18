@@ -10,3 +10,6 @@
 # Ignore Parcel folders
 .cache/
 /dist/
+
+# Ignore personal repo files
+regen-toc.sh
