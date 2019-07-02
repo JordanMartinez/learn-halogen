@@ -160,6 +160,7 @@
     - [Other Examples / Projects](https://github.com/JordanMartinez/learn-halogen/blob/v2.1.0/src/09-Where-Do-We-Go-From-Here.md#Other-Examples--Projects)
     - [Halogen Ecosystem](https://github.com/JordanMartinez/learn-halogen/blob/v2.1.0/src/09-Where-Do-We-Go-From-Here.md#Halogen-Ecosystem)
     - [Tutorials for Halogen Libraries](https://github.com/JordanMartinez/learn-halogen/blob/v2.1.0/src/09-Where-Do-We-Go-From-Here.md#Tutorials-for-Halogen-Libraries)
+    - [Component Templates Files for Other Libraries](https://github.com/JordanMartinez/learn-halogen/blob/v2.1.0/src/09-Where-Do-We-Go-From-Here.md#Component-Templates-Files-for-Other-Libraries)
 - Scaffolding
     - DynamicRenderer
         - [StateAndEval.purs](https://github.com/JordanMartinez/learn-halogen/blob/v2.1.0/src/Scaffolding/DynamicRenderer/StateAndEval.purs)
