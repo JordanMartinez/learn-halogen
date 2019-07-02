@@ -60,9 +60,11 @@ component =
 
 ## Top-Level Component Bug
 
-While finalizers normally run, in `v5.0.0-rc.4`, they won't run when the component in question is the top-level component. See https://github.com/slamdata/purescript-halogen/issues/602
+The below bug was fixed in `v5.0.0-rc.5`
 
-As a result, the child component and parent component examples below, which are both top-level components, won't run their finalizers.
+~While finalizers normally run, in `v5.0.0-rc.4`, they won't run when the component in question is the top-level component. See [Halogen issue #602](https://github.com/slamdata/purescript-halogen/issues/602)~
+
+~As a result, the child component and parent component examples below, which are both top-level components, won't run their finalizers.~
 
 ## Compiling Instructions
 

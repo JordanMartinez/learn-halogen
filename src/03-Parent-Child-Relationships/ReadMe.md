@@ -97,6 +97,11 @@ In simple terms, Halogen models their communication in this way:
 
 ![Parent-Child-Relationship--Communication.svg](../../assets/visuals/Parent-Child-Relationship--Communication.svg)
 
+Note: queries, when evaluated, run a monadic computation that outputs a `Maybe a` rather than `a`. This single type models three possibilities:
+1. The child is not a part of the DOM (it was never rendered or it was rendered and then disposed of), so `Nothing` is returned.
+2. The child is a part of the DOM, but some error occurred. In such a case, `Nothing` will be returned.
+3. The child is a part of the DOM and the query was successful. In such a case, `Just a` will be returned.
+
 ### Child to Parent Communication
 
 The corresponding files for this section: `Message-Only`
