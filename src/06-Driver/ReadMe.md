@@ -90,6 +90,11 @@ main =
       tellResult <- io.query $ H.tell $ TellChildSomething 4
 ```
 
+Note: sending queries into the root component, when evaluated, will run a monadic computation that outputs a `Maybe a` rather than `a`. This single type models three possibilities:
+1. The root component was a part of the DOM, and one later called `halogenIO.dispose` (covered later in this file). In such a case, the root component is no longer a part of the DOM, so `Nothing` is returned.
+2. The root component is a part of the DOM, but some error occurred when evaluating the query. In such a case, `Nothing` will be returned.
+3. The root component is a part of the DOM and the query was successful. In such a case, `Just a` will be returned.
+
 ### Subscribing to Messages Raised by the Top-Level Component
 
 Section's corresponding files: `Subscribing-to-Messages`
