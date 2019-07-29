@@ -29,7 +29,7 @@ npm i -g purescript@0.13.0 spago@0.8.5 parcel
 - the philosophical foundations of Functional Programming. (If not, see my [FP Philosophical Foundations Overview](https://github.com/JordanMartinez/purescript-jordans-reference/tree/latestRelease/01-FP-Philosophical-Foundations))
 - PureScript's "Type-Level Programming" syntax. (If not, see my [Type-Level Programming Syntax](https://github.com/JordanMartinez/purescript-jordans-reference/tree/latestRelease/11-Syntax/03-Type-Level-Programming-Syntax) overview)
 - "do notation." (If not, see my overview on [Do Notation](https://github.com/JordanMartinez/purescript-jordans-reference/tree/latestRelease/11-Syntax/05-Prelude-Syntax/src). Specifically, `Discard.md` to `Reading Do as Nested Binds.md`)
-- monad transformers and how they work. (If not, see my [Application Structure](https://github.com/JordanMartinez/purescript-jordans-reference/tree/latestRelease/21-Hello-World/08-Application-Structure) folder. Specifically, the `MTL` folder.)
+- monad transformers and how they work. (If not, see my [Application Structure](https://github.com/JordanMartinez/purescript-jordans-reference/tree/latestRelease/21-Hello-World/05-Application-Structure) folder. Specifically, the `MTL` folder.)
 - the `Aff` type and how it works. (If not, watch [Async Programming in PureScript](https://www.youtube.com/watch?v=dbM72ap30TE))
 
 ## Instructions
