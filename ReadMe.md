@@ -8,12 +8,12 @@ Learn [`purescript-halogen`](https://github.com/slamdata/purescript-halogen), (`
 
 Before learning Halogen via this project, you will need to install the following. (If you don't have them already installed, see my purescript learning repo's [Install Guide](https://github.com/JordanMartinez/purescript-jordans-reference/blob/ps-0.13.x-v0.17.1/00-Getting-Started/02-Install-Guide.md)
 - purescript (v0.13.2)
-- spago (v0.8.5.0)
+- spago (v0.9.0.0)
 - parcel (v1.12.3)
 
 Or, to install them in one line
 ```bash
-npm i -g purescript@0.13.2 spago@0.8.5 parcel
+npm i -g purescript@0.13.2 spago@0.9.0 parcel
 ```
 
 ## Target Audience
@@ -35,7 +35,7 @@ npm i -g purescript@0.13.2 spago@0.8.5 parcel
 
 1. Git clone this project
 2. Run `spago build`
-3. Run `spago docs` (and refer to the docs via the `./generated-docs/index.html` file)
+3. Run `spago docs` (and refer to the docs via the `./generated-docs/html/index.html` file)
 4. Read through each folder using the same rules that I use in my learning repo (described [in the third bullet point here](https://github.com/JordanMartinez/purescript-jordans-reference#learning-purescript-using-this-project)).
 
 Don't want to clone-and-play? Then read through this repo using [the Table of Contents](./table-of-contents.md) file.
