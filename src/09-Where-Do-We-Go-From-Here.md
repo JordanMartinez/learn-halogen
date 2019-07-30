@@ -1,5 +1,9 @@
 # Where Do We Go From Here?
 
+## How Does Halogen Work?
+
+See [Questions Regarding the Developement of the PureScript-Halogen Library](https://discourse.purescript.org/t/questions-regarding-the-development-of-the-purescript-halogen-library/236)
+
 ## Other Libraries Used in/with Halogen
 
 - [`purescript-web-*` packages](https://pursuit.purescript.org/search?q=purescript-web-)
