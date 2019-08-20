@@ -38,4 +38,4 @@ See [Questions Regarding the Developement of the PureScript-Halogen Library](htt
 
 Note: these files are the initial ones I created after learning how to use the below libraries. I have not refined them since creating them, so some things may be missing. They also lack comments that explain what does what and how to best use them.
 - [`halogen-select`](https://github.com/JordanMartinez/purescript-halogen-select/commit/209a11194012753d99cedf9202077e2b2c2c728f)
-- [`halogen-formles`](https://github.com/JordanMartinez/purescript-halogen-formless/commit/47f8ad7ca1c1eadec6223c9004d43ec38dc762a8)
+- [`halogen-formles`](https://github.com/thomashoneyman/purescript-halogen-formless/tree/master/template)
