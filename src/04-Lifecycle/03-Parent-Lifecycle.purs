@@ -2,6 +2,7 @@ module Lifecycle.Parent where
 
 import Prelude
 
+-- Imports for lesson
 import Control.Monad.State (get, put)
 import Data.Const (Const)
 import Data.Maybe (Maybe(..))
@@ -13,7 +14,11 @@ import Halogen (liftEffect)
 import Halogen as H
 import Halogen.HTML as HH
 import Halogen.HTML.Events as HE
-import Scaffolding.Lifecycle.LifecycleRenderer (runParentLifecycleComponent)
+
+-- Imports for scaffolding
+import Effect.Aff (launchAff_)
+import Halogen.Aff (awaitBody)
+import Halogen.VDom.Driver (runUI)
 
 main :: Effect Unit
 main = runParentLifecycleComponent parentLifecycleComponent
@@ -138,3 +143,12 @@ childComponent  =
       Finalize -> do
         state <- get
         liftEffect $ log $ "Child component #" <> show state <> " was finalized"
+
+-- Scaffolded Code --
+
+runParentLifecycleComponent :: H.Component HH.HTML (Const Void) Unit Void Aff
+                           -> Effect Unit
+runParentLifecycleComponent comp = do
+  launchAff_ do
+    body <- awaitBody
+    runUI comp unit body

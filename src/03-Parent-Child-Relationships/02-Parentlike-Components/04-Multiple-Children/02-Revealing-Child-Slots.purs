@@ -2,6 +2,7 @@ module ParentChildRelationships.ParentlikeComponents.MultipleChildren.RevealingC
 
 import Prelude
 
+-- Imports for lesson
 import Data.Const (Const)
 import Data.Maybe (Maybe(..), maybe)
 import Data.Symbol (SProxy(..))
@@ -12,9 +13,13 @@ import Halogen (get, liftEffect, put)
 import Halogen as H
 import Halogen.HTML as HH
 import Halogen.HTML.Events as HE
-import Scaffolding.ParentChildRenderer.ParentlikeComponents.MultipleChildrenRevealSlotsRenderer (runRevealSlotComponent)
 import Web.HTML (window)
 import Web.HTML.Window (alert)
+
+-- Imports for scaffolding
+import Effect.Aff (launchAff_)
+import Halogen.Aff (awaitBody)
+import Halogen.VDom.Driver (runUI)
 
 main :: Effect Unit
 main = runRevealSlotComponent parentComponent
@@ -22,15 +27,19 @@ main = runRevealSlotComponent parentComponent
 -- | In other words, "This component has no 'real' state." We use `Unit`
 -- | instead of `Void` because we still have to pass a value into a function
 type StateType = Unit
+
 -- | In other words, "This parent component can get and set the child's state."
 data ParentAction
   = GetInfoFromChild
   | ChangeChildState
+
 -- | In other words, "This component has no query."
 type Query = Const Void
+
 -- | In other words, "This component receives no 'real' input." We use Unit
 -- | instead of Void because we still have to pass a value into a function
 type Input = Unit
+
 -- | In other words, "This component does not raise any messages."
 type Message = Void
 
@@ -134,3 +143,11 @@ childComponent =
       SetState value next -> do
         put value
         pure $ Just next
+
+-- Scaffolded Code --
+
+runRevealSlotComponent :: H.Component HH.HTML (Const Void) Unit Void Aff -> Effect Unit
+runRevealSlotComponent component = do
+  launchAff_ do
+    body <- awaitBody
+    runUI component unit body
