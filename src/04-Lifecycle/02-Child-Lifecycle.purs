@@ -16,7 +16,11 @@ import Halogen.HTML as HH
 import Halogen.HTML.CSS as CSS
 import Halogen.HTML.Events as HE
 import Halogen.HTML.Properties as HP
-import Scaffolding.Lifecycle.LifecycleRenderer (runChildLifecycleComponent)
+
+-- Imports for scaffolding
+import Effect.Aff (Milliseconds(..), delay, launchAff_)
+import Halogen.Aff (awaitBody)
+import Halogen.VDom.Driver (runUI)
 
 main :: Effect Unit
 main = runChildLifecycleComponent childLifecycleComponent
@@ -82,3 +86,14 @@ childLifecycleComponent =
         liftEffect $ log $ "State is still available: " <> show state
         H.getHTMLElementRef (H.RefLabel "button-label") >>= traverse_ \element ->
           liftEffect $ log $ "Element 'button-label' still exists."
+
+-- Scaffolded Code
+
+runChildLifecycleComponent :: H.Component HH.HTML (Const Void) Unit Void Aff
+                           -> Effect Unit
+runChildLifecycleComponent comp = do
+  launchAff_ do
+    body <- awaitBody
+    io <- runUI comp unit body
+    delay $ Milliseconds 3000.0
+    io.dispose
