@@ -11,9 +11,13 @@ import Halogen (liftEffect)
 import Halogen as H
 import Halogen.HTML as HH
 import Halogen.HTML.Events as HE
-import Scaffolding.ParentChildRenderer.ParentlikeComponents.MultipleChildrenMultiSlotsRenderer (runMultiSlotComponent)
 import Web.HTML (window)
 import Web.HTML.Window (alert)
+
+-- Imports for scaffolding
+import Effect.Aff (launchAff_)
+import Halogen.Aff (awaitBody)
+import Halogen.VDom.Driver (runUI)
 
 main :: Effect Unit
 main = runMultiSlotComponent parentComponent
@@ -151,3 +155,11 @@ child2 =
     handleAction = case _ of
       RaiseMessage msg -> do
         H.raise msg
+
+-- Scaffolded Code
+
+runMultiSlotComponent :: H.Component HH.HTML (Const Void) Unit Void Aff -> Effect Unit
+runMultiSlotComponent component = do
+  launchAff_ do
+    body <- awaitBody
+    runUI component unit body

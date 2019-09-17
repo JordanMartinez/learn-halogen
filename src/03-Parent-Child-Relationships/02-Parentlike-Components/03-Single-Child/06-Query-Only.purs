@@ -2,6 +2,7 @@ module ParentChildRelationships.ParentlikeComponents.SingleChild.QueryOnly where
 
 import Prelude
 
+-- Imports for lesson
 import Control.Monad.State (put)
 import Data.Maybe (Maybe(..), maybe)
 import Effect (Effect)
@@ -10,7 +11,14 @@ import Effect.Random (randomInt)
 import Halogen as H
 import Halogen.HTML as HH
 import Halogen.HTML.Events as HE
-import Scaffolding.ParentChildRelationships.ParentlikeComponents.SingleChildQueryOnlyRenderer (ChildQuery(..), ParentAction(..), ParentHtmlWithQueryOnlyChild, QueryOnlyChildComponent, RunParentActionWithQueryOnlyChild, StateActionChildQueryParentSpec, requestInfo, runStateActionChildQueryParentSpec, singleChild_query_noInputNoMessage, tellChildCommand)
+
+-- Imports for scaffolded code
+import Data.Const (Const)
+import Data.Symbol (SProxy(..))
+import Effect.Aff (Aff, launchAff_)
+import Control.Monad.State (get)
+import Halogen.Aff (awaitBody)
+import Halogen.VDom.Driver (runUI)
 
 main :: Effect Unit
 main = runStateActionChildQueryParentSpec stateActionChildQueryParentSpec
@@ -19,23 +27,16 @@ main = runStateActionChildQueryParentSpec stateActionChildQueryParentSpec
 -- know what that is when it initially renders, we'll wrap it in a Maybe.
 type State = Maybe Int
 
--- Again, due to scaffolding needs and cyclical modules being disallowed,
--- the parent's actions are defined in our scaffolding module.
--- The corresponding scaffolding module's ParentAction is defined like so:
-{-
 data ParentAction
   = GetChildState
   | SetChildState
   | SetGetDoubledChildState
--}
 
 -- Below is the child's query type
-{-
 data ChildQuery a
-  = GetState (State -> a)
-  | SetState State a
-  | SetAndGetDoubledState State (State -> a)
--}
+  = GetState (Int -> a)
+  | SetState Int a
+  | SetAndGetDoubledState Int (Int -> a)
 
 stateActionChildQueryParentSpec :: StateActionChildQueryParentSpec
 stateActionChildQueryParentSpec =
@@ -44,8 +45,8 @@ stateActionChildQueryParentSpec =
     , handleAction
     }
   where
-    render :: QueryOnlyChildComponent -> State -> ParentHtmlWithQueryOnlyChild
-    render childComp state =
+    render :: State -> ParentHtmlWithQueryOnlyChild
+    render state =
       HH.div_
         [ HH.div_ [ HH.text $ "The child's state is: " <> (maybe "<unknown>" show state) ]
         , HH.div_
@@ -93,3 +94,91 @@ stateActionChildQueryParentSpec =
         case maybeDoubledState of
           Nothing -> pure unit
           justDoubledState -> put justDoubledState
+
+-- Scaffolded Code
+
+type ChildSlots = (child :: H.Slot ChildQuery Void Unit)
+
+_child :: SProxy "child"
+_child = SProxy
+
+type ParentHtmlWithQueryOnlyChild =
+  H.ComponentHTML ParentAction ChildSlots Aff
+
+type RunParentActionWithQueryOnlyChild =
+  H.HalogenM (Maybe Int) ParentAction ChildSlots Void Aff Unit
+
+type StateActionChildQueryParentSpec =
+  { initialState :: Maybe Int
+  , render :: Maybe Int -> ParentHtmlWithQueryOnlyChild
+  , handleAction :: ParentAction -> RunParentActionWithQueryOnlyChild
+  }
+
+runStateActionChildQueryParentSpec :: StateActionChildQueryParentSpec
+                                   -> Effect Unit
+runStateActionChildQueryParentSpec spec = do
+  launchAff_ do
+    body <- awaitBody
+    runUI (parentComponent spec) unit body
+
+-- Parent stuff
+
+singleChild_query_noInputNoMessage :: QueryOnlyChildComponent -> ParentHtmlWithQueryOnlyChild
+singleChild_query_noInputNoMessage childComponent =
+  HH.slot _child unit childComponent unit (const Nothing)
+
+type RunChildQuery a = H.HalogenM (Maybe Int) ParentAction ChildSlots Void Aff (Maybe a)
+
+requestInfo :: forall a. ChildQuery a -> RunChildQuery a
+requestInfo request =
+  H.query _child unit request
+
+tellChildCommand :: forall a. ChildQuery a -> RunChildQuery a
+tellChildCommand tellCommand =
+  H.query _child unit tellCommand
+
+type ParentComponentWithQueryOnlyChild = H.Component HH.HTML (Const Void) Unit Void Aff
+
+parentComponent :: StateActionChildQueryParentSpec
+                -> ParentComponentWithQueryOnlyChild
+parentComponent spec =
+  H.mkComponent
+    { initialState: \_ -> spec.initialState
+    , render: spec.render
+    , eval: H.mkEval $ H.defaultEval { handleAction = spec.handleAction }
+    }
+
+-- Child component
+
+type QueryOnlyChildComponent = H.Component HH.HTML ChildQuery Unit Void Aff
+
+childComp :: QueryOnlyChildComponent
+childComp =
+    H.mkComponent
+      { initialState
+      , render
+      , eval: H.mkEval $ H.defaultEval { handleQuery = handleQuery }
+      }
+  where
+    initialState :: Unit -> Int
+    initialState _ = 42
+
+    render :: Int -> H.ComponentHTML Void () Aff
+    render state =
+      HH.div_
+        [ HH.text $ "Child state: " <> show state ]
+
+    handleQuery :: forall a.
+                   ChildQuery a
+                -> H.HalogenM Int Void () Void Aff (Maybe a)
+    handleQuery = case _ of
+      GetState reply -> do
+        state <- get
+        pure $ Just $ reply state
+      SetState state next -> do
+        put state
+        pure $ Just next
+      SetAndGetDoubledState state reply -> do
+        put state
+        let doubledState = state * 2
+        pure $ Just $ reply doubledState
