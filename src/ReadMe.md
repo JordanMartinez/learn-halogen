@@ -46,7 +46,7 @@ spago bundle-app --main Path.To.Module --to assets/path/to/JS_File.js
 # Parcel uses the HTML file to create a dependency tree,
 # which finds the JS file we previously created
 # It then creates a server and serves both.
-parcel serve assets/path/to/corresponding/HTML_File.html -o HTML_File--parcelified.html --open --no-minify
+parcel serve assets/path/to/corresponding/HTML_File.html -o HTML_File--parcelified.html --open
 ```
 
 The "corresponding HTML file" will look like this:
