@@ -8,7 +8,7 @@ import Halogen.HTML as HH
 import Halogen.HTML.Properties (ButtonType(..))
 import Halogen.HTML.Properties as HP
 
--- Imports for scaffolded code
+-- Imports for scaffolding
 import Data.Const (Const)
 import Effect (Effect)
 import Effect.Aff (Aff, launchAff_)

@@ -2,6 +2,7 @@ module ParentChildRelationships.ParentlikeComponents.SingleChild.InputOnly where
 
 import Prelude
 
+-- Imports for lesson
 import Data.Maybe (Maybe(..))
 import Halogen.HTML as HH
 import Halogen.HTML.Events as HE

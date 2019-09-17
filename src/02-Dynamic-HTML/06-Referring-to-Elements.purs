@@ -2,7 +2,7 @@ module DynamicHtml.ReferringToElements where
 
 import Prelude
 
--- Imports for Lesson
+-- Imports for lesson
 import Data.Foldable (traverse_)
 import Data.Maybe (Maybe(..))
 import Effect.Console (log)
@@ -12,7 +12,7 @@ import Halogen.HTML as HH
 import Halogen.HTML.Properties as HP
 import Halogen.HTML.Events as HE
 
--- Imports for scaffolded code
+-- Imports for scaffolding
 import Data.Const (Const)
 import Effect (Effect)
 import Effect.Aff (Aff, launchAff_)

@@ -2,6 +2,7 @@ module Lifecycle.Child where
 
 import Prelude
 
+-- Imports for lesson
 import CSS (backgroundColor, em, lightgreen, padding)
 import Control.Monad.State (get)
 import Data.Const (Const)

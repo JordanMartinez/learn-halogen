@@ -2,13 +2,14 @@ module ParentChildRelationships.ChildlikeComponents.MessageOnly where
 
 import Prelude
 
+-- Imports for lesson
 import Control.Monad.State (get, modify_)
 import Data.Maybe (Maybe(..))
 import Halogen as H
 import Halogen.HTML as HH
 import Halogen.HTML.Events as HE
 
--- Imports for scaffolded code
+-- Imports for scaffolding
 import CSS (em, marginTop)
 import Data.Array ((:))
 import Data.Const (Const)

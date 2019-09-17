@@ -12,7 +12,7 @@ import Halogen as H
 import Halogen.HTML as HH
 import Halogen.HTML.Events as HE
 
--- Imports for scaffolded code
+-- Imports for scaffolding
 import Data.Const (Const)
 import Data.Symbol (SProxy(..))
 import Effect.Aff (Aff, launchAff_)

@@ -8,7 +8,7 @@ import Data.Maybe (Maybe(..))
 import Halogen.HTML as HH
 import Halogen.HTML.Events as HE
 
--- Imports for scaffolded code
+-- Imports for scaffolding
 import Data.Const (Const)
 import Effect (Effect)
 import Effect.Aff (Aff, launchAff_)

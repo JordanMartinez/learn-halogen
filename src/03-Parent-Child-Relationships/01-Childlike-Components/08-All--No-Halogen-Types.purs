@@ -13,7 +13,7 @@ import Halogen.HTML as HH
 import Halogen.HTML.CSS as CSS
 import Halogen.HTML.Events as HE
 
--- Imports for scaffolded code
+-- Imports for scaffolding
 import CSS (backgroundColor, lightblue, lightgreen, padding, paddingLeft)
 import Control.Monad.Rec.Class (forever)
 import Data.Array ((:))

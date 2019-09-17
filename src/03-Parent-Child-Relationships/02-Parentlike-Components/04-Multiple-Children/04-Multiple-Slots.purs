@@ -2,6 +2,7 @@ module ParentChildRelationships.ParentlikeComponents.MultipleChildren.MultipleSl
 
 import Prelude
 
+-- Imports for lesson
 import Data.Const (Const)
 import Data.Maybe (Maybe(..))
 import Data.Symbol (SProxy(..))

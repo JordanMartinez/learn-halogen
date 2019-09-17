@@ -3,7 +3,7 @@ module StaticHTML.StaticHTML where
 -- Imports for lesson
 import Halogen.HTML as HH
 
--- Imports for scaffolded code
+-- Imports for scaffolding
 import Prelude
 
 import Data.Const (Const)

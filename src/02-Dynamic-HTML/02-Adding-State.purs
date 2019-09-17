@@ -5,7 +5,7 @@ import Prelude
 -- Imports for lesson
 import Halogen.HTML as HH
 
--- Imports for scaffolded code
+-- Imports for scaffolding
 import Control.Monad.Error.Class (throwError)
 import Data.Const (Const)
 import Data.Maybe (maybe)
