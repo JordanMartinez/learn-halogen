@@ -21,8 +21,8 @@ install:
   # helpful as to how to do that
   - npm i -g npm
   # Also update NPM
-  - npm i -g purescript@0.13.3 spago@0.9.0 parcel
-  # ^ Installing PureScript 0.13.3 now works
+  - npm i -g purescript@0.13.4 spago@0.9.0 parcel
+  # ^ Installing PureScript 0.13.4 now works
 
 # Print version numbers
 before_script:
