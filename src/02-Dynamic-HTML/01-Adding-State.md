@@ -13,7 +13,7 @@ import Halogen.HTML as HH
 
 type State = Int
 
-stateOnlyStaticHtml :: State -> H.ComponentHTML
+stateOnlyStaticHtml :: State -> HH.ComponentHTML
 stateOnlyStaticHtml intValue =
   HH.div_ [ HH.text $ show intValue ]
 ```
