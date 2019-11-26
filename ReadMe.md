@@ -16,6 +16,15 @@ Or, to install them in one line
 npm i -g purescript@0.13.5 spago@0.12.1 parcel
 ```
 
+Or, instead of install globally, install relatively to this project
+```
+npm i
+```
+If you choose this approach, all aftermentioned commond like `spago ...` and `parcel ...` shall be prefix with `npm run`. e.g.
+- `npm run spago bundle-app -m ...`
+- `npm run parcel serve ...`
+
+
 ## Target Audience
 
 **Required:** You are already familiar with...
