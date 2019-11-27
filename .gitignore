@@ -13,3 +13,6 @@
 
 # Ignore personal repo files
 regen-toc.sh
+
+# ignore npm modules
+node_modules/
