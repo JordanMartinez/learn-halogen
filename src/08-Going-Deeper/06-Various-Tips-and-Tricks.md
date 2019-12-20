@@ -157,3 +157,7 @@ HH.div
   [ class_ "class1 class2 class3 class4 class5 class6" ]
   [ HH.text "Much easier..." ]
 ```
+
+## Styling Components
+
+See [Thomas' comment in "Styling question"](https://github.com/thomashoneyman/purescript-halogen-realworld/issues/46#issuecomment-537170339)
