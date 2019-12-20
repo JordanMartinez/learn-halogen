@@ -161,3 +161,7 @@ HH.div
 ## Styling Components
 
 See [Thomas' comment in "Styling question"](https://github.com/thomashoneyman/purescript-halogen-realworld/issues/46#issuecomment-537170339)
+
+## Rendering Valid/Invalid Input Data
+
+If one reads through [Text Input not tracking state](https://discourse.purescript.org/t/text-input-not-tracking-state/1070/3) and, more specifically, [Gary's comment about using Either String ValidatedValue](https://discourse.purescript.org/t/text-input-not-tracking-state/1070/3), this can help with knowing how to deal with uncontrolled components.
