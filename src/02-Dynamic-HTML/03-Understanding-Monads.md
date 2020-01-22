@@ -213,7 +213,7 @@ Of the two, `Aff` is more powerful and removes the "callback hell" under which m
 
 #### The Problem
 
-If all of our code was written via `Effect` or `Aff`, we would be tightly coupling our high-level business logic with the low-level instructions that actually make it work. As a result, our code would be harder test and reason about.
+If all of our code was written via `Effect` or `Aff`, we would be tightly coupling our high-level business logic with the low-level instructions that actually make it work. As a result, our code would be harder to test and reason about.
 
 `Effect`/`Aff` only exist so we can actually run our programs. However, we do not want to encode our business logic into them as well. Does our business logic care which database we're using? No, it should work either way. Does it care about which method we're using to communicate with our server? No, it should work either way.
 
@@ -223,7 +223,7 @@ Thus, we need some form of abstraction to separate the high-level capability-foc
 
 #### A Solution
 
-One way of separating them is using "monad transformers." Think of these entities as something that "augment" a monadic type with additional capabilities. For example, `Effect` and `Aff` do not know how to do state manipulation. While one could make them do that, it couples the business logic to the implementation that runs it and is error prone. Instead, it would be better to use an abstraction that handles this correctly each time and that highlights developer intent.
+One way of separating them is using "monad transformers." Think of these entities as something that "augments" a monadic type with additional capabilities. For example, `Effect` and `Aff` do not know how to do state manipulation. While one could make them do that, it couples the business logic to the implementation that runs it and is error prone. Instead, it would be better to use an abstraction that handles this correctly each time and that highlights developer intent.
 
 While there are other transformers, we'll only cover one: `MonadState`.
 

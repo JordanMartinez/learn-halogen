@@ -48,7 +48,7 @@
         - [Idiomatically using `H.getHTMLElementRef`](https://github.com/JordanMartinez/learn-halogen/blob/v5.0.0/src/02-Dynamic-HTML/06-Referring-to-Elements.md#Idiomatically-using-HgetHTMLElementRef)
         - [Full Example](https://github.com/JordanMartinez/learn-halogen/blob/v5.0.0/src/02-Dynamic-HTML/06-Referring-to-Elements.md#Full-Example)
         - [Compiling Instructions](https://github.com/JordanMartinez/learn-halogen/blob/v5.0.0/src/02-Dynamic-HTML/06-Referring-to-Elements.md#Compiling-Instructions)
-    - [06 Referring to Elements.purs](https://github.com/JordanMartinez/learn-halogen/blob/v5.0.0/src/02-Dynamic-HTML/06-Referring-to-Elements.purs)
+    - [07 Referring to Elements.purs](https://github.com/JordanMartinez/learn-halogen/blob/v5.0.0/src/02-Dynamic-HTML/07-Referring-to-Elements.purs)
     - [11 Prevent Default and Stop Propagation.md](https://github.com/JordanMartinez/learn-halogen/blob/v5.0.0/src/02-Dynamic-HTML/11-Prevent-Default-and-Stop-Propagation.md)
         - [Full Solution](https://github.com/JordanMartinez/learn-halogen/blob/v5.0.0/src/02-Dynamic-HTML/11-Prevent-Default-and-Stop-Propagation.md#Full-Solution)
 - 03 Parent Child Relationships
