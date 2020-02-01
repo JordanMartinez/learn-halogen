@@ -32,7 +32,7 @@ data Query a
   | SetAndGetDoubledState State (State -> a)
 
 -- | Combines all the code we need to define a simple component that supports
--- | state and simple query handlinGg
+-- | state and simple query handling
 type StateQueryComponentSpec =
   { initialState :: State
   , render :: State -> StaticHTML
@@ -121,12 +121,12 @@ parentComponent childComp =
           [ HH.div_
             [ HH.button
               [ HE.onClick \_ -> Just GetChildState ]
-              [ HH.text "Get child state" ]
+              [ HH.text "Copy child state to parent memory" ]
             ]
           , HH.div_
             [ HH.button
               [ HE.onClick \_ -> Just SetChildState ]
-              [ HH.text "Set child state to  random integer and \
+              [ HH.text "Set child state to a random integer and \
                         \clear parent's memory of child state"
               ]
             ]
@@ -139,7 +139,7 @@ parentComponent childComp =
               ]
             ]
           ]
-        , HH.div_ [ HH.text $ "Child state is: " <> (maybe "<unknown>" show state) ]
+        , HH.div_ [ HH.text $ "Parent memory is: " <> (maybe "<unknown>" show state) ]
         , HH.slot _child unit childComp unit (const Nothing)
         ]
 
