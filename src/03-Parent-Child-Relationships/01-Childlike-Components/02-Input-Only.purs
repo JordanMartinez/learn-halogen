@@ -16,13 +16,9 @@ import Effect (Effect)
 import Effect.Aff (Aff, Milliseconds(..), delay, forkAff, launchAff_)
 import Effect.Random (randomInt)
 import Halogen (liftEffect, put)
-import Halogen (ComponentHTML)
 import Halogen as H
 import Halogen.Aff (awaitBody)
 import Halogen.VDom.Driver (runUI)
-
-main :: Effect Unit
-main = runStateActionInputComponent textAndButtonComponent
 
 type State = { intValue :: Int
              , toggleState :: Boolean
@@ -34,115 +30,86 @@ data Action
   = Toggle
   | ReceiveParentInput Int
 
-textAndButtonComponent :: StateActionIntInputComponent State Action
-textAndButtonComponent =
-  { initialState: intToChildInitialState
-  , render
-  , handleAction
-  , receive: receiveNextParentInt
-  }
+childComponent :: ChildComponent
+childComponent =
+    H.mkComponent
+      { initialState: inputToState
+      , render: render
+      , eval: H.mkEval $ H.defaultEval { handleAction = handleAction
+                                       , receive = receiveNextParentInt
+                                       }
+      }
+  where
 
-intToChildInitialState :: ConvertParentInputToChildInitialState State
-intToChildInitialState input =
-  { intValue: input
-  , toggleState: false
-  }
+    -- | A function that converts the Input type's value (an `Int` passed in from
+    -- | the parent) into a value of the child component's `State` type.
+    inputToState :: Int -> State
+    inputToState input =
+      { intValue: input
+      , toggleState: false
+      }
 
-render :: StateAndActionRenderer State Action
-render state =
-  HH.div_
-    [ HH.text $ "The next integer is: " <> show state.intValue
-    , HH.div_
-      [ HH.button
-        [ HE.onClick \_ -> Just Toggle ]
-        [ HH.text $ "Button state: " <> show state.toggleState ]
-      ]
-    ]
+    -- | A function that renders HTML from the component's state.
+    -- | The HTML is dynamic and can respond to events by translating them into an `Action`.
+    -- | These `Action`s are then consumed by `handleAction` to modify the component's state.
+    render :: State -> H.ComponentHTML Action () Aff
+    render state =
+      HH.div_
+        [ HH.text $ "The next integer is: " <> show state.intValue
+        , HH.div_
+          [ HH.button
+            [ HE.onClick \_ -> Just Toggle ] -- Convert `onClick` event to `Toggle` `Action`
+            [ HH.text $ "Button state: " <> show state.toggleState ]
+          ]
+        ]
 
-receiveNextParentInt :: Int -> Maybe Action
-receiveNextParentInt nextInputIntVal = Just $ ReceiveParentInput nextInputIntVal
+    -- | When an `Action` type's value is received, this function
+    -- | determines how to update the component (e.g. state updates).
+    handleAction :: Action -> HandleActionResult
+    handleAction = case _ of
+      Toggle -> do
+        modify_ (\oldState -> oldState { toggleState = not oldState.toggleState })
+      ReceiveParentInput input -> do
+        modify_ (\oldState -> oldState { intValue = input })
 
-handleAction :: HandleSimpleAction State Action
-handleAction = case _ of
-  Toggle -> do
-    modify_ (\oldState -> oldState { toggleState = not oldState.toggleState })
-  ReceiveParentInput input -> do
-    modify_ (\oldState -> oldState { intValue = input })
+    -- | Receives "something" from parent, and maybe converts this to an `Action`.
+    -- | In this case we always create an action from the incomming Int
+    receiveNextParentInt :: Int -> Maybe Action
+    receiveNextParentInt nextInputIntVal = Just $ ReceiveParentInput nextInputIntVal
 
--- Scaffolded Code --
+type HandleActionResult = H.HalogenM -- (ignore) Halogen component eval effect monad
+                            State      -- state: state to be updated
+                            Action     -- action: actions handled
+                            ()         -- (ignore) slots:
+                            Void       -- (ignore) output:
+                            Aff        -- (ignore) m: effect monad
+                            Unit       -- (ignore) a: ???
 
--- | Renders HTML that can respond to events by translating them
--- | into a value of the `action` that one uses to handle the event.
-type DynamicHtml action = ComponentHTML action () Aff
-
--- | A function that uses the `state` type's value to render HTML
--- | with simple event-handling via the `action` type.
-type StateAndActionRenderer state action = (state -> DynamicHtml action)
-
--- | When an `action` type's value is received, this function
--- | determines how to update the component (e.g. state updates).
-type HandleSimpleAction state action =
-  (action -> H.HalogenM state action () Void Aff Unit)
-
--- | A function that converts the Input type's value (an `Int` passed in from
--- | the parent) into a value of the child component's `state` type.
-type ConvertParentInputToChildInitialState state = (Int -> state)
-
--- | Combines all the code we need to define a simple componenet that supports
--- | state and simple event handling
-type StateActionIntInputComponent state action =
-  { initialState :: ConvertParentInputToChildInitialState state
-  , render :: StateAndActionRenderer state action
-  , handleAction :: HandleSimpleAction state action
-  , receive :: Int -> Maybe action
-  }
-
--- | Runs a component that converts the value of the `input` type provided
--- | by the parent (an `Int`) to a value of the `state` type as the
--- | child's initial state value, which is used render dynamic HTML
--- | with event handling via the `action` type.
-runStateActionInputComponent :: forall state action.
-                               StateActionIntInputComponent state action
-                            -> Effect Unit
-runStateActionInputComponent childSpec = do
-  launchAff_ do
-    body <- awaitBody
-    firstIntVal <- liftEffect $ randomInt 1 200
-    io <- runUI (parentComponent $ stateActionInputComponent childSpec) firstIntVal body
-
-    forkAff do
-      forever do
-        delay $ Milliseconds 2000.0
-        nextIntVal <- liftEffect $ randomInt 1 200
-        io.query $ H.tell $ SetState nextIntVal
-
--- | Wraps Halogen types cleanly, so that one gets very clear compiler errors
-stateActionInputComponent :: forall state action.
-                               StateActionIntInputComponent state action
-                            -> H.Component HH.HTML (Const Unit) Int Void Aff
-stateActionInputComponent spec =
-  H.mkComponent
-    { initialState: \input -> spec.initialState input
-    , render: spec.render
-    , eval: H.mkEval $ H.defaultEval { handleAction = spec.handleAction
-                                     , receive = spec.receive
-                                     }
-    }
-
-type ChildComponent = H.Component HH.HTML (Const Unit) Int Void Aff
+type ChildComponent = H.Component -- Halogen component
+                        HH.HTML      -- (ignore) surface: what to render
+                        (Const Unit) -- (ignore) query: requests that can be made
+                        Int          -- input: values that can be recieved when parent renders
+                        Void         -- (ignore) output: messages that can be raised
+                        Aff          -- (ignore) m: effect monad
 
 type ParentState = Int
 data ParentQuery a = SetState Int a
 type ParentAction = Void
-type ParentComponent = H.Component HH.HTML ParentQuery Int Void Aff
+
+type ParentComponent = H.Component -- Halogen component
+                         HH.HTML      -- (ignore) surface: what to render
+                         ParentQuery  -- query: requests that can be made
+                         Int          -- input: values that can be recieved when parent renders
+                         Void         -- (ignore) output: messages that can be raised
+                         Aff          -- (ignore) m: effect monad
 
 _child :: SProxy "child"
 _child = SProxy
 
-parentComponent :: ChildComponent -> ParentComponent
-parentComponent childComp =
+parentComponent :: ParentComponent
+parentComponent =
     H.mkComponent
-      { initialState: identity
+      { initialState: identity -- take input as initial state
       , render: parentHtml
       , eval: H.mkEval $ H.defaultEval { handleQuery = handleQuery
                                        }
@@ -151,10 +118,28 @@ parentComponent childComp =
     parentHtml :: ParentState -> H.ComponentHTML ParentAction (child :: H.Slot (Const Unit) Void Unit) Aff
     parentHtml latestInt =
       HH.div_
-        [ HH.slot _child unit childComp latestInt (const Nothing) ]
+        [ HH.slot _child unit childComponent latestInt (const Nothing) ]
 
     handleQuery :: forall a. ParentQuery a
                 -> H.HalogenM ParentState ParentAction (child :: H.Slot (Const Unit) Void Unit) Void Aff (Maybe a)
     handleQuery (SetState nextInt next) = do
       put nextInt
       pure $ Just next
+
+-- | Runs a component that converts the value of the `input` type provided
+-- | by the parent (an `Int`) to a value of the `state` type as the
+-- | child's initial state value, which is used render dynamic HTML
+-- | with event handling via the `action` type.
+main :: Effect Unit
+main = do
+  launchAff_ do
+    body <- awaitBody
+    firstIntVal <- liftEffect $ randomInt 1 200
+    io <- runUI parentComponent firstIntVal body
+
+    forkAff do
+      forever do
+        delay $ Milliseconds 2000.0
+        nextIntVal <- liftEffect $ randomInt 1 200
+        io.query $ H.tell $ SetState nextIntVal
+
