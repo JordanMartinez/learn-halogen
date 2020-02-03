@@ -22,7 +22,7 @@ main :: Effect Unit
 main =
   -- We're going to run the same function below 3 times using
   -- the 3 values provided here.
-  runStateOnlyDynamicRenderer 1 2 3 simpleIntState
+  runStateOnlyDynamicRenderer 1 2 3
 
 -- | Shows how to use Halogen VDOM DSL to render dynamic HTML
 -- | (no event handling) based on the state value received.
@@ -36,19 +36,13 @@ simpleIntState state =
 -- | that is always rendered the same and does not include any event handling.
 type StaticHTML = H.ComponentHTML Unit () Aff
 
--- | A function that uses the `state` type's value to render HTML
--- | with no event-handling.
-type StateOnlyDynamicRenderer state = (state -> StaticHTML)
-
 -- | Uses the `state` type's value to render dynamic HTML
 -- | using 3 different state values.
-runStateOnlyDynamicRenderer :: forall state.
-                               state
-                            -> state
-                            -> state
-                            -> StateOnlyDynamicRenderer state
+runStateOnlyDynamicRenderer :: Int
+                            -> Int
+                            -> Int
                             -> Effect Unit
-runStateOnlyDynamicRenderer firstState secondState thirdState rendererFunction =
+runStateOnlyDynamicRenderer firstState secondState thirdState =
   launchAff_ do
     awaitLoad
 
@@ -56,19 +50,17 @@ runStateOnlyDynamicRenderer firstState secondState thirdState rendererFunction =
     div2 <- selectElement' "could not find 'div#second'" $ QuerySelector "#second"
     div3 <- selectElement' "could not find 'div#third'" $ QuerySelector "#third"
 
-    void $ runUI (stateOnlyStaticComponent firstState  rendererFunction) unit div1
-    void $ runUI (stateOnlyStaticComponent secondState rendererFunction) unit div2
-    void $ runUI (stateOnlyStaticComponent thirdState  rendererFunction) unit div3
+    void $ runUI (stateOnlyStaticComponent firstState  ) unit div1
+    void $ runUI (stateOnlyStaticComponent secondState ) unit div2
+    void $ runUI (stateOnlyStaticComponent thirdState  ) unit div3
 
 -- | Wraps Halogen types cleanly, so that one gets very clear compiler errors
-stateOnlyStaticComponent :: forall state.
-                            state
-                         -> StateOnlyDynamicRenderer state
+stateOnlyStaticComponent :: Int
                          -> H.Component HH.HTML (Const Unit) Unit Void Aff
-stateOnlyStaticComponent state dynamicRenderer =
+stateOnlyStaticComponent state =
   H.mkComponent
     { initialState: const state
-    , render: dynamicRenderer
+    , render: simpleIntState
     , eval: H.mkEval H.defaultEval
     }
 
