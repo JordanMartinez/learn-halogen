@@ -27,7 +27,7 @@ data Action
   = Increment
   | Decrement
   | NotifyParentAboutState
-  | NotifyParentTextMessage String
+  | NotifyParentMessage Message
 
 type Message = String
 
@@ -40,7 +40,9 @@ textAndButtonComponent =
 
 render :: StateAndActionRenderer State Action
 render counterState =
-  let yourMessage = "Insert your message here"
+  let
+    yourMessage :: Message
+    yourMessage = "Insert your message here"
   in
     HH.div_
       [ HH.div_
@@ -59,12 +61,12 @@ render counterState =
       , HH.div_ [ HH.text $ show counterState ]
       , HH.div_
         [ HH.button
-          [ HE.onClick \_ -> Just $ NotifyParentTextMessage yourMessage ]
+          [ HE.onClick \_ -> Just $ NotifyParentMessage yourMessage ]
           [ HH.text $ "Log '" <> yourMessage <> "' to the page."]]
       ]
 
 
-handleAction :: HandleAction_StateStringMessage State Action
+handleAction :: HandleAction_StateMessage State Action
 handleAction = case _ of
   Increment -> do
     modify_ (\oldState -> oldState + 1)
@@ -73,7 +75,7 @@ handleAction = case _ of
   NotifyParentAboutState -> do
     currentState <- get
     H.raise $ show currentState
-  NotifyParentTextMessage message -> do
+  NotifyParentMessage message -> do
     H.raise $ message
 
 main :: Effect Unit
@@ -91,16 +93,16 @@ type StateAndActionRenderer state action = (state -> DynamicHtml action)
 
 -- | When an `action` type's value is received, this function
 -- | determines how to update the component (e.g. state updates) and
--- | can raise a `String` message to its parent component.
-type HandleAction_StateStringMessage state action =
-  (action -> H.HalogenM state action () String Aff Unit)
+-- | can raise a `Message` to its parent component.
+type HandleAction_StateMessage state action =
+  (action -> H.HalogenM state action () Message Aff Unit)
 
 -- | Combines all the code we need to define a simple componenet that supports
 -- | state and simple event handlinGg
 type StateActionMessageComponent state action =
   { initialState :: state
   , render :: StateAndActionRenderer state action
-  , handleAction :: HandleAction_StateStringMessage state action
+  , handleAction :: HandleAction_StateMessage state action
   }
 
 -- | Runs a component that converts the value of the `input` type provided
@@ -115,12 +117,12 @@ runStateActionMessageComponent childSpec = do
     body <- awaitBody
     runUI (parentComponent $ stateActionMessageComponent childSpec) unit body
 
-type ChildComponentWithStringMessage = H.Component HH.HTML (Const Unit) Unit String Aff
+type ChildComponentWithMessage = H.Component HH.HTML (Const Unit) Unit Message Aff
 
 -- | Wraps Halogen types cleanly, so that one gets very clear compiler errors
 stateActionMessageComponent :: forall state action.
                                StateActionMessageComponent state action
-                            -> ChildComponentWithStringMessage
+                            -> ChildComponentWithMessage
 stateActionMessageComponent spec =
   H.mkComponent
     { initialState: \_ -> spec.initialState
@@ -128,19 +130,19 @@ stateActionMessageComponent spec =
     , eval: H.mkEval $ H.defaultEval { handleAction = spec.handleAction }
     }
 
-data ParentAction = AddMessage String
-type ParentState = Array String
+data ParentAction = AddMessage Message
+type ParentState = Array Message
 type ParentQuery = Const Unit
 type ParentComponent = H.Component HH.HTML ParentQuery Unit Void Aff
 
 _child :: SProxy "child"
 _child = SProxy
 
-type NoQuery_StringMessage {- index -}
-  = H.Slot (Const Unit) String {- index -}
-type ChildSlots = ( child :: NoQuery_StringMessage Unit )
+type NoQuery_Message {- index -}
+  = H.Slot (Const Unit) Message {- index -}
+type ChildSlots = ( child :: NoQuery_Message Unit )
 
-parentComponent :: ChildComponentWithStringMessage -> ParentComponent
+parentComponent :: ChildComponentWithMessage -> ParentComponent
 parentComponent childComp =
     H.mkComponent
       { initialState: const []
