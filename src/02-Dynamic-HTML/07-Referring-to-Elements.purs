@@ -16,8 +16,6 @@ import Halogen.HTML.Events as HE
 import Data.Const (Const)
 import Effect (Effect)
 import Effect.Aff (Aff, launchAff_)
-import Halogen (ComponentHTML) -- compiler will say this should be merged
-                               -- with above import. Ignore it
 import Halogen.Aff (awaitBody)
 import Halogen.VDom.Driver (runUI)
 
@@ -60,7 +58,7 @@ main =
 
 -- | Renders HTML that can respond to events by translating them
 -- | into a value of the `action` that one uses to handle the event.
-type DynamicHtml action = ComponentHTML action () Aff
+type DynamicHtml action = H.ComponentHTML action () Aff
 
 -- | A function that uses the `state` type's value to render HTML
 -- | with simple event-handling via the `action` type.
