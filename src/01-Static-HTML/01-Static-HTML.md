@@ -49,12 +49,10 @@ parcel serve assets/static-html/static-html.html -o static-html--parcelified.htm
 
 ## Automatic Reload
 
-To automatically reload the page upon saving the source `.purs` file, launch the `spago bundle-app` command in a separate terminal with the following [`watchexec`](https://github.com/watchexec/watchexec) prefix:
-```
-watchexec -w src -e purs --
-```
+To automatically recompile the code and reload the page upon saving the source `.purs` file, run the spago command above in separate terminal with an additional flag `-w` (or `--watch`).
+
 The full command for this example is:
 ```
-watchexec -w src -e purs -- spago bundle-app -m StaticHTML.StaticHTML -t assets/static-html/static-html.js
+spago bundle-app -w -m StaticHTML.StaticHTML -t assets/static-html/static-html.js
 ```
-This prefix may be applied to all subsequent examples.
+This flag can be used in all subsequent examples.
