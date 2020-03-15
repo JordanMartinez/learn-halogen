@@ -75,6 +75,8 @@ handleQuery = case _ of
 
 ## Using `HH.text ""` as an empty placeholder HTML value
 
+### The Design Pattern
+
 Sometimes, we want to render HTML content based on some condition. When the condition is true, that content should be rendered. When it's not, it should not be rendered.
 
 Halogen's HTML DSL uses the `Array` type for an element's children for performance reasons. In other words, `HH.div_ [ child1, child2, child3 ]`. As a result, one must have always have a value in the array; one cannot write something like...
@@ -106,6 +108,12 @@ There are three reasons not to write this:
 1. One must keep these two versions (or maybe more depending on the number of conditions) of the same code in sync with one another. As one adds more complexity, this gets harder to maintain / get right.
 2. The code isn't as readable, so it's harder to see how one state is different from another.
 3. The above code might not be as performant in some situations as just using `HH.text ""`. By using this placeholder HTML value, the index values of the other children do not change. If we don't use that placeholder value, then `alwaysRenderChild3`'s index will switch from 3 to 2 and vice-versa.
+
+### Utility Functions
+
+The below list demonstrate two utility functions you will likely use to reduce boilerplate:
+- [whenElem](https://github.com/thomashoneyman/purescript-halogen-realworld/blob/v1.0.0/src/Component/HTML/Utils.purs#L27-L31)
+- [maybeElem](https://github.com/thomashoneyman/purescript-halogen-realworld/blob/v1.0.0/src/Component/HTML/Utils.purs#L21-L25)
 
 ## A better way to assign multiple CSS classes
 
@@ -149,3 +157,11 @@ HH.div
   [ class_ "class1 class2 class3 class4 class5 class6" ]
   [ HH.text "Much easier..." ]
 ```
+
+## Styling Components
+
+See [Thomas' comment in "Styling question"](https://github.com/thomashoneyman/purescript-halogen-realworld/issues/46#issuecomment-537170339)
+
+## Rendering Valid/Invalid Input Data
+
+If one reads through [Text Input not tracking state](https://discourse.purescript.org/t/text-input-not-tracking-state/1070/3) and, more specifically, [Gary's comment about using Either String ValidatedValue](https://discourse.purescript.org/t/text-input-not-tracking-state/1070/3), this can help with knowing how to deal with uncontrolled components.
