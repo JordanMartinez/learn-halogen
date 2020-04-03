@@ -4,7 +4,7 @@
 - Monad Transformers and the ReaderT design pattern
 - Free/Run
 
-If you don't know them, see my overview of them in [Application Structure](https://github.com/JordanMartinez/purescript-jordans-reference/tree/latestRelease/21-Hello-World/08-Application-Structure/)
+If you don't know them, see my overview of them in [Application Structure](https://github.com/JordanMartinez/purescript-jordans-reference/tree/latestRelease/21-Hello-World/05-Application-Structure)
 
 Thus far, we have always assumed that the monad type used in components was `Aff`. But what if we wanted to use a different monad?
 
