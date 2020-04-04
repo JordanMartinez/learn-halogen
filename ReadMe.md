@@ -6,7 +6,7 @@ Learn [`purescript-halogen`](https://github.com/slamdata/purescript-halogen), (`
 
 ## Requirements
 
-Before learning Halogen via this project, you will need to install the following. (If you don't have them already installed, see my purescript learning repo's [Install Guide](https://github.com/JordanMartinez/purescript-jordans-reference/blob/ps-0.13.x-v0.17.1/00-Getting-Started/02-Install-Guide.md)
+Before learning Halogen via this project, you will need to install the following. (If you don't have them already installed, see my purescript learning repo's [Install Guide](https://github.com/JordanMartinez/purescript-jordans-reference/blob/latestRelease/00-Getting-Started/02-Install-Guide.md)
 - purescript (v0.13.6)
 - spago (v0.14.0)
 - parcel (v1.12.4)
@@ -28,17 +28,17 @@ If you choose this approach, all aftermentioned commond like `spago ...` and `pa
 ## Target Audience
 
 **Required:** You are already familiar with...
-- PureScript's "Basic" syntax. (If not, see my [Basic Syntax](https://github.com/JordanMartinez/purescript-jordans-reference/tree/ps-0.13.x-v0.17.1/11-Syntax/01-Basic-Syntax) overview)
-- PureScript's "Module" syntax. (If not, see my [Module Syntax](https://github.com/JordanMartinez/purescript-jordans-reference/tree/ps-0.13.x-v0.17.1/11-Syntax/04-Module-Syntax) overview)
-- the `purescript-prelude` library. (If not, see my [Prelude-ish](https://github.com/JordanMartinez/purescript-jordans-reference/tree/ps-0.13.x-v0.17.1/21-Hello-World/02-Prelude-ish) folder)
-- "smart constructors." (If not, read my explanation on [Smart Constructors](https://github.com/JordanMartinez/purescript-jordans-reference/blob/ps-0.13.x-v0.17.1/31-Design-Patterns/01-Smart-Constructors.md))
-- the `Effect` and `Aff` types and how they work. (If not, see my [Effect and Aff](https://github.com/JordanMartinez/purescript-jordans-reference/tree/ps-0.13.x-v0.17.1/21-Hello-World/03-Effect-and-Aff) folder)
+- PureScript's "Basic" syntax. (If not, see my [Basic Syntax](https://github.com/JordanMartinez/purescript-jordans-reference/tree/latestRelease/11-Syntax/01-Basic-Syntax) overview)
+- PureScript's "Module" syntax. (If not, see my [Module Syntax](https://github.com/JordanMartinez/purescript-jordans-reference/tree/latestRelease/11-Syntax/04-Module-Syntax) overview)
+- the `purescript-prelude` library. (If not, see my [Prelude-ish](https://github.com/JordanMartinez/purescript-jordans-reference/tree/latestRelease/21-Hello-World/01-Prelude-ish) folder)
+- "smart constructors." (If not, read my explanation on [Smart Constructors](https://github.com/JordanMartinez/purescript-jordans-reference/blob/latestRelease/31-Design-Patterns/01-Smart-Constructors.md))
+- the `Effect` and `Aff` types and how they work. (If not, see my [Effect and Aff](https://github.com/JordanMartinez/purescript-jordans-reference/tree/latestRelease/21-Hello-World/02-Effect-and-Aff) folder)
 
 **Helpful, but not absolutely necessary**: You are already familiar with...
-- the philosophical foundations of Functional Programming. (If not, see my [FP Philosophical Foundations Overview](https://github.com/JordanMartinez/purescript-jordans-reference/tree/ps-0.13.x-v0.17.1/01-FP-Philosophical-Foundations))
-- PureScript's "Type-Level Programming" syntax. (If not, see my [Type-Level Programming Syntax](https://github.com/JordanMartinez/purescript-jordans-reference/tree/ps-0.13.x-v0.17.1/11-Syntax/03-Type-Level-Programming-Syntax) overview)
-- "do notation." (If not, see my overview on [Do Notation](https://github.com/JordanMartinez/purescript-jordans-reference/tree/ps-0.13.x-v0.17.1/11-Syntax/05-Prelude-Syntax). Specifically, `Discard.md` to `Reading Do as Nested Binds.md`)
-- monad transformers and how they work. (If not, see my [Application Structure](https://github.com/JordanMartinez/purescript-jordans-reference/tree/ps-0.13.x-v0.17.1/21-Hello-World/05-Application-Structure) folder. Specifically, the `MTL` folder.)
+- the philosophical foundations of Functional Programming. (If not, see my [FP Philosophical Foundations Overview](https://github.com/JordanMartinez/purescript-jordans-reference/tree/latestRelease/01-FP-Philosophical-Foundations))
+- PureScript's "Type-Level Programming" syntax. (If not, see my [Type-Level Programming Syntax](https://github.com/JordanMartinez/purescript-jordans-reference/tree/latestRelease/11-Syntax/03-Type-Level-Programming-Syntax) overview)
+- "do notation." (If not, see my overview on [Do Notation](https://github.com/JordanMartinez/purescript-jordans-reference/tree/latestRelease/11-Syntax/05-Prelude-Syntax). Specifically, `Discard.md` to `Reading Do as Nested Binds.md`)
+- monad transformers and how they work. (If not, see my [Application Structure](https://github.com/JordanMartinez/purescript-jordans-reference/tree/latestRelease/21-Hello-World/05-Application-Structure) folder. Specifically, the `MTL` folder.)
 
 ## Instructions
 
