@@ -122,6 +122,7 @@
 - 06 Driver
     - [ReadMe.md](https://github.com/JordanMartinez/learn-halogen/blob/v5.0.2/src/06-Driver/ReadMe.md)
         - [Running a component with `runUI`](https://github.com/JordanMartinez/learn-halogen/blob/v5.0.2/src/06-Driver/ReadMe.md#Running-a-component-with-runUI)
+        - [A Note on Using `runHalogenAff` instead of `runAff`, `launchAff`, or `launchAff_`](https://github.com/JordanMartinez/learn-halogen/blob/v5.0.2/src/06-Driver/ReadMe.md#A-Note-on-Using-runHalogenAff-instead-of-runAff-launchAff-or-launchAff_)
         - [Communicating with the top-level component via the `HalogenIO` type (a record)](https://github.com/JordanMartinez/learn-halogen/blob/v5.0.2/src/06-Driver/ReadMe.md#Communicating-with-the-top-level-component-via-the-HalogenIO-type-a-record)
             - [Sending Queries into the Top-Level Component](https://github.com/JordanMartinez/learn-halogen/blob/v5.0.2/src/06-Driver/ReadMe.md#Sending-Queries-into-the-Top-Level-Component)
             - [Subscribing to Messages Raised by the Top-Level Component](https://github.com/JordanMartinez/learn-halogen/blob/v5.0.2/src/06-Driver/ReadMe.md#Subscribing-to-Messages-Raised-by-the-Top-Level-Component)
