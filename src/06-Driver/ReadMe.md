@@ -29,7 +29,7 @@ For example
 ```purescript
 main :: Effect Unit
 main =
-  launchAff_ do
+  runHalogenAff do
     awaitLoad
     targetElement <- -- function that finds the element
     runUI topLevelComponent topLevelComponentInput targetElement
@@ -40,9 +40,53 @@ Since `awaitLoad` and a function that finds the body are frequently used, we can
 ```purescript
 main :: Effect Unit
 main =
-  launchAff_ do
+  runHalogenAff do
     body <- awaitBody
     runUI topLevelComponent topLevelComponentInput body
+```
+
+## A Note on Using `runHalogenAff` instead of `runAff`, `launchAff`, or `launchAff_`
+
+Normally, when we want to run an `Aff` computation, we would write:
+```purescript
+main :: Effect Unit
+main = do
+  fiber <- runAff callback affComputation
+  -- might use fiber to cancel Aff computation or something...
+  pure unit
+  where
+  callback :: Either error result -> Effect Unit
+  callback = case _ of
+    Left error -> pure unit
+    Right result -> pure result
+```
+
+Since we often don't care about the error in `Aff` (e.g. it can't error), you will typically see people write `launchAff` instead:
+
+```purescript
+main :: Effect Unit
+main = do
+  fiber <- launchAff affComputation
+  -- might use fiber to cancel Aff computation or something...
+
+  -- variant of `launchAff` when we don't care for the fiber or possible error
+  launchAff_ affComputation
+  pure unit
+```
+
+However, using these `launchAff` variants will mean never rethrowing any runtime errors that might occur. Thus, Halogen provides `runHalogenAff`, which simply rethrows a runtime error if it occurs:
+```purescript
+main :: Effect Unit
+main = do
+  runHalogenAff affComputation
+  where
+  runHalogenAff :: Aff a -> Effect Unit
+  runHalogenAff affComp = void $ runAff callback affComp
+    where
+    callback :: Either error result -> Effect Unit
+    callback = case _ of
+      Left error -> throwException error
+      Right _ -> pure unit
 ```
 
 ## Communicating with the top-level component via the `HalogenIO` type (a record)
@@ -52,7 +96,7 @@ main =
 ```purescript
 main :: Effect Unit
 main =
-    launchAff_ do
+    runHalogenAff do
       body <- awaitBody
       io <- runUI topLevelComponent input body
 
@@ -79,7 +123,7 @@ For example:
 ```purescript
 main :: Effect Unit
 main =
-    launchAff_ do
+    runHalogenAff do
       body <- awaitBody
       io <- runUI topLevelComponent input body
 
@@ -118,7 +162,7 @@ import Control.Coroutine as CR
 
 main :: Effect Unit
 main =
-  launchAff_ do
+  runHalogenAff do
     body <- awaitBody
     io <- runUI topLevelComponent unit body
 
@@ -151,7 +195,7 @@ For example:
 ```purescript
 main :: Effect Unit
 main =
-    launchAff_ do
+    runHalogenAff do
       body <- awaitBody
       io <- runUI topLevelComponent input body
 

@@ -16,8 +16,7 @@ import Halogen.HTML as HH
 import Halogen.HTML.Events as HE
 
 -- Imports for scaffolding
-import Effect.Aff (launchAff_)
-import Halogen.Aff (awaitBody)
+import Halogen.Aff (awaitBody, runHalogenAff)
 import Halogen.VDom.Driver (runUI)
 
 main :: Effect Unit
@@ -149,6 +148,6 @@ childComponent  =
 runParentLifecycleComponent :: H.Component HH.HTML (Const Void) Unit Void Aff
                            -> Effect Unit
 runParentLifecycleComponent comp = do
-  launchAff_ do
+  runHalogenAff do
     body <- awaitBody
     runUI comp unit body

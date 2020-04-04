@@ -13,7 +13,7 @@ This typically looks like this:
 ```purescript
 main :: Effect Unit
 main =
-    launchAff_ do
+    runHalogenAff do
       awaitLoad
       targetElem <- selectElement' "could not find 'div#targetContainer'" $ QuerySelector "#targetContainer"
       runUI childComponent input targetElem

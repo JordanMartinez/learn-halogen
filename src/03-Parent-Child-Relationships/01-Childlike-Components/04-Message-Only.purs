@@ -15,9 +15,9 @@ import Data.Array ((:))
 import Data.Const (Const)
 import Data.Symbol (SProxy(..))
 import Effect (Effect)
-import Effect.Aff (Aff, launchAff_)
+import Effect.Aff (Aff)
 import Halogen (ComponentHTML)
-import Halogen.Aff (awaitBody)
+import Halogen.Aff (awaitBody, runHalogenAff)
 import Halogen.HTML.CSS as CSS
 import Halogen.VDom.Driver (runUI)
 
@@ -113,11 +113,11 @@ runStateActionMessageComponent :: forall state action.
                                StateActionMessageComponent state action
                             -> Effect Unit
 runStateActionMessageComponent childSpec = do
-  launchAff_ do
+  runHalogenAff do
     body <- awaitBody
     runUI (parentComponent $ stateActionMessageComponent childSpec) unit body
 
-type ChildComponentWithMessage = H.Component HH.HTML (Const Unit) Unit Message Aff
+type ChildComponentWithMessage = H.Component HH.HTML (Const Void) Unit Message Aff
 
 -- | Wraps Halogen types cleanly, so that one gets very clear compiler errors
 stateActionMessageComponent :: forall state action.
@@ -132,14 +132,14 @@ stateActionMessageComponent spec =
 
 data ParentAction = AddMessage Message
 type ParentState = Array Message
-type ParentQuery = Const Unit
+type ParentQuery = Const Void
 type ParentComponent = H.Component HH.HTML ParentQuery Unit Void Aff
 
 _child :: SProxy "child"
 _child = SProxy
 
 type NoQuery_Message {- index -}
-  = H.Slot (Const Unit) Message {- index -}
+  = H.Slot (Const Void) Message {- index -}
 type ChildSlots = ( child :: NoQuery_Message Unit )
 
 parentComponent :: ChildComponentWithMessage -> ParentComponent

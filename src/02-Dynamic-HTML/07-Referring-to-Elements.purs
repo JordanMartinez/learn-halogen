@@ -15,8 +15,8 @@ import Halogen.HTML.Events as HE
 -- Imports for scaffolding
 import Data.Const (Const)
 import Effect (Effect)
-import Effect.Aff (Aff, launchAff_)
-import Halogen.Aff (awaitBody)
+import Effect.Aff (Aff)
+import Halogen.Aff (awaitBody, runHalogenAff)
 import Halogen.VDom.Driver (runUI)
 
 type State = Boolean
@@ -83,14 +83,14 @@ runStateAndActionComponent :: forall state action.
                                SimpleChildComponent state action
                             -> Effect Unit
 runStateAndActionComponent childSpec = do
-  launchAff_ do
+  runHalogenAff do
     body <- awaitBody
     runUI (stateAndActionCompontent childSpec) unit body
 
 -- | Wraps Halogen types cleanly, so that one gets very clear compiler errors
 stateAndActionCompontent :: forall state action.
                             SimpleChildComponent state action
-                         -> H.Component HH.HTML (Const Unit) Unit Void Aff
+                         -> H.Component HH.HTML (Const Void) Unit Void Aff
 stateAndActionCompontent spec =
   H.mkComponent
     { initialState: const spec.initialState

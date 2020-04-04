@@ -11,9 +11,9 @@ import Data.Const (Const)
 import Data.Maybe (Maybe(..))
 import Data.Symbol (SProxy(..))
 import Effect (Effect)
-import Effect.Aff (Aff, launchAff_)
+import Effect.Aff (Aff)
 import Halogen as H
-import Halogen.Aff (awaitBody)
+import Halogen.Aff (awaitBody, runHalogenAff)
 import Halogen.HTML.CSS as CSS
 import Halogen.VDom.Driver (runUI)
 
@@ -33,7 +33,7 @@ basicContainer childComponent =
 
 -- | A child component that only renders static html. It does not have state,
 -- | respond to input, raise messages, or respond to queries.
-type RenderOnlyChildComponent = H.Component HH.HTML (Const Unit) Unit Void Aff
+type RenderOnlyChildComponent = H.Component HH.HTML (Const Void) Unit Void Aff
 
 -- | A parent component that, when given the child component, will render
 -- | itself and the child component. No other interaction occurs between them
@@ -46,7 +46,7 @@ type StaticHtmlWithSingleChildComponent =
   H.ComponentHTML
     Void
     (child :: H.Slot
-                (Const Unit) -- no query type
+                (Const Void) -- no query type
                 Void         -- no message type
                 Unit         -- single child, so only unit for slot index
     )
@@ -59,12 +59,12 @@ _child = SProxy
 runBasicContainerComponent :: BasicParentContainer
                            -> Effect Unit
 runBasicContainerComponent renderParent = do
-  launchAff_ do
+  runHalogenAff do
     body <- awaitBody
     let parentHtml = renderParent simpleChildComponent
     runUI (basicContainerComponent parentHtml) unit body
 
-type RenderOnlyParentComponent = H.Component HH.HTML (Const Unit) Unit Void Aff
+type RenderOnlyParentComponent = H.Component HH.HTML (Const Void) Unit Void Aff
 
 -- | Wraps Halogen types cleanly, so that one gets very clear compiler errors
 basicContainerComponent :: StaticHtmlWithSingleChildComponent

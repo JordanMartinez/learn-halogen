@@ -10,10 +10,10 @@ import Control.Monad.Error.Class (throwError)
 import Data.Const (Const)
 import Data.Maybe (maybe)
 import Effect (Effect)
-import Effect.Aff (Aff, launchAff_)
+import Effect.Aff (Aff)
 import Effect.Exception (error)
 import Halogen as H
-import Halogen.Aff (awaitLoad, selectElement)
+import Halogen.Aff (awaitLoad, selectElement, runHalogenAff)
 import Halogen.VDom.Driver (runUI)
 import Web.DOM.ParentNode (QuerySelector(..))
 import Web.HTML (HTMLElement)
@@ -49,7 +49,7 @@ runStateOnlyDynamicRenderer :: forall state.
                             -> StateOnlyDynamicRenderer state
                             -> Effect Unit
 runStateOnlyDynamicRenderer firstState secondState thirdState rendererFunction =
-  launchAff_ do
+  runHalogenAff do
     awaitLoad
 
     div1 <- selectElement' "could not find 'div#first'" $ QuerySelector "#first"
@@ -64,7 +64,7 @@ runStateOnlyDynamicRenderer firstState secondState thirdState rendererFunction =
 stateOnlyStaticComponent :: forall state.
                             state
                          -> StateOnlyDynamicRenderer state
-                         -> H.Component HH.HTML (Const Unit) Unit Void Aff
+                         -> H.Component HH.HTML (Const Void) Unit Void Aff
 stateOnlyStaticComponent state dynamicRenderer =
   H.mkComponent
     { initialState: const state
