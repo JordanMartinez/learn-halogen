@@ -90,7 +90,7 @@ runStateAndActionComponent childSpec = do
 -- | Wraps Halogen types cleanly, so that one gets very clear compiler errors
 stateAndActionCompontent :: forall state action.
                             SimpleChildComponent state action
-                         -> H.Component HH.HTML (Const Unit) Unit Void Aff
+                         -> H.Component HH.HTML (Const Void) Unit Void Aff
 stateAndActionCompontent spec =
   H.mkComponent
     { initialState: const spec.initialState

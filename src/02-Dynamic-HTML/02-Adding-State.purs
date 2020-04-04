@@ -64,7 +64,7 @@ runStateOnlyDynamicRenderer firstState secondState thirdState rendererFunction =
 stateOnlyStaticComponent :: forall state.
                             state
                          -> StateOnlyDynamicRenderer state
-                         -> H.Component HH.HTML (Const Unit) Unit Void Aff
+                         -> H.Component HH.HTML (Const Void) Unit Void Aff
 stateOnlyStaticComponent state dynamicRenderer =
   H.mkComponent
     { initialState: const state

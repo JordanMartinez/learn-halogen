@@ -48,7 +48,7 @@ type RenderParentWithInputOnlyChild =
 
 -- | A child component that renders dynamic html. It has state and
 -- | responds to input, but it does not raise messages, or respond to queries.
-type InputOnlyChildComponent = H.Component HH.HTML (Const Unit) Int Void Aff
+type InputOnlyChildComponent = H.Component HH.HTML (Const Void) Int Void Aff
 
 -- | Defines a function for regenerating the input value that gets passed
 -- | to the child.
@@ -66,7 +66,7 @@ type ParentWithSingleChildInputOnly =
 
 type ChildSlots =
     (child :: H.Slot
-                (Const Unit) -- no query type
+                (Const Void) -- no query type
                 Void         -- no message type
                 Unit         -- single child, so use Unit for slot index
     )
@@ -85,7 +85,7 @@ runParentWithInputOnlyChild renderParent = do
 
 -- | Wraps Halogen types cleanly, so that one gets very clear compiler errors
 parentWithInput :: RenderParentWithInputOnlyChild
-                -> H.Component HH.HTML (Const Unit) Int Void Aff
+                -> H.Component HH.HTML (Const Void) Int Void Aff
 parentWithInput renderParent =
     H.mkComponent
       { initialState: identity
@@ -108,7 +108,7 @@ singleChild_input_NoMessageNoQuery childComp input =
 data ChildAction = SetState Int
 
 -- | A simple child component that only renders content to the screen
-simpleChildComponent :: H.Component HH.HTML (Const Unit) Int Void Aff
+simpleChildComponent :: H.Component HH.HTML (Const Void) Int Void Aff
 simpleChildComponent =
     H.mkComponent
       { initialState: identity

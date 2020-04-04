@@ -119,7 +119,7 @@ runStateActionInputComponent childSpec = do
 -- | Wraps Halogen types cleanly, so that one gets very clear compiler errors
 stateActionInputComponent :: forall state action.
                                StateActionIntInputComponent state action
-                            -> H.Component HH.HTML (Const Unit) Int Void Aff
+                            -> H.Component HH.HTML (Const Void) Int Void Aff
 stateActionInputComponent spec =
   H.mkComponent
     { initialState: \input -> spec.initialState input
@@ -129,7 +129,7 @@ stateActionInputComponent spec =
                                      }
     }
 
-type ChildComponent = H.Component HH.HTML (Const Unit) Int Void Aff
+type ChildComponent = H.Component HH.HTML (Const Void) Int Void Aff
 
 type ParentState = Int
 data ParentQuery a = SetState Int a
@@ -148,13 +148,13 @@ parentComponent childComp =
                                        }
       }
   where
-    parentHtml :: ParentState -> H.ComponentHTML ParentAction (child :: H.Slot (Const Unit) Void Unit) Aff
+    parentHtml :: ParentState -> H.ComponentHTML ParentAction (child :: H.Slot (Const Void) Void Unit) Aff
     parentHtml latestInt =
       HH.div_
         [ HH.slot _child unit childComp latestInt (const Nothing) ]
 
     handleQuery :: forall a. ParentQuery a
-                -> H.HalogenM ParentState ParentAction (child :: H.Slot (Const Unit) Void Unit) Void Aff (Maybe a)
+                -> H.HalogenM ParentState ParentAction (child :: H.Slot (Const Void) Void Unit) Void Aff (Maybe a)
     handleQuery (SetState nextInt next) = do
       put nextInt
       pure $ Just next
