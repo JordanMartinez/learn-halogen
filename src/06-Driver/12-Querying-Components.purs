@@ -6,11 +6,11 @@ import CSS (backgroundColor, em, lightgreen, padding)
 import Control.Monad.State (get, put)
 import Data.Maybe (Maybe(..), maybe)
 import Effect (Effect)
-import Effect.Aff (Aff, launchAff_)
+import Effect.Aff (Aff)
 import Effect.Console (log)
 import Halogen (liftEffect)
 import Halogen as H
-import Halogen.Aff (awaitBody)
+import Halogen.Aff (awaitBody, runHalogenAff)
 import Halogen.HTML as HH
 import Halogen.HTML.CSS as CSS
 import Halogen.VDom.Driver (runUI)
@@ -20,7 +20,7 @@ import Halogen.VDom.Driver (runUI)
 -- | We use this record to communicate with our component.
 main :: Effect Unit
 main =
-    launchAff_ do
+    runHalogenAff do
       body <- awaitBody
       io <- runUI topLevelComponent unit body
 

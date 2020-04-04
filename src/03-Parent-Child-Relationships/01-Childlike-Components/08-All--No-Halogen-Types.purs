@@ -19,10 +19,10 @@ import Control.Monad.Rec.Class (forever)
 import Data.Array ((:))
 import Data.Maybe (maybe)
 import Data.Symbol (SProxy(..))
-import Effect.Aff (Milliseconds(..), delay, forkAff, launchAff_)
+import Effect.Aff (Milliseconds(..), delay, forkAff)
 import Effect.Random (randomInt)
 import Halogen (liftEffect)
-import Halogen.Aff (awaitBody)
+import Halogen.Aff (awaitBody, runHalogenAff)
 import Halogen.VDom.Driver (runUI)
 
 main :: Effect Unit
@@ -206,7 +206,7 @@ runChildComponentSpec spec =
 runChildComponent :: H.Component HH.HTML ChildQuery Int String Aff
                   -> Effect Unit
 runChildComponent childComp = do
-  launchAff_ do
+  runHalogenAff do
     body <- awaitBody
     firstIntVal <- liftEffect $ randomInt 1 200
     io <- runUI (parentComponent childComp) firstIntVal body

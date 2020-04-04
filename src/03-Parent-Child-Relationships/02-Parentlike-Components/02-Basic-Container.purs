@@ -11,9 +11,9 @@ import Data.Const (Const)
 import Data.Maybe (Maybe(..))
 import Data.Symbol (SProxy(..))
 import Effect (Effect)
-import Effect.Aff (Aff, launchAff_)
+import Effect.Aff (Aff)
 import Halogen as H
-import Halogen.Aff (awaitBody)
+import Halogen.Aff (awaitBody, runHalogenAff)
 import Halogen.HTML.CSS as CSS
 import Halogen.VDom.Driver (runUI)
 
@@ -59,7 +59,7 @@ _child = SProxy
 runBasicContainerComponent :: BasicParentContainer
                            -> Effect Unit
 runBasicContainerComponent renderParent = do
-  launchAff_ do
+  runHalogenAff do
     body <- awaitBody
     let parentHtml = renderParent simpleChildComponent
     runUI (basicContainerComponent parentHtml) unit body

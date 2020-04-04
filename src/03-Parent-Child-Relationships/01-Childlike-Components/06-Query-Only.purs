@@ -12,11 +12,11 @@ import Halogen.HTML as HH
 import Data.Const (Const)
 import Data.Maybe (maybe)
 import Data.Symbol (SProxy(..))
-import Effect.Aff (Aff, launchAff_)
+import Effect.Aff (Aff)
 import Effect.Random (randomInt)
 import Halogen (liftEffect)
 import Halogen as H
-import Halogen.Aff (awaitBody)
+import Halogen.Aff (awaitBody, runHalogenAff)
 import Halogen.HTML.Events as HE
 import Halogen.VDom.Driver (runUI)
 
@@ -79,7 +79,7 @@ type HandleSimpleQuery = forall a. Query a -> H.HalogenM State Unit () Void Aff 
 runStateQueryComponent :: StateQueryComponentSpec
                        -> Effect Unit
 runStateQueryComponent childSpec = do
-  launchAff_ do
+  runHalogenAff do
     body <- awaitBody
     runUI (parentComponent $ stateQueryComponent childSpec) unit body
 

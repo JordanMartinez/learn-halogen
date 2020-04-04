@@ -16,8 +16,7 @@ import Web.HTML (window)
 import Web.HTML.Window (alert)
 
 -- Imports for scaffolding
-import Effect.Aff (launchAff_)
-import Halogen.Aff (awaitBody)
+import Halogen.Aff (awaitBody, runHalogenAff)
 import Halogen.VDom.Driver (runUI)
 
 main :: Effect Unit
@@ -161,6 +160,6 @@ child2 =
 
 runMultiSlotComponent :: H.Component HH.HTML (Const Void) Unit Void Aff -> Effect Unit
 runMultiSlotComponent component = do
-  launchAff_ do
+  runHalogenAff do
     body <- awaitBody
     runUI component unit body

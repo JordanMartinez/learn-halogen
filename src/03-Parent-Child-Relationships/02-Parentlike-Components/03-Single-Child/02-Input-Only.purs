@@ -12,11 +12,11 @@ import CSS (backgroundColor, fontSize, orange, padding, px)
 import Data.Const (Const)
 import Data.Symbol (SProxy(..))
 import Effect (Effect)
-import Effect.Aff (Aff, launchAff_)
+import Effect.Aff (Aff)
 import Effect.Random (randomInt)
 import Halogen (liftEffect, put)
 import Halogen as H
-import Halogen.Aff (awaitBody)
+import Halogen.Aff (awaitBody, runHalogenAff)
 import Halogen.HTML.CSS as CSS
 import Halogen.VDom.Driver (runUI)
 
@@ -78,7 +78,7 @@ _child = SProxy
 runParentWithInputOnlyChild :: RenderParentWithInputOnlyChild
                             -> Effect Unit
 runParentWithInputOnlyChild renderParent = do
-  launchAff_ do
+  runHalogenAff do
     body <- awaitBody
     initialInt <- liftEffect $ randomInt 1 200
     runUI (parentWithInput renderParent) initialInt body

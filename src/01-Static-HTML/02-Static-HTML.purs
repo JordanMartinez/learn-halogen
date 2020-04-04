@@ -1,16 +1,15 @@
 module StaticHTML.StaticHTML where
 
 -- Imports for lesson
-import Halogen.HTML as HH
 
--- Imports for scaffolding
 import Prelude
 
 import Data.Const (Const)
 import Effect (Effect)
-import Effect.Aff (Aff, launchAff_)
+import Effect.Aff (Aff)
 import Halogen as H
-import Halogen.Aff (awaitBody)
+import Halogen.Aff (awaitBody, runHalogenAff)
+import Halogen.HTML as HH
 import Halogen.VDom.Driver (runUI)
 
 -- | Shows how to use Halogen VDOM DSL to render HTML without properties or CSS
@@ -30,7 +29,7 @@ staticHtml =
 --- Scaffolded code below ---
 
 main :: Effect Unit
-main = launchAff_ do
+main = runHalogenAff do
   body <- awaitBody
   runUI (staticComponent staticHtml) unit body
 

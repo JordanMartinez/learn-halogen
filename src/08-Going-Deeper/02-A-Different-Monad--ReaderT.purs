@@ -9,12 +9,12 @@ import Control.Monad.Trans.Class as MonadTrans
 import Data.Const (Const)
 import Data.Maybe (Maybe(..))
 import Effect (Effect)
-import Effect.Aff (Aff, launchAff_)
+import Effect.Aff (Aff)
 import Effect.Aff.Class (class MonadAff)
 import Effect.Class (class MonadEffect)
 import Halogen (liftEffect)
 import Halogen as H
-import Halogen.Aff (awaitBody)
+import Halogen.Aff (awaitBody, runHalogenAff)
 import Halogen.HTML as HH
 import Halogen.HTML.CSS as CSS
 import Halogen.HTML.Events as HE
@@ -44,7 +44,7 @@ runAppM env (AppM program) = runReaderT program env
 
 main :: Effect Unit
 main =
-    launchAff_ do
+    runHalogenAff do
       body <- awaitBody
       let env = { name: "PureScript" }
       let topLevelComponent = H.hoist (\app -> runAppM env app) specialMonadComponent

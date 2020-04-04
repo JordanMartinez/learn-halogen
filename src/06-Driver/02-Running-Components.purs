@@ -7,9 +7,9 @@ import Control.Monad.State (modify_)
 import Data.Const (Const)
 import Data.Maybe (Maybe(..))
 import Effect (Effect)
-import Effect.Aff (Aff, launchAff_)
+import Effect.Aff (Aff)
 import Halogen as H
-import Halogen.Aff (awaitBody)
+import Halogen.Aff (awaitBody, runHalogenAff)
 import Halogen.HTML as HH
 import Halogen.HTML.CSS as CSS
 import Halogen.HTML.Events as HE
@@ -19,7 +19,7 @@ import Halogen.VDom.Driver (runUI)
 -- | as a child of that element.
 main :: Effect Unit
 main =
-  launchAff_ do
+  runHalogenAff do
     body <- awaitBody
     let topLevelComponentInput = unit
     runUI topLevelcomponent topLevelComponentInput body

@@ -19,8 +19,8 @@ import Halogen.HTML.Events as HE
 import Halogen.HTML.Properties as HP
 
 -- Imports for scaffolding
-import Effect.Aff (Milliseconds(..), delay, launchAff_)
-import Halogen.Aff (awaitBody)
+import Effect.Aff (Milliseconds(..), delay)
+import Halogen.Aff (awaitBody, runHalogenAff)
 import Halogen.VDom.Driver (runUI)
 
 main :: Effect Unit
@@ -93,7 +93,7 @@ childLifecycleComponent =
 runChildLifecycleComponent :: H.Component HH.HTML (Const Void) Unit Void Aff
                            -> Effect Unit
 runChildLifecycleComponent comp = do
-  launchAff_ do
+  runHalogenAff do
     body <- awaitBody
     io <- runUI comp unit body
     delay $ Milliseconds 3000.0

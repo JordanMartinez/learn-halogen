@@ -15,9 +15,9 @@ import Halogen.HTML.Events as HE
 -- Imports for scaffolding
 import Data.Const (Const)
 import Data.Symbol (SProxy(..))
-import Effect.Aff (Aff, launchAff_)
+import Effect.Aff (Aff)
 import Control.Monad.State (get)
-import Halogen.Aff (awaitBody)
+import Halogen.Aff (awaitBody, runHalogenAff)
 import Halogen.VDom.Driver (runUI)
 
 main :: Effect Unit
@@ -117,7 +117,7 @@ type StateActionChildQueryParentSpec =
 runStateActionChildQueryParentSpec :: StateActionChildQueryParentSpec
                                    -> Effect Unit
 runStateActionChildQueryParentSpec spec = do
-  launchAff_ do
+  runHalogenAff do
     body <- awaitBody
     runUI (parentComponent spec) unit body
 

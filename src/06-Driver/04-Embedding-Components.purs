@@ -7,9 +7,9 @@ import Control.Monad.State (modify_)
 import Data.Const (Const)
 import Data.Maybe (Maybe(..), maybe)
 import Effect (Effect)
-import Effect.Aff (Aff, error, launchAff_, throwError)
+import Effect.Aff (Aff, error, throwError)
 import Halogen as H
-import Halogen.Aff (awaitLoad, selectElement)
+import Halogen.Aff (awaitLoad, selectElement, runHalogenAff)
 import Halogen.HTML as HH
 import Halogen.HTML.CSS as CSS
 import Halogen.HTML.Events as HE
@@ -21,7 +21,7 @@ import Web.HTML (HTMLElement)
 -- | and run the component as a child of that element.
 main :: Effect Unit
 main =
-    launchAff_ do
+    runHalogenAff do
       awaitLoad
       div <- selectElement' "could not find '#targetContainer'" $ QuerySelector "#targetContainer"
       runUI topLevelComponent unit div

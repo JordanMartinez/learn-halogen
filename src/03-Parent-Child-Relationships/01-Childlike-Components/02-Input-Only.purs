@@ -13,12 +13,12 @@ import Control.Monad.Rec.Class (forever)
 import Data.Const (Const)
 import Data.Symbol (SProxy(..))
 import Effect (Effect)
-import Effect.Aff (Aff, Milliseconds(..), delay, forkAff, launchAff_)
+import Effect.Aff (Aff, Milliseconds(..), delay, forkAff)
 import Effect.Random (randomInt)
 import Halogen (liftEffect, put)
 import Halogen (ComponentHTML)
 import Halogen as H
-import Halogen.Aff (awaitBody)
+import Halogen.Aff (awaitBody, runHalogenAff)
 import Halogen.VDom.Driver (runUI)
 
 main :: Effect Unit
@@ -105,7 +105,7 @@ runStateActionInputComponent :: forall state action.
                                StateActionIntInputComponent state action
                             -> Effect Unit
 runStateActionInputComponent childSpec = do
-  launchAff_ do
+  runHalogenAff do
     body <- awaitBody
     firstIntVal <- liftEffect $ randomInt 1 200
     io <- runUI (parentComponent $ stateActionInputComponent childSpec) firstIntVal body

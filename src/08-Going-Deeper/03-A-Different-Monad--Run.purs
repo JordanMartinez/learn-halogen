@@ -7,11 +7,11 @@ import Data.Const (Const)
 import Data.Functor.Variant (on)
 import Data.Maybe (Maybe(..))
 import Effect (Effect)
-import Effect.Aff (Aff, launchAff_)
+import Effect.Aff (Aff)
 import Halogen (liftEffect)
 import Halogen as H
 import Halogen as MonadTrans
-import Halogen.Aff (awaitBody)
+import Halogen.Aff (awaitBody, runHalogenAff)
 import Halogen.HTML as HH
 import Halogen.HTML.CSS as CSS
 import Halogen.HTML.Events as HE
@@ -58,7 +58,7 @@ runToAff =
 
 main :: Effect Unit
 main =
-    launchAff_ do
+    runHalogenAff do
       body <- awaitBody
       let topLevelComponent = H.hoist (\app -> runToAff app) specialMonadComponent
       runUI topLevelComponent unit body
@@ -96,6 +96,6 @@ specialMonadComponent =
 
     handleAction :: Action -> H.HalogenM State Action NoChildSlots Message MonadType Unit
     handleAction = case _ of
-      -- Here, we see that we must use MonadTrans.lift to lift Run into HalogenM 
+      -- Here, we see that we must use MonadTrans.lift to lift Run into HalogenM
       PrintAlert -> MonadTrans.lift do
         printAlert "We're using a non-Aff monad here"

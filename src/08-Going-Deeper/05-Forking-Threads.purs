@@ -6,17 +6,17 @@ import Data.Const (Const)
 import Data.Maybe (Maybe(..))
 import Data.Newtype (over)
 import Effect (Effect)
-import Effect.Aff (Aff, Milliseconds(..), delay, launchAff_)
+import Effect.Aff (Aff, Milliseconds(..), delay)
 import Effect.Console (log)
 import Halogen (liftAff, liftEffect)
 import Halogen as H
-import Halogen.Aff (awaitBody)
+import Halogen.Aff (awaitBody, runHalogenAff)
 import Halogen.HTML as HH
 import Halogen.HTML.Events as HE
 import Halogen.VDom.Driver (runUI)
 
 main :: Effect Unit
-main = launchAff_ do
+main = runHalogenAff do
   body <- awaitBody
   runUI componentWithForking unit body
 

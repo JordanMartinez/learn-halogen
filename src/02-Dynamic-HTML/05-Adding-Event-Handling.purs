@@ -11,10 +11,10 @@ import Halogen.HTML.Events as HE
 -- Imports for scaffolding
 import Data.Const (Const)
 import Effect (Effect)
-import Effect.Aff (Aff, launchAff_)
+import Effect.Aff (Aff)
 import Halogen (ComponentHTML)
 import Halogen as H
-import Halogen.Aff (awaitBody)
+import Halogen.Aff (awaitBody, runHalogenAff)
 import Halogen.VDom.Driver (runUI)
 
 -- | Our state type. Either the button is 'on' or 'off'.
@@ -83,7 +83,7 @@ runStateAndActionComponent :: forall state action.
                                SimpleChildComponent state action
                             -> Effect Unit
 runStateAndActionComponent childSpec = do
-  launchAff_ do
+  runHalogenAff do
     body <- awaitBody
     runUI (stateAndActionCompontent childSpec) unit body
 

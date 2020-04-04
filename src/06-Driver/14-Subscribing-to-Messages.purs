@@ -7,12 +7,12 @@ import Control.Coroutine as CR
 import Data.Const (Const)
 import Data.Maybe (Maybe(..))
 import Effect (Effect)
-import Effect.Aff (Aff, launchAff_)
+import Effect.Aff (Aff)
 import Effect.Console (log)
 import Effect.Random (randomInt)
 import Halogen (liftEffect)
 import Halogen as H
-import Halogen.Aff (awaitBody)
+import Halogen.Aff (awaitBody, runHalogenAff)
 import Halogen.HTML as HH
 import Halogen.HTML.CSS as CSS
 import Halogen.HTML.Events as HE
@@ -20,7 +20,7 @@ import Halogen.VDom.Driver (runUI)
 
 main :: Effect Unit
 main =
-    launchAff_ do
+    runHalogenAff do
       body <- awaitBody
       io <- runUI topLevelComponent unit body
 

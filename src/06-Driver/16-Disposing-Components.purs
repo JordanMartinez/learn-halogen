@@ -6,16 +6,16 @@ import CSS (backgroundColor, em, lightgreen, padding)
 import Control.Monad.State (put)
 import Data.Maybe (Maybe(..))
 import Effect (Effect)
-import Effect.Aff (Aff, Milliseconds(..), delay, forkAff, launchAff_)
+import Effect.Aff (Aff, Milliseconds(..), delay, forkAff)
 import Halogen as H
-import Halogen.Aff (awaitBody)
+import Halogen.Aff (awaitBody, runHalogenAff)
 import Halogen.HTML as HH
 import Halogen.HTML.CSS as CSS
 import Halogen.VDom.Driver (runUI)
 
 main :: Effect Unit
 main =
-    launchAff_ do
+    runHalogenAff do
       body <- awaitBody
       let totalMilliseconds = 5000.0
       let increment = 100.0

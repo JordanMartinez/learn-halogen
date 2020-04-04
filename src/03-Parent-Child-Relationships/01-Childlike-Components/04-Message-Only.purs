@@ -15,9 +15,9 @@ import Data.Array ((:))
 import Data.Const (Const)
 import Data.Symbol (SProxy(..))
 import Effect (Effect)
-import Effect.Aff (Aff, launchAff_)
+import Effect.Aff (Aff)
 import Halogen (ComponentHTML)
-import Halogen.Aff (awaitBody)
+import Halogen.Aff (awaitBody, runHalogenAff)
 import Halogen.HTML.CSS as CSS
 import Halogen.VDom.Driver (runUI)
 
@@ -113,7 +113,7 @@ runStateActionMessageComponent :: forall state action.
                                StateActionMessageComponent state action
                             -> Effect Unit
 runStateActionMessageComponent childSpec = do
-  launchAff_ do
+  runHalogenAff do
     body <- awaitBody
     runUI (parentComponent $ stateActionMessageComponent childSpec) unit body
 

@@ -29,7 +29,7 @@ For example
 ```purescript
 main :: Effect Unit
 main =
-  launchAff_ do
+  runHalogenAff do
     awaitLoad
     targetElement <- -- function that finds the element
     runUI topLevelComponent topLevelComponentInput targetElement
@@ -40,7 +40,7 @@ Since `awaitLoad` and a function that finds the body are frequently used, we can
 ```purescript
 main :: Effect Unit
 main =
-  launchAff_ do
+  runHalogenAff do
     body <- awaitBody
     runUI topLevelComponent topLevelComponentInput body
 ```
@@ -52,7 +52,7 @@ main =
 ```purescript
 main :: Effect Unit
 main =
-    launchAff_ do
+    runHalogenAff do
       body <- awaitBody
       io <- runUI topLevelComponent input body
 
@@ -79,7 +79,7 @@ For example:
 ```purescript
 main :: Effect Unit
 main =
-    launchAff_ do
+    runHalogenAff do
       body <- awaitBody
       io <- runUI topLevelComponent input body
 
@@ -118,7 +118,7 @@ import Control.Coroutine as CR
 
 main :: Effect Unit
 main =
-  launchAff_ do
+  runHalogenAff do
     body <- awaitBody
     io <- runUI topLevelComponent unit body
 
@@ -151,7 +151,7 @@ For example:
 ```purescript
 main :: Effect Unit
 main =
-    launchAff_ do
+    runHalogenAff do
       body <- awaitBody
       io <- runUI topLevelComponent input body
 

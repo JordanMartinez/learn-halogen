@@ -10,10 +10,10 @@ import Halogen.HTML as HH
 import Data.Const (Const)
 import Data.Symbol (SProxy(..))
 import Effect (Effect)
-import Effect.Aff (Aff, launchAff_)
+import Effect.Aff (Aff)
 import Halogen (get, put)
 import Halogen as H
-import Halogen.Aff (awaitBody)
+import Halogen.Aff (awaitBody, runHalogenAff)
 import Halogen.HTML.Events as HE
 import Halogen.VDom.Driver (runUI)
 
@@ -46,7 +46,7 @@ type ChildSlots = (child :: H.Slot (Const Void) String Unit)
 runParentWithMessageOnlyChild :: RenderParentWithMessageOnlyChild
                               -> Effect Unit
 runParentWithMessageOnlyChild renderParent = do
-  launchAff_ do
+  runHalogenAff do
     body <- awaitBody
     runUI (parentComponent renderParent) unit body
 

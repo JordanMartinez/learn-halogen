@@ -11,9 +11,9 @@ import Halogen.HTML.Properties as HP
 -- Imports for scaffolding
 import Data.Const (Const)
 import Effect (Effect)
-import Effect.Aff (Aff, launchAff_)
+import Effect.Aff (Aff)
 import Halogen as H
-import Halogen.Aff (awaitBody)
+import Halogen.Aff (awaitBody, runHalogenAff)
 import Halogen.VDom.Driver (runUI)
 
 -- | Shows how to use Halogen VDOM DSL to render static HTML
@@ -36,7 +36,7 @@ staticHtmlWithProps =
 --- Scaffolded code below ---
 
 main :: Effect Unit
-main = launchAff_ do
+main = runHalogenAff do
   body <- awaitBody
   runUI (staticComponent staticHtmlWithProps) unit body
 
