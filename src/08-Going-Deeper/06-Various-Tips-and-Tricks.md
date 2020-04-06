@@ -165,3 +165,35 @@ See [Thomas' comment in "Styling question"](https://github.com/thomashoneyman/pu
 ## Rendering Valid/Invalid Input Data
 
 If one reads through [Text Input not tracking state](https://discourse.purescript.org/t/text-input-not-tracking-state/1070/3) and, more specifically, [Gary's comment about using Either String ValidatedValue](https://discourse.purescript.org/t/text-input-not-tracking-state/1070/3), this can help with knowing how to deal with uncontrolled components.
+
+## How to type empty queries, messages, inputs?
+
+You can use `Void` and `Unit` as this project does
+
+```purs
+type MyQuery = Const Void
+type MyInput = Unit
+type MyMessages = Void
+simpleChildComponent :: H.Component HH.HTML MyQuery () MyInput MyMessages Aff
+
+-- and render using `unit` for values and `absurd` for functions
+
+let index = unit -- or some integer
+let input = unit -- on first render passed to `initialState` and to `receive` on subsequent renders if `input` is changed
+let messageHandler = absurd
+HH.slot _proxy index simpleChildComponent input messageHandler
+
+```
+
+it's also possible to use `forall` like this is done in halogen examples ([1](https://github.com/purescript-halogen/purescript-halogen/blob/bb715fe5c06ba3048f4d8b377ec842cd8cf37833/examples/higher-order-components/src/Harness.purs#L43), [2](https://github.com/purescript-halogen/purescript-halogen/blob/bb715fe5c06ba3048f4d8b377ec842cd8cf37833/examples/components-inputs/src/Container.purs#L39))
+
+```purs
+simpleChildComponent :: forall query input messages . H.Component HH.HTML query () input messages Aff
+
+-- and render using `unit` for values and `absurd` or `const unit` for functions
+
+let index = unit
+let input = unit
+let messageHandler = absurd
+HH.slot _proxy index simpleChildComponent input messageHandler
+```
