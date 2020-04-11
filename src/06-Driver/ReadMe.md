@@ -166,21 +166,21 @@ main =
     body <- awaitBody
     io <- runUI topLevelComponent unit body
 
-  -- first consumer
-  io.subscribe $ CR.consumer \messageRaisedByTopLevelComponent -> do
-    -- do something in the Aff context with that message
-    liftEffect $ log $
-      "Top-Level Component raised a message: " <>
-      show messageRaisedByTopLevelComponent
-    pure $ Just unit
+    -- first consumer
+    io.subscribe $ CR.consumer \messageRaisedByTopLevelComponent -> do
+      -- do something in the Aff context with that message
+      liftEffect $ log $
+        "Top-Level Component raised a message: " <>
+        show messageRaisedByTopLevelComponent
+      pure $ Just unit
 
-  -- second consumer
-  io.subscribe $ CR.consumer \messageRaisedByTopLevelComponent -> do
-    -- do something in the Aff context with that message
-    liftEffect $ log $
-      "This consumer only runs once and then ignores any future messages \
-      \because it returns 'Nothing' instead of 'Just unit'"
-    pure Nothing
+    -- second consumer
+    io.subscribe $ CR.consumer \messageRaisedByTopLevelComponent -> do
+      -- do something in the Aff context with that message
+      liftEffect $ log $
+        "This consumer only runs once and then ignores any future messages \
+        \because it returns 'Nothing' instead of 'Just unit'"
+      pure Nothing
 ```
 
 ### Disposing a Top-Level Component
