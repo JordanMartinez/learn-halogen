@@ -12,7 +12,7 @@ There's a few things to be aware of with the syntax:
 
 When we have one key-value pair, we use this syntax, `CSS.style $ key value`. When we wish to have multiple key-value pairs, we must use the monadic "do notation" syntax:
 ```purescript
-import Halogen.CSS as CSS
+import Halogen.HTML.CSS as CSS
 
 CSS.style $ do
     key value
