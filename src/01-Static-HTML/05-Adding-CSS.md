@@ -70,7 +70,7 @@ staticHtmlWitPropsAndCss =
         [ HH.text "This is text in a span!" ]
       ]
     , HH.button
-        [ HP.type_ "button" ]
+        [ HP.type_ ButtonButton ]
         [ HH.text "You can click me, but I don't do anything." ]
     ]
 ```
