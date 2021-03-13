@@ -13,7 +13,7 @@ Before learning Halogen via this project, you will need to install the following
 
 Or, to install them in one line
 ```bash
-npm i -g purescript@0.13.6 spago@0.14.0 parcel
+npm i -g purescript@0.13.6 spago@0.14.0 parcel-bundler@1.12.3
 ```
 
 Or, instead of install globally, install relatively to this project
