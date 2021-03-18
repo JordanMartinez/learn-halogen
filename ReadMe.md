@@ -1,5 +1,11 @@
 # Learn Halogen
 
+**This repo has been archived.** Feel free to fork it and continue maintaining it provided you abide by the license restrictions below. This repo has NOT been updated to compile on PureScript `v0.14.0`, nor Halogen `v6.0.0`, nor any PureScript or Halogen releases made after those. The last versions on which this repo compiled correctly was PureScript `v0.13.8` and Halogen `v5.0.0-rc.5`.
+
+See [Archiving my 'Learn Halogen' repo](https://discourse.purescript.org/t/archiving-my-learn-halogen-repo/2199) for more details.
+
+<hr />
+
 [![Build Status](https://travis-ci.com/JordanMartinez/learn-halogen.svg?branch=latestRelease)](https://travis-ci.com/JordanMartinez/learn-halogen)
 
 Learn [`purescript-halogen`](https://github.com/slamdata/purescript-halogen), (`v5.0.0-rc.5`) from a bottom-up approach
